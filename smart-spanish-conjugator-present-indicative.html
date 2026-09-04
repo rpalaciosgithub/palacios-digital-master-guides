@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Spanish Conjugator — Present Indicative | Profe Palacios</title>
+<style>
+  :root{
+    --bg:#f7f8fc;
+    --card:#ffffff;
+    --ink:#172033;
+    --muted:#5d667a;
+    --line:#d9deea;
+    --accent:#2f6fed;
+    --accent2:#8a3ffc;
+    --good:#16784a;
+    --warn:#9a4d00;
+    --danger:#b42318;
+    --soft:#eef3ff;
+    --soft2:#f4edff;
+    --soft3:#ecf8f2;
+    --soft4:#fff4e6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.45;
+  }
+  .wrap{max-width:1200px;margin:auto;padding:24px}
+  header{
+    background:linear-gradient(135deg,#173d8f,#5d31b8);
+    color:white;
+    padding:34px 28px;
+    border-radius:22px;
+    box-shadow:0 12px 30px rgba(40,50,90,.15);
+  }
+  header h1{font-size:clamp(2rem,5vw,3.6rem);margin:0 0 8px;font-weight:900}
+  header p{font-size:clamp(1.15rem,2vw,1.45rem);margin:6px 0}
+  .latin{display:inline-block;margin-top:12px;padding:8px 14px;border:2px solid rgba(255,255,255,.45);border-radius:999px;font-weight:800}
+  h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:34px 0 14px}
+  h3{font-size:1.45rem;margin:0 0 10px}
+  .rule{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:24px;
+  }
+  .rule-card{
+    background:var(--card);
+    border:2px solid var(--line);
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+  }
+  .rule-card .label{font-size:1.05rem;color:var(--muted);font-weight:800}
+  .rule-card .form{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin:8px 0}
+  .base{border-color:#7aa0ff;background:var(--soft)}
+  .plusS{border-color:#ae85ff;background:var(--soft2)}
+  .plusN{border-color:#64bd91;background:var(--soft3)}
+  .arrow{font-size:2rem;font-weight:900}
+  .note{
+    background:white;
+    border-left:7px solid var(--accent);
+    padding:16px 18px;
+    border-radius:12px;
+    font-size:1.15rem;
+    margin:18px 0;
+  }
+  .filters{
+    display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 18px;
+  }
+  button, select{
+    font:inherit;
+  }
+  .filter-btn,.action{
+    border:none;
+    border-radius:999px;
+    padding:11px 16px;
+    font-weight:800;
+    cursor:pointer;
+    background:#e8ecf5;
+    color:var(--ink);
+  }
+  .filter-btn.active{background:var(--accent);color:white}
+  .action{background:var(--accent);color:white}
+  .action.secondary{background:#e9edf7;color:var(--ink)}
+  .verb-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:15px;
+  }
+  .verb-card{
+    background:white;
+    border:2px solid var(--line);
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 4px 12px rgba(30,40,70,.05);
+  }
+  .verb-top{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:10px;
+  }
+  .verb-name{font-size:1.55rem;font-weight:900}
+  .meaning{font-size:1rem;color:var(--muted)}
+  .tag{
+    font-size:.82rem;font-weight:900;padding:5px 9px;border-radius:999px;background:#eef1f7;white-space:nowrap
+  }
+  .forms{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;
+  }
+  .formbox{border-radius:12px;padding:10px;text-align:center}
+  .formbox small{display:block;color:var(--muted);font-weight:800}
+  .formbox strong{display:block;font-size:1.35rem;margin-top:4px}
+  .formbox:nth-child(1){background:var(--soft)}
+  .formbox:nth-child(2){background:var(--soft2)}
+  .formbox:nth-child(3){background:var(--soft3)}
+  .yo{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px dashed var(--line);
+    color:var(--muted);
+  }
+  .yo strong{color:var(--ink)}
+  .examples{
+    margin-top:12px;
+    font-size:1.08rem;
+  }
+  .examples div{margin:5px 0}
+  .en{color:var(--muted);font-style:italic}
+  .machine{
+    background:white;border:2px solid var(--line);border-radius:20px;padding:20px;
+  }
+  .machine-row{
+    display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;
+  }
+  .machine-box{
+    min-height:120px;border-radius:16px;padding:16px;text-align:center;display:flex;flex-direction:column;justify-content:center;
+  }
+  .machine-box .big{font-size:clamp(2rem,5vw,3.2rem);font-weight:900}
+  .machine-box .tiny{font-size:1rem;color:var(--muted);font-weight:800}
+  .basebox{background:var(--soft)}
+  .sbox{background:var(--soft2)}
+  .nbox{background:var(--soft3)}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center}
+  select{
+    padding:11px 14px;border:2px solid var(--line);border-radius:12px;background:white;font-weight:800;
+  }
+  .quiz{
+    background:white;border:2px solid var(--line);border-radius:20px;padding:22px;
+  }
+  .question{font-size:1.35rem;font-weight:800;margin-bottom:14px}
+  .quiz-input{
+    width:100%;max-width:420px;padding:14px 16px;border:2px solid var(--line);border-radius:12px;
+    font-size:1.25rem;font-weight:700;
+  }
+  .feedback{min-height:34px;margin-top:12px;font-size:1.2rem;font-weight:900}
+  .jail{
+    background:#fff0f0;
+    border:3px dashed #d84949;
+    border-radius:20px;
+    padding:20px;
+    margin-top:18px;
+  }
+  .jail h3{color:var(--danger);font-size:1.7rem}
+  .serforms{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;
+  }
+  .serforms div{background:white;border:2px solid #f2b6b6;border-radius:12px;padding:12px;text-align:center;font-size:1.25rem}
+  .footer{
+    margin:34px 0 10px;
+    text-align:center;color:var(--muted);font-size:.98rem;
+  }
+  .search{
+    width:100%;padding:14px 16px;border:2px solid var(--line);border-radius:14px;font-size:1.1rem;margin:8px 0 12px;
+  }
+  .hidden{display:none!important}
+  .speaker{
+    border:none;background:#eef1f7;border-radius:10px;padding:7px 10px;cursor:pointer;font-weight:800
+  }
+  @media(max-width:760px){
+    .rule{grid-template-columns:1fr}
+    .machine-row{grid-template-columns:1fr}
+    .arrow{transform:rotate(90deg)}
+    .forms{grid-template-columns:1fr}
+    .serforms{grid-template-columns:1fr}
+    .wrap{padding:14px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Smart Spanish Conjugator — Present Indicative</h1>
+    <p><strong>Profe Palacios Spanish</strong></p>
+    <p>One base form. Two tiny additions. A huge shortcut.</p>
+    <span class="latin">Latin American Spanish • No vosotros/vosotras</span>
+  </header>
+
+  <h2>1. The Machine</h2>
+  <div class="rule">
+    <div class="rule-card base">
+      <div class="label">START HERE</div>
+      <div class="form">ÉL / ELLA / UD.</div>
+      <div>Learn this form as the base: <strong>habla</strong></div>
+    </div>
+    <div class="rule-card plusS">
+      <div class="label">FOR TÚ</div>
+      <div class="form">BASE + S</div>
+      <div><strong>habla → hablas</strong></div>
+    </div>
+    <div class="rule-card plusN">
+      <div class="label">FOR ELLOS / ELLAS / UDS.</div>
+      <div class="form">BASE + N</div>
+      <div><strong>habla → hablan</strong></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>The shortcut:</strong> If you know the <strong>él / ella / usted</strong> form, you can usually build
+    <strong>tú</strong> by adding <strong>S</strong> and <strong>ellos / ellas / ustedes</strong> by adding <strong>N</strong>.
+    This works with regular verbs, stem-changing verbs, verbs with irregular <em>yo</em> forms, and many very irregular verbs.
+  </div>
+  <div class="note" style="border-left-color:#8a3ffc">
+    <strong>Important:</strong> This machine teaches the relationship among these three present-indicative forms.
+    <strong>Yo</strong> and <strong>nosotros/nosotras</strong> have their own patterns and are outside this machine.
+  </div>
+
+  <h2>2. Watch the Machine Work</h2>
+  <div class="machine">
+    <div class="controls">
+      <label for="machineVerb"><strong>Choose a verb:</strong></label>
+      <select id="machineVerb"></select>
+      <button class="action secondary" onclick="randomMachineVerb()">Random verb</button>
+      <button class="action secondary" onclick="speakMachine()">🔊 Hear forms</button>
+    </div>
+    <div class="machine-row">
+      <div class="machine-box basebox">
+        <span class="tiny">ÉL / ELLA / UD.</span>
+        <span class="big" id="mBase">habla</span>
+      </div>
+      <div class="arrow">→</div>
+      <div class="machine-box sbox">
+        <span class="tiny">TÚ = BASE + S</span>
+        <span class="big" id="mTu">hablas</span>
+      </div>
+      <div class="arrow">→</div>
+      <div class="machine-box nbox">
+        <span class="tiny">ELLOS / ELLAS / UDS. = BASE + N</span>
+        <span class="big" id="mPlural">hablan</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>3. Plenty of Examples</h2>
+  <input id="search" class="search" type="search" placeholder="Search a verb or English meaning…" oninput="renderCards()">
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="regular">Regular</button>
+    <button class="filter-btn" data-filter="stem">Stem-changing</button>
+    <button class="filter-btn" data-filter="yo">Irregular YO</button>
+    <button class="filter-btn" data-filter="irregular">Other irregular</button>
+  </div>
+  <div id="verbGrid" class="verb-grid"></div>
+
+  <h2>4. Quick Practice</h2>
+  <div class="quiz">
+    <div class="question" id="question"></div>
+    <input id="answer" class="quiz-input" autocomplete="off" placeholder="Type the Spanish form">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:12px">
+      <button class="action" onclick="checkAnswer()">Check</button>
+      <button class="action secondary" onclick="newQuestion()">New question</button>
+      <button class="action secondary" onclick="showAnswer()">Show answer</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <h2>5. The Deviant Case 😄</h2>
+  <div class="jail">
+    <h3>🚨 SER — Profe Palacios puts it in a separate box.</h3>
+    <p style="font-size:1.15rem">
+      SER does <strong>not</strong> follow the machine. Do not let one deviant verb ruin a useful pattern.
+      Just memorize SER separately.
+    </p>
+    <div class="serforms">
+      <div><small>TÚ</small><br><strong>eres</strong></div>
+      <div><small>ÉL / ELLA / UD.</small><br><strong>es</strong></div>
+      <div><small>ELLOS / ELLAS / UDS.</small><br><strong>son</strong></div>
+    </div>
+    <p style="margin-bottom:0"><strong>Not:</strong> es + s → ❌ <em>ess</em> &nbsp;&nbsp; | &nbsp;&nbsp; es + n → ❌ <em>esn</em></p>
+  </div>
+
+  <div class="footer">
+    Present indicative • Latin American Spanish • Uses ustedes, not vosotros/vosotras
+  </div>
+</div>
+
+<script>
+const verbs = [
+  // Regular
+  {v:"hablar", en:"to speak", cat:"regular", yo:"hablo", base:"habla", tu:"hablas", pl:"hablan",
+   ex:["Ella habla español.","Tú hablas con Rosa.","Ustedes hablan todos los días."]},
+  {v:"trabajar", en:"to work", cat:"regular", yo:"trabajo", base:"trabaja", tu:"trabajas", pl:"trabajan",
+   ex:["Él trabaja en casa.","Tú trabajas mucho.","Ellos trabajan juntos."]},
+  {v:"estudiar", en:"to study", cat:"regular", yo:"estudio", base:"estudia", tu:"estudias", pl:"estudian",
+   ex:["Ana estudia español.","Tú estudias por la noche.","Ustedes estudian juntos."]},
+  {v:"necesitar", en:"to need", cat:"regular", yo:"necesito", base:"necesita", tu:"necesitas", pl:"necesitan",
+   ex:["Ella necesita descansar.","Tú necesitas ayuda.","Ellos necesitan tiempo."]},
+  {v:"comprar", en:"to buy", cat:"regular", yo:"compro", base:"compra", tu:"compras", pl:"compran",
+   ex:["Él compra comida.","Tú compras café.","Ustedes compran fruta."]},
+  {v:"llamar", en:"to call", cat:"regular", yo:"llamo", base:"llama", tu:"llamas", pl:"llaman",
+   ex:["Ella llama a su hijo.","Tú llamas a Rosa.","Ellos llaman mañana."]},
+  {v:"comer", en:"to eat", cat:"regular", yo:"como", base:"come", tu:"comes", pl:"comen",
+   ex:["Él come pizza.","Tú comes en casa.","Ustedes comen juntos."]},
+  {v:"beber", en:"to drink", cat:"regular", yo:"bebo", base:"bebe", tu:"bebes", pl:"beben",
+   ex:["Ella bebe agua.","Tú bebes café.","Ellos beben agua."]},
+  {v:"aprender", en:"to learn", cat:"regular", yo:"aprendo", base:"aprende", tu:"aprendes", pl:"aprenden",
+   ex:["Él aprende rápido.","Tú aprendes español.","Ustedes aprenden mucho."]},
+  {v:"vivir", en:"to live", cat:"regular", yo:"vivo", base:"vive", tu:"vives", pl:"viven",
+   ex:["Ella vive en California.","Tú vives cerca.","Ellos viven aquí."]},
+  {v:"escribir", en:"to write", cat:"regular", yo:"escribo", base:"escribe", tu:"escribes", pl:"escriben",
+   ex:["Él escribe un mensaje.","Tú escribes mucho.","Ustedes escriben bien."]},
+  {v:"abrir", en:"to open", cat:"regular", yo:"abro", base:"abre", tu:"abres", pl:"abren",
+   ex:["Ella abre la puerta.","Tú abres la ventana.","Ellos abren temprano."]},
+
+  // Stem-changing
+  {v:"querer", en:"to want", cat:"stem", yo:"quiero", base:"quiere", tu:"quieres", pl:"quieren",
+   ex:["Ella quiere comer.","Tú quieres viajar.","Ustedes quieren descansar."]},
+  {v:"poder", en:"to be able to / can", cat:"stem", yo:"puedo", base:"puede", tu:"puedes", pl:"pueden",
+   ex:["Él puede hablar.","Tú puedes venir.","Ellos pueden ayudar."]},
+  {v:"pensar", en:"to think", cat:"stem", yo:"pienso", base:"piensa", tu:"piensas", pl:"piensan",
+   ex:["Ella piensa mucho.","Tú piensas en tu familia.","Ustedes piensan igual."]},
+  {v:"preferir", en:"to prefer", cat:"stem", yo:"prefiero", base:"prefiere", tu:"prefieres", pl:"prefieren",
+   ex:["Él prefiere café.","Tú prefieres descansar.","Ellos prefieren salir."]},
+  {v:"pedir", en:"to ask for / order", cat:"stem", yo:"pido", base:"pide", tu:"pides", pl:"piden",
+   ex:["Ella pide agua.","Tú pides ayuda.","Ustedes piden comida."]},
+  {v:"dormir", en:"to sleep", cat:"stem", yo:"duermo", base:"duerme", tu:"duermes", pl:"duermen",
+   ex:["Él duerme bien.","Tú duermes ocho horas.","Ellos duermen tarde."]},
+  {v:"volver", en:"to return", cat:"stem", yo:"vuelvo", base:"vuelve", tu:"vuelves", pl:"vuelven",
+   ex:["Ella vuelve mañana.","Tú vuelves a casa.","Ustedes vuelven pronto."]},
+  {v:"encontrar", en:"to find", cat:"stem", yo:"encuentro", base:"encuentra", tu:"encuentras", pl:"encuentran",
+   ex:["Él encuentra las llaves.","Tú encuentras tiempo.","Ellos encuentran trabajo."]},
+  {v:"empezar", en:"to begin", cat:"stem", yo:"empiezo", base:"empieza", tu:"empiezas", pl:"empiezan",
+   ex:["Ella empieza ahora.","Tú empiezas temprano.","Ustedes empiezan juntos."]},
+  {v:"jugar", en:"to play", cat:"stem", yo:"juego", base:"juega", tu:"juegas", pl:"juegan",
+   ex:["Él juega fútbol.","Tú juegas con los niños.","Ellos juegan afuera."]},
+
+  // Irregular yo
+  {v:"tener", en:"to have", cat:"yo", yo:"tengo", base:"tiene", tu:"tienes", pl:"tienen",
+   ex:["Ella tiene tiempo.","Tú tienes razón.","Ustedes tienen trabajo."]},
+  {v:"venir", en:"to come", cat:"yo", yo:"vengo", base:"viene", tu:"vienes", pl:"vienen",
+   ex:["Él viene mañana.","Tú vienes conmigo.","Ellos vienen a casa."]},
+  {v:"decir", en:"to say / tell", cat:"yo", yo:"digo", base:"dice", tu:"dices", pl:"dicen",
+   ex:["Ella dice la verdad.","Tú dices eso mucho.","Ustedes dicen lo mismo."]},
+  {v:"hacer", en:"to do / make", cat:"yo", yo:"hago", base:"hace", tu:"haces", pl:"hacen",
+   ex:["Él hace la cena.","Tú haces ejercicio.","Ellos hacen la tarea."]},
+  {v:"poner", en:"to put", cat:"yo", yo:"pongo", base:"pone", tu:"pones", pl:"ponen",
+   ex:["Ella pone la mesa.","Tú pones música.","Ustedes ponen atención."]},
+  {v:"salir", en:"to leave / go out", cat:"yo", yo:"salgo", base:"sale", tu:"sales", pl:"salen",
+   ex:["Él sale temprano.","Tú sales con amigos.","Ellos salen mañana."]},
+  {v:"traer", en:"to bring", cat:"yo", yo:"traigo", base:"trae", tu:"traes", pl:"traen",
+   ex:["Ella trae café.","Tú traes comida.","Ustedes traen todo."]},
+  {v:"conocer", en:"to know / meet", cat:"yo", yo:"conozco", base:"conoce", tu:"conoces", pl:"conocen",
+   ex:["Él conoce a Rosa.","Tú conoces la ciudad.","Ellos conocen el lugar."]},
+  {v:"oír", en:"to hear", cat:"yo", yo:"oigo", base:"oye", tu:"oyes", pl:"oyen",
+   ex:["Ella oye música.","Tú oyes un ruido.","Ustedes oyen la pregunta."]},
+
+  // Other irregular
+  {v:"ir", en:"to go", cat:"irregular", yo:"voy", base:"va", tu:"vas", pl:"van",
+   ex:["Ella va al trabajo.","Tú vas a casa.","Ustedes van mañana."]},
+  {v:"dar", en:"to give", cat:"irregular", yo:"doy", base:"da", tu:"das", pl:"dan",
+   ex:["Él da una clase.","Tú das un ejemplo.","Ellos dan información."]},
+  {v:"estar", en:"to be", cat:"irregular", yo:"estoy", base:"está", tu:"estás", pl:"están",
+   ex:["Ella está en casa.","Tú estás cansado.","Ustedes están aquí."]},
+  {v:"ver", en:"to see", cat:"irregular", yo:"veo", base:"ve", tu:"ves", pl:"ven",
+   ex:["Él ve la televisión.","Tú ves el problema.","Ellos ven la casa."]},
+  {v:"saber", en:"to know", cat:"irregular", yo:"sé", base:"sabe", tu:"sabes", pl:"saben",
+   ex:["Ella sabe la respuesta.","Tú sabes mucho.","Ustedes saben español."]},
+  {v:"haber", en:"to have (auxiliary)", cat:"irregular", yo:"he", base:"ha", tu:"has", pl:"han",
+   ex:["Ella ha comido.","Tú has estudiado.","Ustedes han trabajado."]}
+];
+
+const catNames = {
+  regular:"Regular",
+  stem:"Stem-changing",
+  yo:"Irregular YO",
+  irregular:"Other irregular"
+};
+
+let currentFilter = "all";
+let quizState = null;
+
+function renderCards(){
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const grid = document.getElementById("verbGrid");
+  grid.innerHTML = "";
+  const filtered = verbs.filter(x =>
+    (currentFilter==="all" || x.cat===currentFilter) &&
+    (!q || x.v.toLowerCase().includes(q) || x.en.toLowerCase().includes(q))
+  );
+
+  filtered.forEach(x=>{
+    const card = document.createElement("div");
+    card.className="verb-card";
+    card.innerHTML = `
+      <div class="verb-top">
+        <div>
+          <div class="verb-name">${x.v}</div>
+          <div class="meaning">${x.en}</div>
+        </div>
+        <span class="tag">${catNames[x.cat]}</span>
+      </div>
+      <div class="forms">
+        <div class="formbox"><small>ÉL / ELLA / UD.</small><strong>${x.base}</strong></div>
+        <div class="formbox"><small>TÚ = + S</small><strong>${x.tu}</strong></div>
+        <div class="formbox"><small>ELLOS / ELLAS / UDS. = + N</small><strong>${x.pl}</strong></div>
+      </div>
+      <div class="yo">YO: <strong>${x.yo}</strong> <span>— shown only for comparison</span></div>
+      <div class="examples">
+        <div>${x.ex[0]}</div>
+        <div>${x.ex[1]}</div>
+        <div>${x.ex[2]}</div>
+      </div>
+      <button class="speaker" onclick='speak("${x.base}. ${x.tu}. ${x.pl}.")'>🔊 Hear the 3 forms</button>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter=btn.dataset.filter;
+    renderCards();
+  });
+});
+
+function fillMachineSelect(){
+  const sel=document.getElementById("machineVerb");
+  verbs.forEach((x,i)=>{
+    const o=document.createElement("option");
+    o.value=i;o.textContent=`${x.v} — ${x.en}`;
+    sel.appendChild(o);
+  });
+  sel.addEventListener("change",updateMachine);
+  updateMachine();
+}
+function updateMachine(){
+  const x=verbs[+document.getElementById("machineVerb").value];
+  document.getElementById("mBase").textContent=x.base;
+  document.getElementById("mTu").textContent=x.tu;
+  document.getElementById("mPlural").textContent=x.pl;
+}
+function randomMachineVerb(){
+  const sel=document.getElementById("machineVerb");
+  sel.value=Math.floor(Math.random()*verbs.length);
+  updateMachine();
+}
+function speakMachine(){
+  const x=verbs[+document.getElementById("machineVerb").value];
+  speak(`${x.base}. ${x.tu}. ${x.pl}.`);
+}
+function speak(text){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="es-MX";
+  u.rate=.82;
+  speechSynthesis.speak(u);
+}
+
+function newQuestion(){
+  const x=verbs[Math.floor(Math.random()*verbs.length)];
+  const target=Math.random()<.5 ? "tu" : "pl";
+  quizState={x,target};
+  const label= target==="tu" ? "TÚ" : "ELLOS / ELLAS / USTEDES";
+  document.getElementById("question").innerHTML =
+    `<strong>${x.v}</strong>: The él/ella/Ud. form is <strong>${x.base}</strong>.<br>Build the <strong>${label}</strong> form.`;
+  document.getElementById("answer").value="";
+  document.getElementById("feedback").textContent="";
+  document.getElementById("answer").focus();
+}
+function normalize(s){
+  return s.trim().toLowerCase();
+}
+function checkAnswer(){
+  if(!quizState) return;
+  const expected=quizState.x[quizState.target];
+  const given=document.getElementById("answer").value;
+  const f=document.getElementById("feedback");
+  if(normalize(given)===normalize(expected)){
+    f.style.color="var(--good)";
+    f.textContent=`✓ Correct: ${expected}`;
+  }else{
+    f.style.color="var(--danger)";
+    f.textContent=`Not yet. Start with ${quizState.x.base} and add ${quizState.target==="tu" ? "S" : "N"}.`;
+  }
+}
+function showAnswer(){
+  if(!quizState) return;
+  const expected=quizState.x[quizState.target];
+  const f=document.getElementById("feedback");
+  f.style.color="var(--warn)";
+  f.textContent=`Answer: ${expected}`;
+}
+document.getElementById("answer").addEventListener("keydown",e=>{
+  if(e.key==="Enter") checkAnswer();
+});
+
+fillMachineSelect();
+renderCards();
+newQuestion();
+</script>
+</body>
+</html>
