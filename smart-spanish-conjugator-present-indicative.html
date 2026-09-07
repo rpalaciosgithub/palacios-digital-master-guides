@@ -171,6 +171,7 @@
   }
   .conjugator-box .big{font-size:clamp(2rem,5vw,3.2rem);font-weight:900}
   .conjugator-box .tiny{font-size:1rem;color:var(--muted);font-weight:800}
+  .conjugator-box > span + span{margin-top:8px}
   .basebox{background:var(--soft)}
   .sbox{background:var(--soft2)}
   .nbox{background:var(--soft3)}
@@ -205,13 +206,37 @@
     .font-controls{position:static;margin:0 0 18px;justify-content:flex-end}
     .font-btn{min-width:62px;min-height:48px}
     .rule{grid-template-columns:1fr}
-    .conjugator-row{grid-template-columns:1fr}
-    .arrow{transform:rotate(90deg)}
+    .conjugator-row{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:stretch;
+    }
+    .conjugator-row .conjugator-box{width:100%}
+    .conjugator-row .arrow{
+      position:static;
+      transform:none;
+      display:block;
+      width:100%;
+      margin:0;
+      padding:2px 0;
+      text-align:center;
+      line-height:1;
+      font-size:0;
+      flex:0 0 auto;
+    }
+    .conjugator-row .arrow::after{
+      content:"↓";
+      font-size:2.2rem;
+      font-weight:900;
+      line-height:1;
+    }
     .forms{grid-template-columns:1fr}
   }
   </style>
 </head>
 <body>
+<!-- Revised: Section 1 formula order; removed Hear forms; fixed mobile arrows for iPhone. -->
 <!-- Recorded example audio updated from ROSA HABLA(1).mp3; third hablar repetition used. -->
 <!-- Example sentences reviewed for natural, self-contained Spanish. -->
 <div class="wrap">
@@ -235,13 +260,13 @@
     </div>
     <div class="conjugator-box sbox">
       <span class="tiny">TÚ = BASE + <span class="added-letter added-s">S</span></span>
-      <span class="big">habla<span class="added-letter added-s">s</span></span>
       <span><strong>habla + <span class="added-letter added-s">S</span></strong></span>
+      <span class="big">habla<span class="added-letter added-s">s</span></span>
     </div>
     <div class="conjugator-box nbox">
       <span class="tiny">ELLOS / ELLAS / UDS. = BASE + <span class="added-letter added-n">N</span></span>
-      <span class="big">habla<span class="added-letter added-n">n</span></span>
       <span><strong>habla + <span class="added-letter added-n">N</span></strong></span>
+      <span class="big">habla<span class="added-letter added-n">n</span></span>
     </div>
   </div>
 
@@ -262,7 +287,6 @@
       <label for="conjugatorVerb"><strong>Choose a verb:</strong></label>
       <select id="conjugatorVerb"></select>
       <button class="action secondary" onclick="randomConjugatorVerb()">Random verb</button>
-      <button class="action secondary" onclick="speakConjugator()">🔊 Hear forms</button>
     </div>
     <div class="conjugator-row">
       <div class="conjugator-box basebox">
