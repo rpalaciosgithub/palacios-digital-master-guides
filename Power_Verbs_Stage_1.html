@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/rpala/Downloads/Esteban_Stage1_Practice_App_10.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esteban's Practice — Spanish Chunks</title>
+<style>
+  :root {
+    --cream: #F7F2E8;
+    --card: #FFFFFF;
+    --ink: #1F2933;
+    --ink-soft: #52606D;
+    --navy: #17365D;
+    --navy-soft: #365D88;
+    --red: #B42318;
+    --marigold: #D6A019;
+    --marigold-dark: #76520B;
+    --green: #2F6B3A;
+    --border: #CCD5DF;
+    --radius: 20px;
+    --shadow: 0 8px 24px rgba(23,54,93,.10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--cream); color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh; padding: 28px 18px 64px;
+    font-size: 20px; line-height: 1.55;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .top-strip {
+    height: 8px; border-radius: 5px;
+    background: repeating-linear-gradient(90deg,var(--marigold) 0 18px,var(--red) 18px 36px,var(--navy) 36px 54px);
+    margin-bottom: 24px;
+  }
+  header { text-align: center; margin-bottom: 24px; }
+  header h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(32px,6vw,44px); line-height:1.15; color:var(--navy); margin:0 0 8px; font-weight:700; }
+  header p { margin:0; color:var(--ink-soft); font-size:20px; font-weight:600; line-height:1.45; }
+  .card { background:var(--card); border:2px solid var(--border); border-radius:var(--radius); padding:clamp(22px,5vw,34px); margin-bottom:18px; box-shadow:var(--shadow); }
+  .ready-banner { background:var(--green); color:#fff; text-align:center; font-weight:800; font-size:21px; border-radius:16px; padding:16px; margin-bottom:18px; }
+  .session-summary { background:#FFF0EE; border:2px solid var(--red); border-radius:16px; padding:16px 18px; margin-bottom:18px; }
+  .session-summary .stitle { font-weight:800; color:var(--red); font-size:20px; margin-bottom:10px; }
+  .session-summary .srow { display:flex; justify-content:space-between; gap:12px; font-size:20px; padding:7px 0; border-bottom:1px solid #E8C6C2; }
+  .session-summary .srow:last-child { border-bottom:none; }
+  .session-summary .sen { color:var(--ink-soft); }
+  .session-summary .ses { color:var(--red); font-weight:800; }
+  .session-summary .scount { color:var(--marigold-dark); font-weight:800; }
+  .completion-note { background:#EAF4EA; border:2px solid var(--green); border-radius:16px; padding:18px 20px; font-size:20px; line-height:1.6; color:var(--ink); margin-bottom:18px; font-weight:700; }
+  .completion-note strong { color:#315F35; }
+  .goal-note { background:#FFF7DE; border:2px solid var(--marigold); border-radius:16px; padding:18px 20px; font-size:20px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+  .goal-note strong { color:var(--marigold-dark); }
+  .mode-grid { display:grid; grid-template-columns:1fr; gap:16px; }
+  .mode-btn { display:block; width:100%; text-align:left; background:#fff; border:3px solid var(--border); border-radius:18px; padding:24px; cursor:pointer; font-family:inherit; box-shadow:0 3px 10px rgba(31,41,51,.06); transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease; }
+  .mode-btn:hover,.mode-btn:focus-visible { border-color:var(--navy-soft); box-shadow:0 8px 20px rgba(23,54,93,.12); outline:none; }
+  .mode-btn:active { transform:scale(.99); }
+  .mode-btn .mtitle { font-family:Georgia,serif; font-size:24px; line-height:1.25; font-weight:700; color:var(--navy); margin-bottom:8px; }
+  .mode-btn .msub { color:var(--ink-soft); font-size:20px; line-height:1.55; }
+  .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+  .stat { background:var(--card); border:2px solid var(--border); border-radius:16px; padding:15px 8px; text-align:center; box-shadow:0 3px 10px rgba(31,41,51,.05); }
+  .stat .num { font-size:34px; line-height:1; font-weight:800; color:var(--marigold-dark); font-family:Georgia,serif; }
+  .stat .lbl { font-size:18px; line-height:1.3; color:var(--ink-soft); margin-top:7px; font-weight:600; }
+  .practice-card { text-align:center; padding:clamp(30px,6vw,48px) clamp(22px,5vw,38px); }
+  .eyebrow { font-size:18px; letter-spacing:.08em; text-transform:uppercase; color:var(--navy-soft); font-weight:800; margin-bottom:16px; }
+  .cue { font-family:Georgia,serif; font-size:clamp(34px,7vw,50px); font-weight:700; color:var(--ink); line-height:1.25; min-height:120px; display:flex; align-items:center; justify-content:center; padding:10px; }
+  .answer { font-family:Georgia,serif; font-size:clamp(40px,8vw,58px); line-height:1.2; font-weight:800; color:var(--red); min-height:120px; display:flex; align-items:center; justify-content:center; gap:14px; padding:10px; }
+  .answer.hidden-answer { visibility:hidden; }
+  .speaker-btn { background:#F5F8FB; border:2px solid var(--border); border-radius:50%; width:54px; height:54px; font-size:24px; cursor:pointer; color:var(--navy); flex-shrink:0; }
+  .speaker-btn:hover,.speaker-btn:focus-visible { border-color:var(--navy); outline:3px solid rgba(23,54,93,.18); }
+  .warmup-line { font-size:20px; line-height:1.5; color:var(--navy); font-style:italic; font-weight:600; margin-bottom:12px; background:#EDF4FA; border-radius:12px; padding:12px 14px; }
+  .btn { font-family:inherit; font-size:20px; font-weight:800; border-radius:16px; padding:18px 16px; border:none; cursor:pointer; width:100%; min-height:60px; }
+  .btn:focus-visible { outline:4px solid rgba(23,54,93,.22); outline-offset:2px; }
+  .btn-primary { background:var(--navy); color:#fff; }
+  .btn-primary:hover { background:#0F2A4A; }
+  .btn-row { display:flex; gap:14px; margin-top:16px; }
+  .btn-good { background:var(--green); color:#fff; flex:1; }
+  .btn-miss { background:var(--red); color:#fff; flex:1; }
+  .btn-ghost { background:#F7F9FB; color:var(--ink-soft); border:2px solid var(--border); font-weight:700; font-size:19px; padding:14px; margin-top:16px; }
+  .pos-indicator { font-size:18px; color:var(--ink-soft); margin-bottom:8px; font-weight:600; }
+  .session-missed { font-size:18px; color:var(--red); font-weight:800; margin-top:14px; }
+  .progress-dots { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
+  .dot { width:11px; height:11px; border-radius:50%; background:var(--border); }
+  .dot.filled { background:var(--marigold); }
+  .footer-note { text-align:center; color:var(--ink-soft); font-size:19px; margin-top:22px; line-height:1.55; font-weight:600; }
+
+  /* Hollywood Lite: cinematic, readable, and calm */
+  .verb-intro { padding: 12px 4px 4px; text-align:center; perspective:1000px; }
+  .verb-intro.cinematic-in { animation: cinematicIn .72s ease-in-out both; }
+  .verb-kicker { color:var(--marigold-dark); font-size:18px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; }
+  .verb-name { font-family:Georgia,serif; color:var(--navy); font-size:clamp(42px,8vw,64px); line-height:1.1; font-weight:800; margin:0 0 18px; }
+  .say-note { background:#FFF7DE; border:2px solid var(--marigold); border-radius:16px; padding:14px 18px; margin:0 auto 20px; max-width:620px; font-size:20px; font-weight:700; line-height:1.55; }
+  .warmup-forms { background:linear-gradient(145deg,#F4F8FC,#EAF2F8); border:2px solid #B8C9DA; border-radius:20px; padding:22px; margin:0 auto 22px; max-width:620px; box-shadow:0 10px 24px rgba(23,54,93,.10); }
+  .warmup-form { font-family:Georgia,serif; color:var(--red); font-size:clamp(34px,7vw,52px); font-weight:800; line-height:1.25; padding:5px 0; }
+  .intro-speaker { margin:2px auto 20px; }
+  .intro-note { max-width:620px; margin:-10px auto 18px; font-size:20px; line-height:1.5; color:var(--ink-soft); font-weight:700; }
+  #drillScreen { transform-style:preserve-3d; backface-visibility:hidden; }
+  #drillScreen.item-enter { animation:itemSlideIn .68s ease-in-out both; }
+  #drillScreen.page-turn { animation:pageTurn .78s ease-in-out both; transform-origin:center center; }
+  #drillScreen.good-flash { animation:goodPulse .58s ease-in-out; }
+  #drillScreen.miss-flash { animation:missPulse .58s ease-in-out; }
+  #answerWrap.flip-in { animation:answerSettle .42s ease-out both; transform-origin:center; }
+  #cueText.reveal-dim { animation:cueDim .44s ease both; }
+  .btn-primary.cinematic-button { box-shadow:0 8px 18px rgba(23,54,93,.22); transition:transform .16s ease, box-shadow .16s ease, background .16s ease; }
+  .btn-primary.cinematic-button:hover { transform:translateY(-2px); box-shadow:0 12px 24px rgba(23,54,93,.27); }
+  @keyframes cinematicIn { 0%{opacity:0; transform:translateY(24px)} 100%{opacity:1; transform:translateY(0)} }
+  @keyframes itemSlideIn { 0%{opacity:0; transform:translateX(42px)} 100%{opacity:1; transform:translateX(0)} }
+  @keyframes pageTurn { 0%{transform:perspective(1200px) rotateY(0deg); opacity:1} 50%{transform:perspective(1200px) rotateY(-78deg); opacity:.72} 50.01%{transform:perspective(1200px) rotateY(78deg); opacity:.72} 100%{transform:perspective(1200px) rotateY(0deg); opacity:1} }
+  @keyframes answerSettle { 0%{opacity:0; transform:translateY(10px)} 100%{opacity:1; transform:translateY(0)} }
+  @keyframes cueDim { from{opacity:1; transform:none} to{opacity:.28; transform:scale(.93)} }
+  @keyframes goodPulse { 0%,100%{box-shadow:var(--shadow)} 50%{box-shadow:0 0 0 11px rgba(47,107,58,.30),0 0 34px rgba(47,107,58,.24),var(--shadow)} }
+  @keyframes missPulse { 0%,100%{box-shadow:var(--shadow)} 50%{box-shadow:0 0 0 11px rgba(180,35,24,.27),0 0 34px rgba(180,35,24,.22),var(--shadow)} }
+
+  .model-note { background:#EDF4FA; border:2px solid #B8C9DA; border-radius:16px; padding:16px 18px; margin:16px auto 20px; max-width:620px; text-align:left; }
+  .model-note strong { color:var(--navy); }
+  .model-sentence { font-family:Georgia,serif; color:var(--red); font-size:24px; font-weight:800; margin:6px 0; }
+  .not-memorize { font-size:19px; color:var(--ink-soft); font-weight:700; margin-top:10px; }
+  .model-english { font-family:Arial,Helvetica,sans-serif; color:var(--ink-soft); font-size:20px; font-weight:600; margin:-2px 0 10px; }
+  .model-audio-btn { width:auto; min-height:48px; margin:12px 0 6px; padding:12px 18px; font-size:19px; }
+
+
+  .reference-verb-row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .reference-audio-btn {
+    width:36px;
+    height:36px;
+    min-width:36px;
+    border-radius:50%;
+    border:2px solid var(--border);
+    background:#F5F8FB;
+    color:var(--navy);
+    font-size:20px;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+  }
+  .reference-audio-btn:hover,
+  .reference-audio-btn:focus-visible {
+    border-color:var(--navy);
+    outline:3px solid rgba(23,54,93,.16);
+  }
+
+
+  .reference-meaning-note{
+    max-width:620px;
+    margin:18px auto 0;
+    background:#FFF7DE;
+    border:2px solid var(--marigold);
+    border-radius:14px;
+    padding:14px 16px;
+    text-align:left;
+    font-size:19px;
+    line-height:1.6;
+    color:var(--ink);
+    font-weight:700;
+  }
+  .reference-model{
+    color:var(--ink-soft);
+    font-size:18px;
+    font-style:italic;
+    margin-top:2px;
+    line-height:1.35;
+  }
+
+  .power-definition-card {
+    max-width:620px;
+    margin:0 auto 20px;
+    background:#FFF7DE;
+    border:2px solid var(--marigold);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 5px 14px rgba(118,82,11,.09);
+  }
+  .power-definition-card summary {
+    list-style:none;
+    cursor:pointer;
+    padding:18px 20px;
+    font-size:22px;
+    line-height:1.35;
+    font-weight:900;
+    color:var(--marigold-dark);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+  }
+  .power-definition-card summary::-webkit-details-marker { display:none; }
+  .power-definition-card summary::before {
+    content:'▶';
+    color:var(--navy);
+    font-size:18px;
+    flex:0 0 auto;
+    transition:transform .18s ease;
+  }
+  .power-definition-card[open] summary::before { transform:rotate(90deg); }
+  .power-definition-card summary:focus-visible {
+    outline:4px solid rgba(23,54,93,.22);
+    outline-offset:-4px;
+  }
+  .open-close-hint {
+    color:var(--navy-soft);
+    font-size:17px;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  .power-definition-body {
+    border-top:1px solid #E3C66F;
+    padding:20px;
+    text-align:left;
+    font-size:20px;
+    line-height:1.65;
+    color:var(--ink);
+    background:#FFFBED;
+  }
+  .definition-close-btn {
+    display:block;
+    width:100%;
+    margin:26px 0 0;
+    padding:15px 18px;
+    border:2px solid var(--marigold);
+    border-radius:14px;
+    background:#fff;
+    color:var(--marigold-dark);
+    font-family:inherit;
+    font-size:20px;
+    font-weight:900;
+    cursor:pointer;
+  }
+  .definition-close-btn:hover { background:#FFF1C8; }
+  .definition-close-btn:focus-visible {
+    outline:4px solid rgba(23,54,93,.22);
+    outline-offset:2px;
+  }
+
+  .reference-list-card {
+    margin:0 0 18px;
+    border-color:var(--green);
+    background:#EAF4EA;
+  }
+  .reference-list-card summary {
+    color:var(--green);
+  }
+  .reference-list-card .power-definition-body {
+    border-top-color:#A9C9AE;
+    background:#F5FBF5;
+  }
+  .reference-list-card .definition-close-btn {
+    border-color:var(--green);
+    color:var(--green);
+  }
+  .reference-list-card .definition-close-btn:hover {
+    background:#E3F1E5;
+  }
+
+  .summary-title-stack {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:2px;
+    line-height:1.2;
+  }
+  .summary-title-sub {
+    font-size:18px;
+    font-weight:800;
+    color:var(--ink-soft);
+  }
+  .subject-learning-card {
+    margin:0 0 18px;
+    max-width:none;
+    border-color:var(--navy-soft);
+    background:#EDF4FA;
+  }
+  .subject-learning-card summary { color:var(--navy); }
+  .subject-learning-card .power-definition-body {
+    border-top-color:#B8C9DA;
+    background:#F7FAFD;
+  }
+  .subject-learning-card .definition-close-btn {
+    border-color:var(--navy-soft);
+    color:var(--navy);
+  }
+  .subject-learning-card .definition-close-btn:hover { background:#E8F1F8; }
+  .subject-pairs {
+    display:grid;
+    grid-template-columns:minmax(175px,1fr) 28px minmax(145px,1fr);
+    column-gap:10px;
+    row-gap:7px;
+    align-items:baseline;
+    max-width:560px;
+    margin:18px auto 0;
+    font-size:20px;
+  }
+  .compact-pairs { margin-top:16px; }
+  .subject-english { text-align:right; font-weight:700; }
+  .subject-arrow { text-align:center; color:var(--navy-soft); font-weight:900; }
+  .subject-spanish { text-align:left; color:var(--navy); font-weight:900; white-space:nowrap; }
+  .subject-pair-gap { grid-column:1 / -1; height:12px; }
+
+  #modeScreen,#recognitionScreen,#subjectBridgeScreen,#singleChoiceScreen,#mix2IntroScreen,#mixIntroScreen,#practiceScreen { scroll-margin-top:18px; }
+
+  .hidden { display:none !important; }
+  @media (max-width:600px){
+    body{padding:18px 12px 48px;font-size:19px}.stats-row{gap:7px}.stat{padding:12px 5px}.stat .num{font-size:30px}.stat .lbl{font-size:18px}.btn-row{flex-direction:column}.card{border-radius:16px}.mode-btn{padding:20px}.mode-btn .mtitle{font-size:23px}
+    .subject-pairs{grid-template-columns:minmax(118px,1fr) 22px minmax(112px,1fr);font-size:18px;column-gap:6px}.subject-english{text-align:right}.subject-spanish{white-space:normal}.summary-title-sub{font-size:17px}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important} #drillScreen.page-turn,#drillScreen.item-enter,.verb-intro.cinematic-in,#drillScreen.good-flash,#drillScreen.miss-flash{animation-duration:.25s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-strip"></div>
+
+  <header>
+    <h1>Esteban's Practice</h1>
+    <p>Stage 1 · Power Verb Recognition + Yo/Tú Forms · Tú = you (informal)</p>
+  </header>
+
+  <div id="statsRow" class="stats-row">
+    <div class="stat"><div class="num" id="statStreak">0</div><div class="lbl">Streak (since last miss)</div></div>
+    <div class="stat"><div class="num" id="statLaps">0</div><div class="lbl">Clean app laps</div></div>
+    <div class="stat"><div class="num" id="statSessions">4</div><div class="lbl">Practice days</div></div>
+  </div>
+
+  <div id="readyBanner" class="ready-banner hidden">✓ Two clean app laps completed — keep practicing; the official Stage 2 check is live with Profe Palacios</div>
+
+  <div id="modeScreen" class="card">
+    <div id="completionNote" class="completion-note hidden"></div>
+    <div id="sessionSummary" class="session-summary hidden"></div>
+    <div id="emailReportWrap" class="hidden" style="margin-bottom:16px;">
+      <button class="btn btn-primary" id="emailReportBtn">✉ Click this button to email report to Profe Palacios</button>
+    </div>
+    <div class="goal-note">
+      <strong>Stage 1 now begins with recognition.</strong><br><br>
+      First learn what each power verb means by itself. Then connect it to the explicit subject forms <strong>YO</strong> and <strong>TÚ</strong>. Throughout Stage 1 conjugated practice, keep <strong>YO</strong> and <strong>TÚ</strong> visible and say them aloud with the verb form.<br><br>
+      <strong>Important:</strong> the short model sentences are <strong>NOT vocabulary to memorize</strong>. Their purpose is only to help you learn the power verb in a simple, meaningful context.<br><br>
+      <strong>Practice is practice.</strong> Mistakes are expected. They show you what needs another repetition.
+    </div>
+    <div class="mode-grid">
+      <button class="mode-btn" id="recognitionBtn">
+        <div class="mtitle">Power Verb Recognition Warm-Up</div>
+        <div class="msub">Learn the 10 power verbs by themselves first. Pass 1 is alphabetical. Pass 2 is random. No conjugation yet.</div>
+      </button>
+      <button class="mode-btn" id="singleBtn">
+        <div class="mtitle">Only 1 Verb Practice</div>
+        <div class="msub">Choose one power verb and practice it with the subject visible: YO / TÚ. No other power verbs appear in the same practice.</div>
+      </button>
+      <button class="mode-btn" id="mix2Btn">
+        <div class="mtitle">Mixed Practice — only 2 verbs</div>
+        <div class="msub">Choose a two-verb combination. Only those 2 power verbs appear in the same mixed practice round. YO / TÚ stay visible and are pronounced.</div>
+      </button>
+      <button class="mode-btn" id="mixBtn">
+        <div class="mtitle">Mixed Practice — all 10 verbs</div>
+        <div class="msub">One complete 19-item lap using all 10 power verbs in controlled random order. YO / TÚ stay visible and are pronounced.</div>
+      </button>
+    </div>
+  </div>
+
+  <div id="recognitionScreen" class="card hidden">
+    <div class="verb-kicker">Power Verb Recognition Warm-Up</div>
+    <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">LEARN THE 10 POWER VERBS FIRST</div>
+    <details class="power-definition-card" id="powerDefinitionCard">
+      <summary>What are Power Verbs? <span class="open-close-hint">Open / Close</span></summary>
+      <div class="power-definition-body">
+        Consider this sentence:<br><br><strong>Yo quiero comer pizza.</strong><br>I want to eat pizza.<br><br>Let's break down every piece of it.<br><br><strong>quiero</strong> — this is the Power Verb.<br><br>It changes its ending to match who's talking. Since <strong>yo</strong> (I) is talking, the verb becomes <strong>quiero</strong>.<br><br>If it were <strong>tú</strong> (you), it would change to <strong>quieres</strong>.<br><br>The Power Verb always adjusts to match the subject.<br><br><strong>comer</strong> — this word means “to eat.” It is called an infinitive.<br><br>An infinitive is a verb in its raw, original, dictionary form — the form you'd find if you looked it up in a Spanish dictionary. Infinitives never change, no matter who's doing the action.<br><br>In Spanish, you recognize an infinitive because it ends in <strong>-ar, -er, or -ir</strong>.<br><br><strong>Comer</strong> ends in <strong>-er</strong>, so it's an infinitive.<br><br>In English, infinitives are usually recognized by the word <strong>“to”</strong> in front of the verb — “to eat,” “to speak,” “to swim,” “to want.”<br><br>That little word <strong>“to”</strong> is the English signal for an infinitive, the same way <strong>-ar / -er / -ir</strong> is the Spanish signal.<br><br>So the full sentence breaks down like this:<br><br><strong>quiero = Power Verb</strong> (changes to match “yo”)<br><strong>comer = infinitive</strong>, ends in -er, means “to eat,” never changes<br><br>Now a second example, same method:<br><br><strong>Me gusta nadar.</strong><br>I like to swim.<br><br><strong>gusta</strong> — the Power Verb. It matches “yo” through <strong>me gusta</strong> (literally “it is pleasing to me”).<br><br><strong>nadar</strong> — this is the infinitive. It ends in <strong>-ar</strong>, and it means “to swim.”<br><br>Notice the English translation has <strong>“to”</strong> in front of “swim” — that's your signal it's an infinitive in English too.<br><br><strong>Putting it all together — the definition:</strong><br><br>A <strong>Power Verb</strong> is the verb in a sentence that changes to match who's talking.<br><br>Right after it comes a second verb called an <strong>infinitive</strong> — the plain, unchanging, dictionary form of a verb.<br><br>In Spanish, you spot an infinitive because it ends in <strong>-ar, -er, or -ir</strong> (like <strong>comer</strong> or <strong>nadar</strong>).<br><br>In English, you spot an infinitive because it has <strong>“to”</strong> in front of it (like “to eat” or “to swim”).<br><br><strong>The Power Verb does all the changing; the infinitive never changes, no matter who's doing the action.</strong>
+        <button type="button" class="definition-close-btn" id="definitionCloseBtn">Close “What are Power Verbs?” ▲</button>
+      </div>
+    </details>
+    <div class="say-note">Learn the English meaning of each Spanish power verb before practicing YO and TÚ forms.<br><br><strong>No conjugation yet.</strong></div>
+    <details class="power-definition-card reference-list-card" id="referenceListCard">
+      <summary><span class="summary-title-stack"><span>Reference List</span><span class="summary-title-sub">Alphabetical Order</span></span><span class="open-close-hint">Open / Close</span></summary>
+      <div class="power-definition-body">
+<div style="display:grid;grid-template-columns:1fr 1.35fr;gap:13px 20px;text-align:left;max-width:650px;margin:0 auto;">
+<div class="reference-verb-row"><strong>DEBER</strong><button class="reference-audio-btn" type="button" data-say="deber" aria-label="Listen to deber" title="Listen to deber">🔊</button></div><div><div>should</div><div class="reference-model">as in: should clean my apartment</div></div>
+<div class="reference-verb-row"><strong>GUSTAR</strong><button class="reference-audio-btn" type="button" data-say="gustar" aria-label="Listen to gustar" title="Listen to gustar">🔊</button></div><div><div>to like</div><div class="reference-model">as in: to like tacos</div></div>
+<div class="reference-verb-row"><strong>HAY QUE</strong><button class="reference-audio-btn" type="button" data-say="hay que" aria-label="Listen to hay que" title="Listen to hay que">🔊</button></div><div><div>one has to</div><div class="reference-model">as in: one has to study</div></div>
+<div class="reference-verb-row"><strong>IR A</strong><button class="reference-audio-btn" type="button" data-say="ir a" aria-label="Listen to ir a" title="Listen to ir a">🔊</button></div><div><div>going to</div><div class="reference-model">as in: going to watch a movie</div></div>
+<div class="reference-verb-row"><strong>NECESITAR</strong><button class="reference-audio-btn" type="button" data-say="necesitar" aria-label="Listen to necesitar" title="Listen to necesitar">🔊</button></div><div><div>to need</div><div class="reference-model">as in: to need money — the story of my life!</div></div>
+<div class="reference-verb-row"><strong>PODER</strong><button class="reference-audio-btn" type="button" data-say="poder" aria-label="Listen to poder" title="Listen to poder">🔊</button></div><div><div>can</div><div class="reference-model">as in: can drive</div></div>
+<div class="reference-verb-row"><strong>PREFERIR</strong><button class="reference-audio-btn" type="button" data-say="preferir" aria-label="Listen to preferir" title="Listen to preferir">🔊</button></div><div><div>to prefer</div><div class="reference-model">as in: to prefer coffee</div></div>
+<div class="reference-verb-row"><strong>QUERER</strong><button class="reference-audio-btn" type="button" data-say="querer" aria-label="Listen to querer" title="Listen to querer">🔊</button></div><div><div>to want</div><div class="reference-model">as in: to want to learn Spanish</div></div>
+<div class="reference-verb-row"><strong>QUISIERA</strong><button class="reference-audio-btn" type="button" data-say="quisiera" aria-label="Listen to quisiera" title="Listen to quisiera">🔊</button></div><div><div>would like</div><div class="reference-model">as in: would like some coffee</div></div>
+<div class="reference-verb-row"><strong>TENER QUE</strong><button class="reference-audio-btn" type="button" data-say="tener que" aria-label="Listen to tener que" title="Listen to tener que">🔊</button></div><div><div>to have to</div><div class="reference-model">as in: to have to clean the toilet</div></div>
+</div>
+<div class="reference-meaning-note"><strong>Why the model examples?</strong><br>They are only quick meaning clues to help you focus on what each Power Verb means. They are not sentences to memorize. Profe Palacios can substitute a different example if it is more meaningful for Esteban. For example: <strong>GUSTAR — to like — as in: to like tacos</strong> can become <strong>as in: to like enchiladas</strong>.</div>
+        <button type="button" class="definition-close-btn" id="referenceListCloseBtn">Close “Reference List” ▲</button>
+      </div>
+    </details>
+<div class="mode-grid">
+      <button class="mode-btn" id="recognitionAlphaBtn"><div class="mtitle">Pass 1 — Alphabetical</div><div class="msub">English meaning → Spanish power verb, in alphabetical order.</div></button>
+      <button class="mode-btn" id="recognitionRandomBtn"><div class="mtitle">Pass 2 — Random</div><div class="msub">The same 10 meanings in genuinely random order.</div></button>
+    </div>
+    <button class="btn-ghost" id="recognitionBackBtn">← Back</button>
+  </div>
+
+  <div id="subjectBridgeScreen" class="card hidden">
+    <details class="power-definition-card subject-learning-card" id="subjectLearningCard">
+      <summary><span>Stage 1 Learning Subjects</span><span class="open-close-hint">Open / Close</span></summary>
+      <div class="power-definition-body">
+        <div class="verb-name" style="font-size:clamp(30px,6vw,44px);text-align:center;">KEEP YO / TÚ VISIBLE</div>
+        <div class="say-note">At first, use the subject because it makes the form easier to understand:
+          <div class="subject-pairs compact-pairs" aria-label="Examples with I want and you want">
+            <div class="subject-english">I want</div><div class="subject-arrow">→</div><div class="subject-spanish">YO QUIERO</div>
+            <div class="subject-english">You want (informal)</div><div class="subject-arrow">→</div><div class="subject-spanish">TÚ QUIERES</div>
+          </div>
+        </div>
+        <div class="completion-note" style="display:block;"><strong>Spanish can omit YO or TÚ when the person is already clear.</strong><br><br><strong>Yo soy Esteban. Soy de Estados Unidos.</strong><br><span style="color:var(--ink-soft);">I am Esteban. I am from the United States.</span><br><br><strong>Tú eres Mario. Eres mi mejor amigo.</strong><br><span style="color:var(--ink-soft);">You are Mario. You are my best friend.</span><br><br>The first sentence makes the person clear. The next sentence does not need to repeat the subject.</div>
+        <div class="goal-note">For this Stage 1 app, keep the learning subject attached to every conjugated form:
+          <div class="subject-pairs" aria-label="Stage 1 learning subject examples">
+            <div class="subject-english">I want</div><div class="subject-arrow">→</div><div class="subject-spanish">YO QUIERO</div>
+            <div class="subject-english">You want (informal)</div><div class="subject-arrow">→</div><div class="subject-spanish">TÚ QUIERES</div>
+            <div class="subject-pair-gap" aria-hidden="true"></div>
+            <div class="subject-english">I can</div><div class="subject-arrow">→</div><div class="subject-spanish">YO PUEDO</div>
+            <div class="subject-english">You can (informal)</div><div class="subject-arrow">→</div><div class="subject-spanish">TÚ PUEDES</div>
+          </div>
+          <br>The app will also pronounce <strong>YO</strong> or <strong>TÚ</strong> with the verb. <strong>GUSTAR</strong> uses <strong>ME GUSTA / TE GUSTA</strong>; <strong>HAY QUE</strong> remains impersonal.
+        </div>
+        <button type="button" class="definition-close-btn" id="subjectLearningCloseBtn">Close “Stage 1 Learning Subjects” ▲</button>
+      </div>
+    </details>
+    <button class="btn btn-primary cinematic-button" id="subjectBridgeContinueBtn">Continue to Verb Practice</button>
+    <button class="btn-ghost" id="subjectBridgeBackBtn">← Back</button>
+  </div>
+
+  <div id="singleChoiceScreen" class="card hidden">
+    <div class="verb-kicker">Only 1 Verb Practice</div>
+    <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">CHOOSE ONE POWER VERB</div>
+    <div class="say-note">Practice one power verb by itself. In this focused practice, say the complete learning form with the subject visible: YO QUIERO / TÚ QUIERES, YO PUEDO / TÚ PUEDES, etc. The model sentences are context only — they are NOT vocabulary to memorize.</div>
+    <div style="display:grid;gap:10px;">
+      <button class="btn btn-ghost single-verb" data-verb="0">Querer</button>
+      <button class="btn btn-ghost single-verb" data-verb="1">Poder</button>
+      <button class="btn btn-ghost single-verb" data-verb="2">Necesitar</button>
+      <button class="btn btn-ghost single-verb" data-verb="3">Tener que</button>
+      <button class="btn btn-ghost single-verb" data-verb="4">Deber</button>
+      <button class="btn btn-ghost single-verb" data-verb="5">Preferir</button>
+      <button class="btn btn-ghost single-verb" data-verb="6">Ir a</button>
+      <button class="btn btn-ghost single-verb" data-verb="7">Quisiera</button>
+      <button class="btn btn-ghost single-verb" data-verb="8">Gustar</button>
+      <button class="btn btn-ghost single-verb" data-verb="9">Hay que</button>
+    </div>
+    <button class="btn-ghost" id="singleChoicesBackBtn">← Back</button>
+  </div>
+
+
+  <div id="mix2IntroScreen" class="card hidden">
+    <div class="verb-intro cinematic-in">
+      <div class="verb-kicker">Mixed Practice</div>
+      <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">TWO VERBS AT A TIME</div>
+      <div class="say-note">
+        Choose one two-verb combination below. Only those two power verbs will appear in that practice round.
+        Keep the learning subject visible and say it aloud: <strong>YO / TÚ</strong>.
+        <br><br><strong>GUSTAR</strong> stays <strong>ME GUSTA / TE GUSTA</strong>, and <strong>HAY QUE</strong> stays impersonal.
+      </div>
+      <div class="intro-note" style="display:block;margin:0 auto 20px;">
+        The first five combinations are the fixed contrast pairs selected by Profe Palacios. The remaining combinations also use only two verbs.
+      </div>
+      <div id="mixPairChoices" style="display:grid;gap:10px;max-width:620px;margin:0 auto 18px;"></div>
+      <button class="btn-ghost" id="mix2IntroBackBtn">← Back</button>
+    </div>
+  </div>
+
+  <div id="mixIntroScreen" class="card practice-card hidden">
+    <div class="verb-intro cinematic-in">
+      <div class="verb-kicker">Mixed Practice</div>
+      <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">ALL 10 POWER VERBS</div>
+      <div class="say-note">
+        This is the full Stage 1 retrieval challenge. All 10 power verbs appear in controlled random order.
+        For conjugated forms, keep the subject visible and say it aloud: <strong>YO QUIERO / TÚ QUIERES, YO PUEDO / TÚ PUEDES</strong>, etc.
+        <br><br><strong>GUSTAR</strong> stays <strong>ME GUSTA / TE GUSTA</strong>, and <strong>HAY QUE</strong> stays impersonal.
+      </div>
+      <div class="intro-note" style="display:block;margin:0 auto 20px;">
+        <strong>Goal:</strong> complete all 19 items with zero misses. Say each Spanish answer aloud before revealing it.
+      </div>
+      <button class="btn btn-primary cinematic-button" id="startMixBtn">Start Mixed Practice — all 10 verbs</button>
+      <button class="btn-ghost" id="mixIntroBackBtn">← Back</button>
+    </div>
+  </div>
+
+  <div id="practiceScreen" class="card practice-card hidden">
+    <div id="verbIntroScreen" class="verb-intro hidden">
+      <div class="verb-kicker">New power verb</div>
+      <div class="verb-name" id="verbIntroName">QUERER</div>
+      <div class="say-note">Listen, then say the Spanish forms aloud in a clear, normal voice. No need to shout—Rosa may become alarmed!</div>
+      <div class="warmup-forms" id="verbIntroForms"></div>
+      <div class="intro-note hidden" id="verbIntroNote"></div>
+      <button class="speaker-btn intro-speaker" id="introSpeakBtn" aria-label="Listen to warm-up" title="Listen to warm-up">🔊</button>
+      <button class="btn btn-primary cinematic-button" id="startVerbBtn">Start practice</button>
+      <button class="btn-ghost" id="introBackBtn">← Back</button>
+    </div>
+
+    <div id="drillScreen">
+      <div id="warmupLine" class="warmup-line hidden"></div>
+      <div class="eyebrow" id="modeLabel">Mixed practice</div>
+      <div class="pos-indicator" id="posIndicator"></div>
+      <div class="cue" id="cueText">—</div>
+
+      <div id="revealBtnWrap">
+        <button class="btn btn-primary cinematic-button" id="revealBtn">Reveal answer</button>
+      </div>
+
+      <div id="answerWrap" class="hidden">
+        <div class="answer" id="answerText">
+          <span id="answerWord">—</span>
+          <button class="speaker-btn" id="speakBtn" aria-label="Listen" title="Listen">🔊</button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-good" id="gotItBtn">Got it ✓</button>
+          <button class="btn btn-miss" id="missBtn">Missed it</button>
+        </div>
+      </div>
+
+      <div class="session-missed" id="sessionMissed">Missed this session: 0</div>
+      <div class="progress-dots" id="dots"></div>
+      <button class="btn-ghost" id="backBtn">← Back</button>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Learn the meaning first, then practice the complete Stage 1 learning form with YO / TÚ visible and pronounced. GUSTAR and HAY QUE keep their own patterns. Model sentences give context — they are not vocabulary to memorize.
+  </div>
+</div>
+
+<script>
+const VERBS = [
+  { verb: "Querer", warmup: "Yo quiero, tú quieres", verbEn: "To want", formEn: ["I want", "You want (informal)"], models:[{es:"Yo quiero tacos.",en:"I want tacos."},{es:"Tú quieres tamales.",en:"You want tamales."}], forms: [{ en: "I want", es: "Quiero" }, { en: "you want", es: "Quieres" }] },
+  { verb: "Poder", warmup: "Yo puedo, tú puedes", verbEn: "Can", formEn: ["I can", "You can (informal)"], models:[{es:"Yo puedo caminar.",en:"I can walk."},{es:"Tú puedes bailar.",en:"You can dance."}], forms: [{ en: "I can", es: "Puedo" }, { en: "you can", es: "Puedes" }] },
+  { verb: "Necesitar", warmup: "Yo necesito, tú necesitas", verbEn: "To need", formEn: ["I need", "You need (informal)"], models:[{es:"Yo necesito agua.",en:"I need water."},{es:"Tú necesitas café.",en:"You need coffee."}], forms: [{ en: "I need", es: "Necesito" }, { en: "you need", es: "Necesitas" }] },
+  { verb: "Tener que", warmup: "Yo tengo que, tú tienes que", verbEn: "To have to", formEn: ["I have to", "You have to (informal)"], models:[{es:"Yo tengo que trabajar.",en:"I have to work."},{es:"Tú tienes que estudiar.",en:"You have to study."}], forms: [{ en: "I have to", es: "Tengo que" }, { en: "you have to", es: "Tienes que" }] },
+  { verb: "Deber", warmup: "Yo debo, tú debes", verbEn: "Should", formEn: ["I should", "You should (informal)"], models:[{es:"Yo debo descansar.",en:"I should rest."},{es:"Tú debes comer.",en:"You should eat."}], forms: [{ en: "I should", es: "Debo" }, { en: "you should", es: "Debes" }] },
+  { verb: "Preferir", warmup: "Yo prefiero, tú prefieres", verbEn: "To prefer", formEn: ["I prefer", "You prefer (informal)"], models:[{es:"Yo prefiero café.",en:"I prefer coffee."},{es:"Tú prefieres té.",en:"You prefer tea."}], forms: [{ en: "I prefer", es: "Prefiero" }, { en: "you prefer", es: "Prefieres" }] },
+  { verb: "Ir a", warmup: "Yo voy a, tú vas a", verbEn: "Going to", formEn: ["I’m going to", "You’re going to (informal)"], models:[{es:"Yo voy a trabajar.",en:"I am going to work."},{es:"Tú vas a estudiar.",en:"You are going to study."}], forms: [{ en: "I'm going to", es: "Voy a" }, { en: "you're going to", es: "Vas a" }] },
+  { verb: "Quisiera", warmup: "Yo quisiera, tú quisieras", verbEn: "Would like", formEn: ["I would like", "You would like (informal)"], models:[{es:"Yo quisiera café.",en:"I would like coffee."},{es:"Tú quisieras té.",en:"You would like tea."}], forms: [{ en: "I would like", es: "Quisiera" }, { en: "you would like", es: "Quisieras" }] },
+  { verb: "Gustar", warmup: "Me gusta, te gusta", verbEn: "To like", formEn: ["I like", "You like (informal)"], models:[{es:"Me gusta comer tacos.",en:"I like to eat tacos."},{es:"Te gusta comer tamales.",en:"You like to eat tamales."}], forms: [{ en: "I like", es: "Me gusta" }, { en: "you like", es: "Te gusta" }] },
+  { verb: "Hay que", warmup: "Hay que", verbEn: "One has to", formEn: ["One has to", ""], models:[{es:"Hay que estudiar.",en:"One has to study."},{es:"Hay que trabajar.",en:"One has to work."}], forms: [{ en: "one has to", es: "Hay que" }] },
+];
+
+const RECOGNITION_ITEMS = [
+  { en:"should", es:"DEBER" }, { en:"to like", es:"GUSTAR" }, { en:"one has to", es:"HAY QUE" }, { en:"going to", es:"IR A" }, { en:"to need", es:"NECESITAR" }, { en:"can", es:"PODER" }, { en:"to prefer", es:"PREFERIR" }, { en:"to want", es:"QUERER" }, { en:"would like", es:"QUISIERA" }, { en:"to have to", es:"TENER QUE" }
+];
+function showRecognition(){
+  $('modeScreen').classList.add('hidden');
+  $('recognitionScreen').classList.remove('hidden');
+  scrollToScreen('recognitionScreen');
+}
+function startRecognition(kind){
+  state.mode=kind==='alpha'?'recognition-alpha':'recognition-random';
+  state.queue=(kind==='alpha'?RECOGNITION_ITEMS:shuffle(RECOGNITION_ITEMS)).map(x=>({en:x.en,es:x.es,verb:'Recognition',recycled:false}));
+  state.index=0; state.lapHadMiss=false; state.sessionMissed=0; state.lastMissIndex=null; state.missedList=[];
+  $('modeScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('practiceScreen').classList.remove('hidden');
+  $('verbIntroScreen').classList.add('hidden');
+  $('drillScreen').classList.remove('hidden');
+  $('modeLabel').textContent=kind==='alpha'?'Power Verb Recognition — Pass 1 Alphabetical':'Power Verb Recognition — Pass 2 Random';
+  $('warmupLine').classList.remove('hidden');
+  $('warmupLine').textContent='No conjugation yet. Say only the Spanish power verb.';
+  renderSessionMissed();
+  showCurrent();
+}
+function showSubjectBridge(){
+  $('modeScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.add('hidden');
+  $('practiceScreen').classList.add('hidden');
+  $('subjectBridgeScreen').classList.remove('hidden');
+  scrollToScreen('subjectBridgeScreen');
+}
+
+const ALL_ITEMS = [];
+VERBS.forEach(v => v.forms.forEach(f => ALL_ITEMS.push({
+  en: f.en,
+  es: explicitSingleAnswer(v.verb, f),
+  verb: v.verb
+})));
+
+let state = {
+  mode: null,
+  queue: [],
+  index: 0,
+  isoHeldBack: [],
+  current: null,
+  revealed: false,
+  streak: 0,
+  best: 0,
+  sessions: 0,
+  lastSessionDate: null,
+  cleanAppLaps: 0,
+  lapHadMiss: false,
+  sessionMissed: 0,
+  lastMissIndex: null,
+  missedList: [],
+  lastReport: null,
+  showingVerbIntro: false,
+  introWarmupText: "",
+  mixPair: null,
+};
+
+const $ = id => document.getElementById(id);
+
+function scrollToScreen(id, block = 'start') {
+  const el = $(id);
+  if (!el) return;
+  window.requestAnimationFrame(() => {
+    el.scrollIntoView({ behavior: 'smooth', block });
+  });
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function mixFamily(item) {
+  // Keep closely related forms apart. Querer and quisiera share one family
+  // so forms such as quieres / quisiera / quisieras do not cluster together.
+  if (item.verb === 'Querer' || item.verb === 'Quisiera') return 'querer-family';
+  return item.verb;
+}
+
+function isControlledMix(order) {
+  for (let i = 0; i < order.length; i++) {
+    const family = mixFamily(order[i]);
+    if (i >= 1 && mixFamily(order[i - 1]) === family) return false;
+    if (i >= 2 && mixFamily(order[i - 2]) === family) return false;
+  }
+  return true;
+}
+
+
+function explicitSingleAnswer(verbName, form) {
+  const e = form.en.toLowerCase();
+
+  // In Only 1 Verb Practice, keep YO / TÚ visible as learning scaffolding.
+  // GUSTAR needs its own natural pattern; HAY QUE stays impersonal.
+  if (verbName === 'Gustar') {
+    if (e.startsWith('i like')) return 'Me gusta';
+    if (e.startsWith('you like')) return 'Te gusta';
+  }
+  if (verbName === 'Hay que') return 'Hay que';
+
+  if (e.startsWith('i ') || e.startsWith("i'm") || e.startsWith('i’m')) {
+    return 'Yo ' + form.es.toLowerCase();
+  }
+  if (e.startsWith('you ') || e.startsWith("you're") || e.startsWith('you’re')) {
+    return 'Tú ' + form.es.toLowerCase();
+  }
+  return form.es;
+}
+
+function buildSingleQueue(verbIndex) {
+  const verbData = VERBS[verbIndex];
+  const repetitions = 2;
+  const items = [];
+  for (let rep = 0; rep < repetitions; rep++) {
+    verbData.forms.forEach(f => items.push({
+      en: f.en,
+      es: explicitSingleAnswer(verbData.verb, f),
+      verb: verbData.verb
+    }));
+  }
+  return shuffle(items).map(x => Object.assign({}, x, { recycled: false }));
+}
+
+
+const MIX_PAIRS = [
+  ['Deber', 'Tener que'],
+  ['Querer', 'Quisiera'],
+  ['Querer', 'Gustar'],
+  ['Ir a', 'Querer'],
+  ['Quisiera', 'Gustar'],
+  ['Poder', 'Necesitar'],
+  ['Preferir', 'Hay que'],
+  ['Poder', 'Preferir'],
+  ['Necesitar', 'Hay que'],
+  ['Deber', 'Gustar'],
+  ['Tener que', 'Ir a']
+];
+
+function renderMixPairChoices() {
+  const wrap = $('mixPairChoices');
+  if (!wrap) return;
+  wrap.innerHTML = MIX_PAIRS.map((pair, i) =>
+    '<button class="btn btn-ghost mix-pair" data-pair="' + i + '">' +
+    pair[0] + ' ↔ ' + pair[1] + '</button>'
+  ).join('');
+  wrap.querySelectorAll('.mix-pair').forEach(btn =>
+    btn.addEventListener('click', () => startMix2(Number(btn.dataset.pair)))
+  );
+}
+
+function buildMix2Queue(pairIndex) {
+  const pair = MIX_PAIRS[pairIndex];
+  const items = ALL_ITEMS.filter(item => pair.includes(item.verb));
+
+  // Alternate the two verbs whenever possible.
+  for (let attempt = 0; attempt < 500; attempt++) {
+    const candidate = shuffle(items).map(item => Object.assign({}, item, { recycled: false }));
+    let ok = true;
+    for (let i = 1; i < candidate.length; i++) {
+      if (candidate[i].verb === candidate[i - 1].verb) { ok = false; break; }
+    }
+    if (ok) return candidate;
+  }
+  return shuffle(items).map(item => Object.assign({}, item, { recycled: false }));
+}
+
+function buildMixQueue() {
+  // One finite lap: all 19 Stage 1 items appear exactly once.
+  // Keep related forms separated when possible.
+  for (let attempt = 0; attempt < 5000; attempt++) {
+    const candidate = shuffle(ALL_ITEMS).map(item => Object.assign({}, item, { recycled: false }));
+    if (isControlledMix(candidate)) return candidate;
+  }
+  return shuffle(ALL_ITEMS).map(item => Object.assign({}, item, { recycled: false }));
+}
+
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+}
+
+function loadStats() {
+  try {
+    const raw = localStorage.getItem('esteban-stage1-stats');
+    if (raw) {
+      const d = JSON.parse(raw);
+      state.best = d.best || 0;
+      state.sessions = d.sessions || 0;
+      state.lastSessionDate = d.lastSessionDate || null;
+      // Backward-compatible migration from the earlier day-based counter.
+      state.cleanAppLaps = Number.isFinite(d.cleanAppLaps)
+        ? d.cleanAppLaps
+        : (Array.isArray(d.cleanLapDays) ? d.cleanLapDays.length : 0);
+    }
+  } catch (e) { /* no stats yet, or storage unavailable */ }
+  const today = todayStr();
+  if (state.lastSessionDate !== today) {
+    state.sessions += 1;
+    state.lastSessionDate = today;
+    saveStats();
+  }
+  renderStats();
+}
+
+function saveStats() {
+  try {
+    localStorage.setItem('esteban-stage1-stats', JSON.stringify({
+      best: state.best, sessions: state.sessions, lastSessionDate: state.lastSessionDate,
+      cleanAppLaps: state.cleanAppLaps
+    }));
+  } catch (e) { /* storage unavailable (private browsing, etc.) */ }
+}
+
+function renderStats() {
+  $('statStreak').textContent = state.streak;
+  $('statLaps').textContent = state.cleanAppLaps;
+  $('statSessions').textContent = state.sessions;
+  if (state.cleanAppLaps >= 2) {
+    $('readyBanner').classList.remove('hidden');
+  } else {
+    $('readyBanner').classList.add('hidden');
+  }
+}
+
+function showMode() {
+  const finishedMode = state.mode;
+  state.lastReport = {
+    modeName: finishedMode === 'single' ? 'Only 1 Verb Practice' : finishedMode === 'recognition-alpha' ? 'Power Verb Recognition — Alphabetical' : finishedMode === 'recognition-random' ? 'Power Verb Recognition — Random' : finishedMode === 'mix2' ? 'Mixed Practice — only 2 verbs' : 'Mixed Practice — all 10 verbs',
+    date: new Date().toLocaleString(),
+    streak: state.streak,
+    sessionMissed: state.sessionMissed,
+    missedList: state.missedList.slice(),
+    cleanAppLaps: state.cleanAppLaps,
+    sessions: state.sessions,
+  };
+  state.mode = null;
+  $('modeScreen').classList.remove('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('subjectBridgeScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.add('hidden');
+  $('practiceScreen').classList.add('hidden');
+  renderCompletionNote(finishedMode);
+  renderSessionSummary();
+  renderEmailButton();
+  scrollToScreen('modeScreen');
+}
+
+function buildReportText() {
+  const r = state.lastReport;
+  if (!r) return '';
+  let lines = [];
+  lines.push("ESTEBAN'S PRACTICE REPORT");
+  lines.push('');
+  lines.push('Date: ' + r.date);
+  lines.push('Mode: ' + r.modeName);
+  lines.push('');
+  lines.push('PRACTICE SUMMARY');
+  lines.push('');
+  lines.push('Streak at end: ' + r.streak);
+  lines.push('Clean app laps completed (Mixed Practice — all 10 verbs): ' + r.cleanAppLaps);
+  lines.push('App practice: as many full mixed laps as desired on the same day');
+  lines.push('Official Stage 2 check: two clean live passes with Profe Palacios on different session days');
+  lines.push('Total practice days: ' + r.sessions);
+  lines.push('');
+  lines.push('MISSED CHUNKS');
+  lines.push('');
+  if (r.missedList.length === 0) {
+    lines.push('No misses this session -- clean run!');
+  } else {
+    const counts = {};
+    r.missedList.forEach(item => {
+      const key = item.en + '|' + item.es;
+      if (!counts[key]) counts[key] = { en: item.en, es: item.es, n: 0 };
+      counts[key].n += 1;
+    });
+    const rows = Object.values(counts).sort((a, b) => b.n - a.n);
+    lines.push('Give these extra attention during the next live session:');
+    lines.push('');
+    rows.forEach(rr => {
+      const missWord = rr.n === 1 ? 'miss' : 'misses';
+      lines.push('- ' + rr.es + ' — ' + rr.n + ' total ' + missWord + ', including retries');
+    });
+  }
+  return lines.join('\n');
+}
+
+function emailReport() {
+  const text = buildReportText();
+  const subject = "Esteban's Practice Report - " + todayStr();
+  const url = 'mailto:rpalacios@yahoo.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(text);
+  window.location.href = url;
+}
+
+function renderEmailButton() {
+  const wrap = $('emailReportWrap');
+  if (state.lastReport) {
+    wrap.classList.remove('hidden');
+  } else {
+    wrap.classList.add('hidden');
+  }
+}
+
+
+function renderCompletionNote(finishedMode) {
+  const el = $('completionNote');
+  if (finishedMode === 'single') {
+    el.innerHTML = '<strong>Only 1 Verb Practice completed.</strong> Repeat this verb if it still needs work, choose another single verb, or use Mixed Practice when you are ready. This focused drill does not count toward Stage 2.';
+    el.classList.remove('hidden');
+  } else if (finishedMode === 'recognition-alpha' || finishedMode === 'recognition-random') {
+    el.innerHTML = '<strong>Power Verb Recognition practice completed.</strong> Hear the English meaning and identify the Spanish power verb. No conjugation is required in this warm-up.';
+    el.classList.remove('hidden');
+  } else if (finishedMode === 'mix2') {
+    if (state.sessionMissed === 0) {
+      el.innerHTML = '<strong>Clean two-verb mixed round completed!</strong> All items in this pair were correct. You may repeat this pair, choose another pair, or move to Mixed Practice — all 10 verbs.';
+    } else {
+      el.innerHTML = '<strong>Two-verb Mixed Practice round completed.</strong> Review the missed items below, then repeat this pair or choose another pair.';
+    }
+    el.classList.remove('hidden');
+  } else if (finishedMode === 'mix') {
+    if (state.sessionMissed === 0) {
+      el.innerHTML = '<strong>Clean app lap completed!</strong> All 19 Stage 1 items were correct. You may start another Mixed Practice lap today if you want more practice. The official Stage 2 check is still completed live with Profe Palacios.';
+    } else {
+      el.innerHTML = '<strong>Mixed Practice lap completed.</strong> Review the missed items below, then start another full all-10-verbs lap whenever you are ready.';
+    }
+    el.classList.remove('hidden');
+  } else {
+    el.classList.add('hidden');
+    el.innerHTML = '';
+  }
+}
+
+function renderSessionSummary() {
+  const el = $('sessionSummary');
+  if (state.missedList.length === 0) {
+    el.classList.add('hidden');
+    el.innerHTML = '';
+    return;
+  }
+  const counts = {};
+  state.missedList.forEach(item => {
+    const key = item.en + '|' + item.es;
+    if (!counts[key]) counts[key] = { en: item.en, es: item.es, n: 0 };
+    counts[key].n += 1;
+  });
+  const rows = Object.values(counts).sort((a, b) => b.n - a.n);
+  let html = '<div class="stitle">Last session — missed chunks (give these extra attention live):</div>';
+  rows.forEach(r => {
+    const missWord = r.n === 1 ? 'miss' : 'misses';
+    html += '<div class="srow"><span class="ses">' + r.es + '</span><span class="scount">' + r.n + ' total ' + missWord + ', including retries</span></div>';
+  });
+  el.innerHTML = html;
+  el.classList.remove('hidden');
+}
+
+
+
+function showSingleChoices() {
+  $('modeScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('subjectBridgeScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.add('hidden');
+  $('practiceScreen').classList.add('hidden');
+  $('verbIntroScreen').classList.add('hidden');
+  $('drillScreen').classList.remove('hidden');
+  $('singleChoiceScreen').classList.remove('hidden');
+  scrollToScreen('singleChoiceScreen');
+}
+
+function returnToMenu() {
+  state.mode = null;
+  state.queue = [];
+  state.index = 0;
+  state.current = null;
+  $('modeScreen').classList.remove('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('subjectBridgeScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.add('hidden');
+  $('practiceScreen').classList.add('hidden');
+  $('verbIntroScreen').classList.add('hidden');
+  $('drillScreen').classList.remove('hidden');
+  scrollToScreen('modeScreen');
+}
+
+function showMix2Intro() {
+  state.mode = null;
+  state.queue = [];
+  state.index = 0;
+  state.current = null;
+  $('modeScreen').classList.add('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('practiceScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.remove('hidden');
+  renderMixPairChoices();
+  scrollToScreen('mix2IntroScreen');
+}
+
+function showMixIntro() {
+  state.mode = null;
+  state.queue = [];
+  state.index = 0;
+  state.current = null;
+  $('modeScreen').classList.add('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('practiceScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.remove('hidden');
+  scrollToScreen('mixIntroScreen');
+}
+
+function backFromIntro() {
+  if (state.mode === 'single') {
+    $('practiceScreen').classList.add('hidden');
+    $('verbIntroScreen').classList.add('hidden');
+    $('singleChoiceScreen').classList.remove('hidden');
+    scrollToScreen('singleChoiceScreen');
+  } else {
+    returnToMenu();
+  }
+}
+
+function backFromDrill() {
+  if (state.mode === 'single' && state.current) {
+    showVerbIntro(state.current);
+  } else if (state.mode === 'recognition-alpha' || state.mode === 'recognition-random') {
+    state.mode = null; state.queue = []; state.index = 0; state.current = null;
+    $('practiceScreen').classList.add('hidden'); $('drillScreen').classList.remove('hidden'); $('recognitionScreen').classList.remove('hidden');
+    scrollToScreen('recognitionScreen');
+  } else if (state.mode === 'mix2') {
+    state.mode = null;
+    state.queue = [];
+    state.index = 0;
+    state.current = null;
+    $('practiceScreen').classList.add('hidden');
+    $('verbIntroScreen').classList.add('hidden');
+    $('drillScreen').classList.remove('hidden');
+    $('mix2IntroScreen').classList.remove('hidden');
+    scrollToScreen('mix2IntroScreen');
+  } else if (state.mode === 'mix') {
+    state.mode = null;
+    state.queue = [];
+    state.index = 0;
+    state.current = null;
+    $('practiceScreen').classList.add('hidden');
+    $('verbIntroScreen').classList.add('hidden');
+    $('drillScreen').classList.remove('hidden');
+    $('mixIntroScreen').classList.remove('hidden');
+    scrollToScreen('mixIntroScreen');
+  } else {
+    returnToMenu();
+  }
+}
+
+function startSingle(verbIndex) {
+  const verbData = VERBS[verbIndex];
+  state.mode = 'single';
+  state.queue = buildSingleQueue(verbIndex);
+  state.index = 0;
+  state.lapHadMiss = false;
+  state.sessionMissed = 0;
+  state.lastMissIndex = null;
+  state.missedList = [];
+  $('modeScreen').classList.add('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('practiceScreen').classList.remove('hidden');
+  $('modeLabel').textContent = 'Only 1 Verb Practice — ' + verbData.verb;
+  $('warmupLine').classList.add('hidden');
+  renderSessionMissed();
+
+  state.current = state.queue[0];
+  showVerbIntro(state.current);
+}
+
+function startMix2(pairIndex) {
+  const pair = MIX_PAIRS[pairIndex];
+  state.mode = 'mix2';
+  state.mixPair = pair;
+  state.queue = buildMix2Queue(pairIndex);
+  state.index = 0;
+  state.lapHadMiss = false;
+  state.sessionMissed = 0;
+  state.lastMissIndex = null;
+  state.missedList = [];
+  $('modeScreen').classList.add('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('subjectBridgeScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.add('hidden');
+  $('practiceScreen').classList.remove('hidden');
+  $('verbIntroScreen').classList.add('hidden');
+  $('drillScreen').classList.remove('hidden');
+  $('modeLabel').textContent = 'Mixed Practice — ' + pair[0] + ' ↔ ' + pair[1];
+  $('warmupLine').classList.add('hidden');
+  renderSessionMissed();
+  showCurrent();
+}
+
+function startMix() {
+  state.mode = 'mix';
+  state.queue = buildMixQueue();
+  state.index = 0;
+  state.lapHadMiss = false;
+  state.sessionMissed = 0;
+  state.lastMissIndex = null;
+  state.missedList = [];
+  $('modeScreen').classList.add('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('subjectBridgeScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.add('hidden');
+  $('practiceScreen').classList.remove('hidden');
+  $('verbIntroScreen').classList.add('hidden');
+  $('drillScreen').classList.remove('hidden');
+  $('modeLabel').textContent = 'Mixed Practice — all 10 verbs';
+  $('warmupLine').classList.add('hidden');
+  renderSessionMissed();
+  showCurrent();
+}
+
+function renderSessionMissed() {
+  let txt = 'Missed this session: ' + state.sessionMissed;
+  if (state.lastMissIndex !== null) {
+    txt += '  (last miss: item ' + state.lastMissIndex + ')';
+  }
+  $('sessionMissed').textContent = txt;
+}
+
+function showCurrent() {
+  if (state.index >= state.queue.length) {
+    if (state.mode === 'mix' && !state.lapHadMiss) {
+      state.cleanAppLaps += 1;
+      saveStats();
+      renderStats();
+    }
+    showMode();
+    return;
+  }
+
+  state.current = state.queue[state.index];
+
+
+  showDrillForCurrent();
+}
+
+function showVerbIntro(item) {
+  state.showingVerbIntro = true;
+  state.introWarmupText = item.warmup || '';
+  $('drillScreen').classList.add('hidden');
+  $('verbIntroScreen').classList.remove('hidden');
+  $('verbIntroScreen').classList.remove('cinematic-in');
+  void $('verbIntroScreen').offsetWidth;
+  $('verbIntroScreen').classList.add('cinematic-in');
+
+  const verbData = VERBS.find(v => v.verb === item.verb);
+  $('verbIntroName').innerHTML = (item.verb || '').toUpperCase() + (verbData && verbData.verbEn ? '<div style="font-family:Arial,sans-serif;font-size:22px;color:var(--ink-soft);margin-top:6px;text-transform:none;">' + verbData.verbEn + '</div>' : '');
+  const forms = verbData ? verbData.warmup.split(',') : [item.warmup || ''];
+  $('verbIntroForms').innerHTML = forms.map((f,i) => {
+    const clean = f.trim();
+    const display = clean ? clean.charAt(0).toUpperCase() + clean.slice(1) : clean;
+    const eng = verbData && verbData.formEn && verbData.formEn[i] ? '<div style="font-family:Arial,sans-serif;font-size:20px;color:var(--ink-soft);font-weight:600;margin-top:3px;">' + verbData.formEn[i] + '</div>' : '';
+    return '<div class="warmup-form">' + display + eng + '</div>';
+  }).join('');
+  state.introWarmupText = [item.verb, verbData ? verbData.verbEn : '', ...forms.map((f,i)=>f.trim() + '. ' + ((verbData.formEn||[])[i]||''))].filter(Boolean).join('. ');
+
+  if (verbData && verbData.models) {
+    $('verbIntroNote').innerHTML =
+      '<div class="model-note"><strong>Model sentences — context only</strong>' +
+      verbData.models.map(m =>
+        '<div class="model-sentence">'+m.es+'</div>' +
+        '<div class="model-english">'+m.en+'</div>'
+      ).join('') +
+      '<button class="btn btn-ghost model-audio-btn" type="button" onclick="speakModelSentences()">🔊 Listen to Spanish model sentences</button>' +
+      '<div class="not-memorize">These model sentences are NOT to be memorized. The goal is to learn the power verb in a simple, meaningful context.</div></div>';
+    $('verbIntroNote').classList.remove('hidden');
+  } else {
+    $('verbIntroNote').textContent = '';
+    $('verbIntroNote').classList.add('hidden');
+  }
+
+  $('startVerbBtn').textContent = 'Start ' + item.verb + ' practice';
+  scrollToScreen('practiceScreen');
+}
+
+function beginVerbPractice() {
+  if (!state.current) return;
+  state.showingVerbIntro = false;
+  state.current.warmup = null;
+  $('verbIntroScreen').classList.add('hidden');
+  $('drillScreen').classList.remove('hidden');
+  showDrillForCurrent();
+}
+
+function showDrillForCurrent() {
+  const posText = 'Item ' + (state.index + 1) + ' of ' + state.queue.length +
+       ((state.mode === 'mix' || state.mode === 'mix2') && state.current && state.current.recycled ? ' (recycled retry)' : '');
+  $('posIndicator').textContent = posText;
+  $('warmupLine').classList.add('hidden');
+
+  $('drillScreen').classList.remove('item-enter');
+  void $('drillScreen').offsetWidth;
+  $('drillScreen').classList.add('item-enter');
+  renderCue();
+  renderDots(state.index % 20, 20);
+  scrollToScreen('practiceScreen');
+}
+function recycleCurrent() {
+  if (state.current.recycled) return;
+  const clone = Object.assign({}, state.current);
+  clone.warmup = null;
+  clone.recycled = true;
+  const insertAt = Math.min(state.index + 4, state.queue.length);
+  state.queue.splice(insertAt, 0, clone);
+}
+
+function advance() {
+  state.index += 1;
+  showCurrent();
+}
+
+function renderDots(idx, total) {
+  const dots = $('dots');
+  dots.innerHTML = '';
+  const shown = Math.min(total, 20);
+  for (let i = 0; i < shown; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i <= (idx % shown) ? ' filled' : '');
+    dots.appendChild(d);
+  }
+}
+
+function renderCue() {
+  state.revealed = false;
+  $('cueText').textContent = state.current.en;
+  $('answerWord').textContent = state.current.es;
+  $('answerWrap').classList.add('hidden');
+  $('answerWrap').classList.remove('flip-in');
+  $('cueText').classList.remove('reveal-dim');
+  $('revealBtnWrap').classList.remove('hidden');
+}
+
+function reveal() {
+  if (state.revealed) return;
+  state.revealed = true;
+  const drill = $('drillScreen');
+  drill.classList.remove('page-turn');
+  void drill.offsetWidth;
+  drill.classList.add('page-turn');
+
+  // Change from the English cue to the Spanish answer halfway through one smooth flip.
+  window.setTimeout(() => {
+    $('cueText').classList.add('reveal-dim');
+    $('answerWrap').classList.remove('hidden');
+    $('answerWrap').classList.remove('flip-in');
+    void $('answerWrap').offsetWidth;
+    $('answerWrap').classList.add('flip-in');
+    $('revealBtnWrap').classList.add('hidden');
+    speak(state.current.es);
+  }, 390);
+
+  window.setTimeout(() => drill.classList.remove('page-turn'), 800);
+}
+
+let cachedVoice = null;
+let cachedEnglishVoice = null;
+let voicesReady = false;
+
+function pickSpanishVoice() {
+  if (!window.speechSynthesis) return null;
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) return null;
+
+  const byLangExact = (lang) => voices.find(v => v.lang && v.lang.toLowerCase() === lang);
+  const byLangPrefix = (prefix) => voices.find(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
+  const byNameHint = (hint) => voices.find(v => v.name && v.name.toLowerCase().includes(hint));
+
+  return (
+    byLangExact('es-mx') ||
+    byLangExact('es-us') ||
+    byLangExact('es-419') ||
+    byNameHint('mexic') ||
+    byNameHint('latin') ||
+    byLangPrefix('es-mx') ||
+    byLangPrefix('es-us') ||
+    byLangPrefix('es-419') ||
+    byLangPrefix('es') ||
+    null
+  );
+}
+
+function pickEnglishVoice() {
+  if (!window.speechSynthesis) return null;
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) return null;
+
+  const byLangExact = (lang) => voices.find(v => v.lang && v.lang.toLowerCase() === lang);
+  const byLangPrefix = (prefix) => voices.find(v => v.lang && v.lang.toLowerCase().startsWith(prefix));
+
+  return (
+    byLangExact('en-us') ||
+    byLangExact('en-ca') ||
+    byLangExact('en-gb') ||
+    byLangPrefix('en-us') ||
+    byLangPrefix('en') ||
+    null
+  );
+}
+
+function ensureVoice(cb) {
+  if (!window.speechSynthesis) { cb(null); return; }
+  const voices = window.speechSynthesis.getVoices();
+  if (voices && voices.length > 0) {
+    cachedVoice = pickSpanishVoice();
+    cb(cachedVoice);
+    return;
+  }
+  window.speechSynthesis.onvoiceschanged = () => {
+    cachedVoice = pickSpanishVoice();
+    cb(cachedVoice);
+  };
+}
+
+function speak(text) {
+  try {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const doSpeak = (voice) => {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = voice && voice.lang ? voice.lang : 'es-MX';
+      if (voice) u.voice = voice;
+      u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    };
+    if (cachedVoice) { doSpeak(cachedVoice); }
+    else { ensureVoice(doSpeak); }
+  } catch (e) { /* audio not available */ }
+}
+
+
+function speakModelSentences() {
+  try {
+    if (!window.speechSynthesis || !state.current) return;
+    const verbData = VERBS.find(v => v.verb === state.current.verb);
+    if (!verbData || !verbData.models) return;
+
+    const play = () => {
+      window.speechSynthesis.cancel();
+      const spanishVoice = cachedVoice || pickSpanishVoice();
+      cachedVoice = spanishVoice;
+
+      verbData.models.forEach(model => {
+        const u = new SpeechSynthesisUtterance(model.es);
+        u.lang = spanishVoice && spanishVoice.lang ? spanishVoice.lang : 'es-MX';
+        if (spanishVoice) u.voice = spanishVoice;
+        u.rate = 0.86;
+        window.speechSynthesis.speak(u);
+      });
+    };
+
+    const voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length > 0) {
+      play();
+    } else {
+      window.speechSynthesis.onvoiceschanged = () => {
+        cachedVoice = pickSpanishVoice();
+        cachedEnglishVoice = pickEnglishVoice();
+        play();
+      };
+    }
+  } catch (e) { /* audio not available */ }
+}
+
+function speakIntro() {
+  try {
+    if (!window.speechSynthesis || !state.current) return;
+
+    const verbData = VERBS.find(v => v.verb === state.current.verb);
+    if (!verbData) return;
+
+    const playSegments = () => {
+      window.speechSynthesis.cancel();
+
+      const spanishVoice = cachedVoice || pickSpanishVoice();
+      const englishVoice = cachedEnglishVoice || pickEnglishVoice();
+      cachedVoice = spanishVoice;
+      cachedEnglishVoice = englishVoice;
+
+      const spanishForms = verbData.warmup.split(',').map(x => x.trim()).filter(Boolean);
+      const segments = [
+        { text: verbData.verb, lang: 'es-MX', voice: spanishVoice },
+        { text: verbData.verbEn, lang: 'en-US', voice: englishVoice }
+      ];
+
+      spanishForms.forEach((form, i) => {
+        segments.push({ text: form, lang: 'es-MX', voice: spanishVoice });
+        if (verbData.formEn && verbData.formEn[i]) {
+          segments.push({ text: verbData.formEn[i], lang: 'en-US', voice: englishVoice });
+        }
+      });
+
+      segments.forEach(segment => {
+        if (!segment.text) return;
+        const utterance = new SpeechSynthesisUtterance(segment.text);
+        utterance.lang = segment.voice && segment.voice.lang ? segment.voice.lang : segment.lang;
+        if (segment.voice) utterance.voice = segment.voice;
+        utterance.rate = 0.9;
+        window.speechSynthesis.speak(utterance);
+      });
+    };
+
+    const voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length > 0) {
+      playSegments();
+    } else {
+      window.speechSynthesis.onvoiceschanged = () => {
+        cachedVoice = pickSpanishVoice();
+        cachedEnglishVoice = pickEnglishVoice();
+        playSegments();
+      };
+    }
+  } catch (e) { /* audio not available */ }
+}
+
+function markGood() {
+  const drill = $('drillScreen');
+  drill.classList.remove('good-flash');
+  void drill.offsetWidth;
+  drill.classList.add('good-flash');
+  state.streak += 1;
+  if (state.streak > state.best) { state.best = state.streak; }
+
+  renderStats();
+  window.setTimeout(() => {
+    drill.classList.remove('good-flash');
+    advance();
+  }, 560);
+}
+
+function markMiss() {
+  const drill = $('drillScreen');
+  drill.classList.remove('miss-flash');
+  void drill.offsetWidth;
+  drill.classList.add('miss-flash');
+  state.streak = 0;
+  state.sessionMissed += 1;
+  state.lastMissIndex = state.index + 1;
+  state.missedList.push({ en: state.current.en, es: state.current.es });
+  if (state.mode === 'mix') {
+    state.lapHadMiss = true;
+  }
+  recycleCurrent();
+  renderStats();
+  renderSessionMissed();
+  window.setTimeout(() => {
+    drill.classList.remove('miss-flash');
+    advance();
+  }, 560);
+}
+
+$('recognitionBtn').addEventListener('click', showRecognition);
+$('definitionCloseBtn').addEventListener('click', () => {
+  const card = $('powerDefinitionCard');
+  card.open = false;
+  const heading = card.querySelector('summary');
+  heading.focus();
+  card.scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('referenceListCloseBtn').addEventListener('click', () => {
+  const card = $('referenceListCard');
+  card.open = false;
+  const heading = card.querySelector('summary');
+  heading.focus();
+  card.scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('subjectLearningCloseBtn').addEventListener('click', () => {
+  const card = $('subjectLearningCard');
+  card.open = false;
+  const heading = card.querySelector('summary');
+  heading.focus();
+  card.scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('recognitionAlphaBtn').addEventListener('click', () => startRecognition('alpha'));
+$('recognitionRandomBtn').addEventListener('click', () => startRecognition('random'));
+$('recognitionBackBtn').addEventListener('click', returnToMenu);
+$('subjectBridgeContinueBtn').addEventListener('click', showSingleChoices);
+$('subjectBridgeBackBtn').addEventListener('click', returnToMenu);
+$('singleBtn').addEventListener('click', showSubjectBridge);
+$('mix2Btn').addEventListener('click', showMix2Intro);
+$('mixBtn').addEventListener('click', showMixIntro);
+document.querySelectorAll('.single-verb').forEach(btn => btn.addEventListener('click', () => startSingle(Number(btn.dataset.verb))));
+$('singleChoicesBackBtn').addEventListener('click', returnToMenu);
+$('mixBtn').addEventListener('click', () => { showMixIntro(); });
+$('startMixBtn').addEventListener('click', startMix);
+$('mix2IntroBackBtn').addEventListener('click', returnToMenu);
+$('mixIntroBackBtn').addEventListener('click', returnToMenu);
+$('revealBtn').addEventListener('click', reveal);
+$('gotItBtn').addEventListener('click', markGood);
+$('missBtn').addEventListener('click', markMiss);
+$('speakBtn').addEventListener('click', () => speak(state.current.es));
+$('introSpeakBtn').addEventListener('click', speakIntro);
+$('startVerbBtn').addEventListener('click', beginVerbPractice);
+$('introBackBtn').addEventListener('click', backFromIntro);
+$('backBtn').addEventListener('click', backFromDrill);
+$('emailReportBtn').addEventListener('click', emailReport);
+
+document.querySelectorAll('.reference-audio-btn').forEach(btn => {
+  btn.addEventListener('click', () => speak(btn.dataset.say));
+});
+
+
+loadStats();
+if (window.speechSynthesis) {
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => { cachedVoice = pickSpanishVoice(); cachedEnglishVoice = pickEnglishVoice(); };
+}
+</script>
+
+
+</body></html>
