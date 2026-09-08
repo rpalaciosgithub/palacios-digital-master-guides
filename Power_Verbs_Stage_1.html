@@ -2,7 +2,7 @@
 <!-- saved from url=(0068)file:///C:/Users/rpala/Downloads/Esteban_Stage1_Practice_App_10.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Esteban's Practice — Spanish Chunks</title>
 <style>
   :root {
@@ -21,13 +21,15 @@
     --shadow: 0 8px 24px rgba(23,54,93,.10);
   }
   * { box-sizing: border-box; }
+  html { width:100%; max-width:100%; overflow-x:hidden; }
   body {
     margin: 0; background: var(--cream); color: var(--ink);
     font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh; padding: 28px 18px 64px;
     font-size: 20px; line-height: 1.55;
+    width:100%; max-width:100%; overflow-x:hidden;
   }
-  .wrap { max-width: 760px; margin: 0 auto; }
+  .wrap { width:100%; max-width:760px; min-width:0; margin:0 auto; }
   .top-strip {
     height: 8px; border-radius: 5px;
     background: repeating-linear-gradient(90deg,var(--marigold) 0 18px,var(--red) 18px 36px,var(--navy) 36px 54px);
@@ -36,11 +38,11 @@
   header { text-align: center; margin-bottom: 24px; }
   header h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(32px,6vw,44px); line-height:1.15; color:var(--navy); margin:0 0 8px; font-weight:700; }
   header p { margin:0; color:var(--ink-soft); font-size:20px; font-weight:600; line-height:1.45; }
-  .card { background:var(--card); border:2px solid var(--border); border-radius:var(--radius); padding:clamp(22px,5vw,34px); margin-bottom:18px; box-shadow:var(--shadow); }
+  .card { width:100%; max-width:100%; min-width:0; background:var(--card); border:2px solid var(--border); border-radius:var(--radius); padding:clamp(22px,5vw,34px); margin-bottom:18px; box-shadow:var(--shadow); overflow-wrap:anywhere; }
   .ready-banner { background:var(--green); color:#fff; text-align:center; font-weight:800; font-size:21px; border-radius:16px; padding:16px; margin-bottom:18px; }
   .session-summary { background:#FFF0EE; border:2px solid var(--red); border-radius:16px; padding:16px 18px; margin-bottom:18px; }
   .session-summary .stitle { font-weight:800; color:var(--red); font-size:20px; margin-bottom:10px; }
-  .session-summary .srow { display:flex; justify-content:space-between; gap:12px; font-size:20px; padding:7px 0; border-bottom:1px solid #E8C6C2; }
+  .session-summary .srow { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 12px; min-width:0; font-size:20px; padding:7px 0; border-bottom:1px solid #E8C6C2; }
   .session-summary .srow:last-child { border-bottom:none; }
   .session-summary .sen { color:var(--ink-soft); }
   .session-summary .ses { color:var(--red); font-weight:800; }
@@ -49,20 +51,20 @@
   .completion-note strong { color:#315F35; }
   .goal-note { background:#FFF7DE; border:2px solid var(--marigold); border-radius:16px; padding:18px 20px; font-size:20px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
   .goal-note strong { color:var(--marigold-dark); }
-  .mode-grid { display:grid; grid-template-columns:1fr; gap:16px; }
+  .mode-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:16px; min-width:0; }
   .mode-btn { display:block; width:100%; text-align:left; background:#fff; border:3px solid var(--border); border-radius:18px; padding:24px; cursor:pointer; font-family:inherit; box-shadow:0 3px 10px rgba(31,41,51,.06); transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease; }
   .mode-btn:hover,.mode-btn:focus-visible { border-color:var(--navy-soft); box-shadow:0 8px 20px rgba(23,54,93,.12); outline:none; }
   .mode-btn:active { transform:scale(.99); }
   .mode-btn .mtitle { font-family:Georgia,serif; font-size:24px; line-height:1.25; font-weight:700; color:var(--navy); margin-bottom:8px; }
   .mode-btn .msub { color:var(--ink-soft); font-size:20px; line-height:1.55; }
-  .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
-  .stat { background:var(--card); border:2px solid var(--border); border-radius:16px; padding:15px 8px; text-align:center; box-shadow:0 3px 10px rgba(31,41,51,.05); }
+  .stats-row { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:18px; min-width:0; }
+  .stat { min-width:0; background:var(--card); border:2px solid var(--border); border-radius:16px; padding:15px 8px; text-align:center; box-shadow:0 3px 10px rgba(31,41,51,.05); overflow-wrap:anywhere; }
   .stat .num { font-size:34px; line-height:1; font-weight:800; color:var(--marigold-dark); font-family:Georgia,serif; }
   .stat .lbl { font-size:18px; line-height:1.3; color:var(--ink-soft); margin-top:7px; font-weight:600; }
   .practice-card { text-align:center; padding:clamp(30px,6vw,48px) clamp(22px,5vw,38px); }
   .eyebrow { font-size:18px; letter-spacing:.08em; text-transform:uppercase; color:var(--navy-soft); font-weight:800; margin-bottom:16px; }
   .cue { font-family:Georgia,serif; font-size:clamp(34px,7vw,50px); font-weight:700; color:var(--ink); line-height:1.25; min-height:120px; display:flex; align-items:center; justify-content:center; padding:10px; }
-  .answer { font-family:Georgia,serif; font-size:clamp(40px,8vw,58px); line-height:1.2; font-weight:800; color:var(--red); min-height:120px; display:flex; align-items:center; justify-content:center; gap:14px; padding:10px; }
+  .answer { font-family:Georgia,serif; font-size:clamp(40px,8vw,58px); line-height:1.2; font-weight:800; color:var(--red); min-height:120px; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; padding:10px; min-width:0; overflow-wrap:anywhere; }
   .answer.hidden-answer { visibility:hidden; }
   .speaker-btn { background:#F5F8FB; border:2px solid var(--border); border-radius:50%; width:54px; height:54px; font-size:24px; cursor:pointer; color:var(--navy); flex-shrink:0; }
   .speaker-btn:hover,.speaker-btn:focus-visible { border-color:var(--navy); outline:3px solid rgba(23,54,93,.18); }
@@ -119,8 +121,10 @@
 
   .reference-verb-row {
     display:flex;
+    flex-wrap:wrap;
     align-items:center;
     gap:10px;
+    min-width:0;
   }
   .reference-audio-btn {
     width:36px;
@@ -172,6 +176,8 @@
     border:2px solid var(--marigold);
     border-radius:16px;
     overflow:hidden;
+    min-width:0;
+    width:100%;
     box-shadow:0 5px 14px rgba(118,82,11,.09);
   }
   .power-definition-card summary {
@@ -183,9 +189,11 @@
     font-weight:900;
     color:var(--marigold-dark);
     display:flex;
+    flex-wrap:wrap;
     align-items:center;
     justify-content:space-between;
-    gap:14px;
+    gap:10px 14px;
+    min-width:0;
   }
   .power-definition-card summary::-webkit-details-marker { display:none; }
   .power-definition-card summary::before {
@@ -204,7 +212,8 @@
     color:var(--navy-soft);
     font-size:17px;
     font-weight:800;
-    white-space:nowrap;
+    white-space:normal;
+    flex:0 1 auto;
   }
   .power-definition-body {
     border-top:1px solid #E3C66F;
@@ -257,6 +266,7 @@
 
   .summary-title-stack {
     display:flex;
+    min-width:0;
     flex-direction:column;
     align-items:flex-start;
     gap:2px;
@@ -285,7 +295,7 @@
   .subject-learning-card .definition-close-btn:hover { background:#E8F1F8; }
   .subject-pairs {
     display:grid;
-    grid-template-columns:minmax(175px,1fr) 28px minmax(145px,1fr);
+    grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);
     column-gap:10px;
     row-gap:7px;
     align-items:baseline;
@@ -301,10 +311,79 @@
 
   #modeScreen,#recognitionScreen,#subjectBridgeScreen,#singleChoiceScreen,#mix2IntroScreen,#mixIntroScreen,#practiceScreen { scroll-margin-top:18px; }
 
+  /* iPhone / narrow-screen overflow protection */
+  .reference-grid {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);
+    gap:13px 20px;
+    width:100%;
+    max-width:650px;
+    min-width:0;
+    margin:0 auto;
+    text-align:left;
+  }
+  .reference-grid > *,
+  .power-definition-body > *,
+  .say-note > *,
+  .goal-note > *,
+  .completion-note > *,
+  .session-summary > *,
+  .mode-btn > *,
+  .subject-pairs > * { min-width:0; max-width:100%; }
+  .reference-model, .model-sentence, .model-english, .msub, .mtitle,
+  .say-note, .goal-note, .completion-note, .power-definition-body,
+  .summary-title-stack, .subject-english, .subject-spanish, .footer-note,
+  #cueText, #answerWord { overflow-wrap:anywhere; word-break:normal; }
+  button { max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+
   .hidden { display:none !important; }
   @media (max-width:600px){
-    body{padding:18px 12px 48px;font-size:19px}.stats-row{gap:7px}.stat{padding:12px 5px}.stat .num{font-size:30px}.stat .lbl{font-size:18px}.btn-row{flex-direction:column}.card{border-radius:16px}.mode-btn{padding:20px}.mode-btn .mtitle{font-size:23px}
-    .subject-pairs{grid-template-columns:minmax(118px,1fr) 22px minmax(112px,1fr);font-size:18px;column-gap:6px}.subject-english{text-align:right}.subject-spanish{white-space:normal}.summary-title-sub{font-size:17px}
+    body{
+      padding-top:18px;
+      padding-right:max(12px,env(safe-area-inset-right));
+      padding-bottom:max(48px,env(safe-area-inset-bottom));
+      padding-left:max(12px,env(safe-area-inset-left));
+      font-size:19px;
+    }
+    .stats-row{gap:7px}
+    .stat{padding:12px 5px}
+    .stat .num{font-size:30px}
+    .stat .lbl{font-size:17px;line-height:1.2}
+    .btn-row{flex-direction:column}
+    .card{border-radius:16px;padding:20px 16px}
+    .practice-card{padding:28px 16px}
+    .mode-btn{padding:20px 16px}
+    .mode-btn .mtitle{font-size:23px}
+    .power-definition-card summary{padding:16px}
+    .power-definition-body{padding:16px}
+    .open-close-hint{font-size:16px;white-space:normal}
+    .reference-grid{grid-template-columns:minmax(0,1fr);gap:7px}
+    .reference-grid .reference-verb-row{margin-top:8px}
+    .reference-grid .reference-verb-row:first-child{margin-top:0}
+    .reference-grid .reference-model{margin-bottom:5px}
+    .subject-pairs{grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr);font-size:18px;column-gap:6px}
+    .subject-english{text-align:right}
+    .subject-spanish{white-space:normal}
+    .summary-title-sub{font-size:17px}
+    .answer{font-size:clamp(34px,10vw,48px)}
+    .cue{font-size:clamp(30px,9vw,44px)}
+    .warmup-form{font-size:clamp(30px,9vw,44px)}
+    #drillScreen.item-enter{animation:itemMobileIn .45s ease-out both}
+  }
+  @keyframes itemMobileIn {
+    0%{opacity:0;transform:translateY(14px)}
+    100%{opacity:1;transform:translateY(0)}
+  }
+  @media (max-width:390px){
+    body{font-size:18px}
+    .card,.practice-card{padding-left:14px;padding-right:14px}
+    .stats-row{grid-template-columns:1fr}
+    .stat{padding:10px}
+    .stat .num{font-size:28px}
+    .stat .lbl{font-size:17px}
+    .subject-pairs{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);font-size:17px}
+    .reference-audio-btn{width:34px;height:34px;min-width:34px}
+    .power-definition-card summary{font-size:20px}
   }
   @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important} #drillScreen.page-turn,#drillScreen.item-enter,.verb-intro.cinematic-in,#drillScreen.good-flash,#drillScreen.miss-flash{animation-duration:.25s}}
 </style>
@@ -372,7 +451,7 @@
     <details class="power-definition-card reference-list-card" id="referenceListCard">
       <summary><span class="summary-title-stack"><span>Reference List</span><span class="summary-title-sub">Alphabetical Order</span></span><span class="open-close-hint">Open / Close</span></summary>
       <div class="power-definition-body">
-<div style="display:grid;grid-template-columns:1fr 1.35fr;gap:13px 20px;text-align:left;max-width:650px;margin:0 auto;">
+<div class="reference-grid">
 <div class="reference-verb-row"><strong>DEBER</strong><button class="reference-audio-btn" type="button" data-say="deber" aria-label="Listen to deber" title="Listen to deber">🔊</button></div><div><div>should</div><div class="reference-model">as in: should clean my apartment</div></div>
 <div class="reference-verb-row"><strong>GUSTAR</strong><button class="reference-audio-btn" type="button" data-say="gustar" aria-label="Listen to gustar" title="Listen to gustar">🔊</button></div><div><div>to like</div><div class="reference-model">as in: to like tacos</div></div>
 <div class="reference-verb-row"><strong>HAY QUE</strong><button class="reference-audio-btn" type="button" data-say="hay que" aria-label="Listen to hay que" title="Listen to hay que">🔊</button></div><div><div>one has to</div><div class="reference-model">as in: one has to study</div></div>
