@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<title>Money Survival Guide — Car Loans & Interest</title>
+<style>
+:root{--scale:1;--ink:#172033;--muted:#64748b;--teal:#0f766e;--blue:#2563eb;--green:#16a34a;--red:#dc2626;--line:#dce7e5;--shadow:0 14px 34px rgba(31,52,60,.12)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at 0% 0%,#dff7f3 0,transparent 30%),radial-gradient(circle at 100% 100%,#e6efff 0,transparent 28%),#f7f9fb;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{font-size:calc(18px * var(--scale))}
+button,input,select{font:inherit}
+.shell{max-width:980px;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 14px max(34px,env(safe-area-inset-bottom))}
+.hero{background:linear-gradient(135deg,#0f766e,#0ea5e9 60%,#2563eb);color:#fff;border-radius:30px;padding:28px 22px;text-align:center;box-shadow:var(--shadow)}
+.kicker{font-size:.8em;font-weight:900;letter-spacing:1px;text-transform:uppercase;opacity:.9}
+.hero h1{font-size:clamp(34px,7vw,58px);line-height:1;margin:8px 0 10px;font-weight:950}
+.hero p{margin:0 auto;max-width:760px;font-size:clamp(18px,4vw,25px);line-height:1.45}
+.toolbar{display:flex;justify-content:flex-end;gap:8px;margin:14px 0}
+.fontbtn{min-width:54px;min-height:48px;border:1px solid #d5dfde;background:#fff;border-radius:14px;font-weight:900}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;margin-top:16px;box-shadow:var(--shadow)}
+.card h2{font-size:clamp(27px,5vw,38px);margin:0 0 12px;font-weight:950}
+.card h3{font-size:clamp(22px,4vw,29px);margin:18px 0 8px;font-weight:950}
+.lead{font-size:1.05em;line-height:1.5;color:#334155}
+.warning,.good,.bad{border-radius:18px;padding:15px;font-weight:850;line-height:1.45;margin-top:14px}
+.warning{background:#fff4e8;border:2px solid #fdc98d;color:#7c4300}
+.good{background:#edf9f0;border:2px solid #b8e8c3;color:#185b27}
+.bad{background:#fff0f0;border:2px solid #f0bcbc;color:#7a1f1f}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.control{background:#fbfdfd;border:1px solid #dce8e7;border-radius:18px;padding:15px}
+.control label{display:block;font-weight:900;margin-bottom:8px}
+.control input[type=number],.control select{width:100%;min-height:48px;border:2px solid #cfdcda;border-radius:12px;padding:8px 10px;background:#fff}
+.control input[type=range]{width:100%}
+.value{font-size:1.1em;font-weight:950;color:var(--teal);margin-top:5px}
+.results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.metric{border-radius:18px;padding:16px;text-align:center;background:#f7fafb;border:1px solid #dbe5e7}
+.metric .label{font-size:.8em;color:#64748b;font-weight:850}
+.metric .num{font-size:clamp(24px,4vw,34px);font-weight:950;margin-top:5px}
+.metric.hot .num{color:var(--red)}
+.compare{width:100%;border-collapse:collapse;margin-top:12px}
+.compare th,.compare td{padding:12px 10px;border-bottom:1px solid #e2e8f0;text-align:right}
+.compare th:first-child,.compare td:first-child{text-align:left}
+.compare th{font-weight:950;background:#f8fafc}
+.redflag{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #edf1f4}
+.redflag:last-child{border-bottom:0}
+.redflag .emoji{font-size:30px}
+.redflag strong{display:block;font-size:1.03em}
+.mini{font-size:.88em;color:#64748b;line-height:1.45}
+.quizq{margin-top:16px;padding-top:16px;border-top:1px solid #e5e7eb}
+.quizq:first-child{margin-top:0;padding-top:0;border-top:0}
+.quizq p{font-weight:900;font-size:1.05em}
+.choices{display:grid;gap:10px}
+.choice{border:2px solid #d7e1e0;background:#fff;border-radius:14px;padding:12px 14px;text-align:left;font-weight:850;cursor:pointer}
+.choice.correct{border-color:#7ed39a;background:#edf9f0;color:#185b27}
+.choice.wrong{border-color:#efaaaa;background:#fff0f0;color:#7a1f1f}
+.feedback{margin-top:8px;font-weight:850}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.nav button{border:1px solid #cbd7d5;background:#fff;border-radius:999px;padding:9px 13px;font-weight:850}
+.footer{margin:22px 0 0;text-align:center;color:#667085;font-size:.84em;padding:12px}
+@media(max-width:760px){.grid2,.grid3,.results{grid-template-columns:1fr}.hero{border-radius:24px;padding:24px 16px}.card{padding:17px}.compare{font-size:.88em}.compare th,.compare td{padding:10px 7px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="hero">
+  <div class="kicker">Money Survival Guide for Young Adults</div>
+  <h1>🚗 Car Loans & Interest</h1>
+  <p>Learn what a car really costs before a salesperson sells you a “great monthly payment.”</p>
+</header>
+
+<div class="toolbar"><button class="fontbtn" id="fontDown">A−</button><button class="fontbtn" id="fontUp">A+</button></div>
+
+<div class="nav">
+  <button onclick="go('basics')">Basics</button>
+  <button onclick="go('calculator')">Calculator</button>
+  <button onclick="go('compare')">Compare APR</button>
+  <button onclick="go('redflags')">Red Flags</button>
+  <button onclick="go('quiz')">Quiz</button>
+</div>
+
+<section class="card" id="basics">
+  <h2>1. The 5 numbers that matter</h2>
+  <p class="lead">Do not focus only on the monthly payment. You need the whole deal.</p>
+  <div class="grid2">
+    <div class="control"><label>🚘 Vehicle price</label><div class="mini">What the car costs before financing.</div></div>
+    <div class="control"><label>💵 Down payment</label><div class="mini">Money paid up front.</div></div>
+    <div class="control"><label>📈 APR</label><div class="mini">The annual percentage rate — the price of borrowing money.</div></div>
+    <div class="control"><label>🗓️ Loan term</label><div class="mini">How long you will make payments.</div></div>
+  </div>
+  <div class="warning"><strong>Dealer says:</strong> “Only $299 a month!”<br><strong>You ask:</strong> “For how many months? At what APR? How much am I financing? What is the total amount I will pay?”</div>
+</section>
+
+<section class="card" id="calculator">
+  <h2>2. Interactive Car Loan Calculator</h2>
+  <p class="lead">Change the numbers and watch the loan change.</p>
+  <div class="grid2">
+    <div class="control"><label>Car price</label><input id="price" type="number" min="1000" step="500" value="18000"></div>
+    <div class="control"><label>Down payment</label><input id="down" type="number" min="0" step="500" value="3000"></div>
+    <div class="control"><label>APR</label><input id="apr" type="range" min="0" max="30" step="0.5" value="7"><div class="value"><span id="aprVal">7.0</span>%</div></div>
+    <div class="control"><label>Loan term</label><select id="months"><option value="36">36 months</option><option value="48">48 months</option><option value="60" selected>60 months</option><option value="72">72 months</option><option value="84">84 months</option></select></div>
+  </div>
+  <div class="results">
+    <div class="metric"><div class="label">Amount financed</div><div class="num" id="financed">$0</div></div>
+    <div class="metric"><div class="label">Monthly payment</div><div class="num" id="monthly">$0</div></div>
+    <div class="metric hot"><div class="label">Total interest</div><div class="num" id="interest">$0</div></div>
+    <div class="metric"><div class="label">Total loan payments</div><div class="num" id="totalPaid">$0</div></div>
+  </div>
+  <div class="good">Lower APR usually means less money lost to interest. A shorter term usually means a higher monthly payment but less total interest.</div>
+</section>
+
+<section class="card" id="compare">
+  <h2>3. Same car. Different APR.</h2>
+  <p class="lead">Same amount financed. Same loan term. Only the APR changes.</p>
+  <table class="compare">
+    <thead><tr><th>APR</th><th>Monthly</th><th>Total Interest</th><th>Total Paid</th></tr></thead>
+    <tbody id="compareBody"></tbody>
+  </table>
+  <div class="bad">“No credit? Bad credit? No problem!” may really mean: <strong>“We may still finance you — but at a much higher interest rate.”</strong></div>
+</section>
+
+<section class="card" id="redflags">
+  <h2>4. Dealer Red Flags</h2>
+  <div class="redflag"><div class="emoji">🚩</div><div><strong>“What monthly payment do you want?”</strong><span class="mini">A low payment can be created by stretching the loan for years.</span></div></div>
+  <div class="redflag"><div class="emoji">🚩</div><div><strong>“We can get you approved today!”</strong><span class="mini">Approval is not the same as a good loan.</span></div></div>
+  <div class="redflag"><div class="emoji">🚩</div><div><strong>“No credit? No problem!”</strong><span class="mini">Ask for the APR and total cost before celebrating.</span></div></div>
+  <div class="redflag"><div class="emoji">🚩</div><div><strong>72- or 84-month loans</strong><span class="mini">They can make the payment look smaller while keeping you in debt much longer.</span></div></div>
+  <div class="redflag"><div class="emoji">🚩</div><div><strong>Dealer add-ons</strong><span class="mini">Warranties, protection packages and extras can increase the amount financed.</span></div></div>
+  <div class="warning">Before signing, ask for the <strong>out-the-door price</strong>, APR, term, amount financed, monthly payment, and total of payments.</div>
+</section>
+
+<section class="card">
+  <h2>5. Simple rule for comparing loans</h2>
+  <div class="grid3">
+    <div class="control"><label>1️⃣ Compare APR</label><div class="mini">Lower is usually better when the rest of the deal is comparable.</div></div>
+    <div class="control"><label>2️⃣ Compare total interest</label><div class="mini">This shows what borrowing the money costs.</div></div>
+    <div class="control"><label>3️⃣ Compare total paid</label><div class="mini">This reveals the real cost of the loan over time.</div></div>
+  </div>
+</section>
+
+<section class="card" id="quiz">
+  <h2>6. Quick Quiz — Good Deal or Trap?</h2>
+  <div class="quizq" data-answer="b">
+    <p>A dealer says: “I can get your payment down to $275 a month.” What should you ask next?</p>
+    <div class="choices">
+      <button class="choice" data-choice="a">A. Where do I sign?</button>
+      <button class="choice" data-choice="b">B. What is the APR, term, amount financed and total paid?</button>
+      <button class="choice" data-choice="c">C. Can you make it $274?</button>
+    </div><div class="feedback"></div>
+  </div>
+  <div class="quizq" data-answer="a">
+    <p>Two loans finance the same amount for the same number of months. Which usually costs less?</p>
+    <div class="choices">
+      <button class="choice" data-choice="a">A. The one with the lower APR</button>
+      <button class="choice" data-choice="b">B. The one approved fastest</button>
+      <button class="choice" data-choice="c">C. The one with the prettiest paperwork</button>
+    </div><div class="feedback"></div>
+  </div>
+  <div class="quizq" data-answer="c">
+    <p>“No credit? Bad credit? No problem!” means:</p>
+    <div class="choices">
+      <button class="choice" data-choice="a">A. The loan is guaranteed to be cheap</button>
+      <button class="choice" data-choice="b">B. Interest does not matter</button>
+      <button class="choice" data-choice="c">C. You may get approved, but the APR could be much higher</button>
+    </div><div class="feedback"></div>
+  </div>
+</section>
+
+<footer class="footer">Educational tool only. Loan offers vary by lender, borrower, vehicle, credit profile and other terms. Always read the actual contract before signing.</footer>
+</div>
+
+<script>
+let scale=Number(localStorage.getItem("moneyCarLoanFont")||1);
+if(!Number.isFinite(scale))scale=1;
+scale=Math.min(1.3,Math.max(.9,scale));
+document.documentElement.style.setProperty("--scale",scale);
+fontDown.onclick=()=>{scale=Math.max(.9,+(scale-.1).toFixed(1));document.documentElement.style.setProperty("--scale",scale);localStorage.setItem("moneyCarLoanFont",scale)};
+fontUp.onclick=()=>{scale=Math.min(1.3,+(scale+.1).toFixed(1));document.documentElement.style.setProperty("--scale",scale);localStorage.setItem("moneyCarLoanFont",scale)};
+
+function money(n){return n.toLocaleString(undefined,{style:"currency",currency:"USD",maximumFractionDigits:0})}
+function calcPayment(principal,annualRate,months){
+  if(principal<=0)return {payment:0,total:0,interest:0};
+  const r=annualRate/100/12;
+  const p=r===0?principal/months:principal*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1);
+  const total=p*months;
+  return {payment:p,total:total,interest:total-principal};
+}
+function update(){
+  const price=Math.max(0,Number(document.getElementById("price").value)||0);
+  const down=Math.max(0,Number(document.getElementById("down").value)||0);
+  const apr=Number(document.getElementById("apr").value)||0;
+  const months=Number(document.getElementById("months").value)||60;
+  const financed=Math.max(0,price-down);
+  const c=calcPayment(financed,apr,months);
+  aprVal.textContent=apr.toFixed(1);
+  financedEl=document.getElementById("financed"); financedEl.textContent=money(financed);
+  monthly.textContent=money(c.payment);
+  interest.textContent=money(c.interest);
+  totalPaid.textContent=money(c.total);
+  compareBody.innerHTML=[5,8,12,18,24].map(rate=>{
+    const x=calcPayment(financed,rate,months);
+    return `<tr><td><strong>${rate}%</strong></td><td>${money(x.payment)}</td><td>${money(x.interest)}</td><td>${money(x.total)}</td></tr>`;
+  }).join("");
+}
+["price","down","apr","months"].forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener("input",update);
+  el.addEventListener("change",update);
+});
+update();
+
+document.querySelectorAll(".quizq").forEach(q=>{
+  const answer=q.dataset.answer;
+  q.querySelectorAll(".choice").forEach(btn=>{
+    btn.onclick=()=>{
+      q.querySelectorAll(".choice").forEach(b=>b.classList.remove("correct","wrong"));
+      const ok=btn.dataset.choice===answer;
+      btn.classList.add(ok?"correct":"wrong");
+      if(!ok)q.querySelector(`[data-choice="${answer}"]`).classList.add("correct");
+      q.querySelector(".feedback").textContent=ok?"✅ Correct.":"❌ Not quite. The correct answer is highlighted.";
+    };
+  });
+});
+
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"})}
+window.addEventListener("load",()=>window.scrollTo(0,0));
+</script>
+</body>
+</html>
