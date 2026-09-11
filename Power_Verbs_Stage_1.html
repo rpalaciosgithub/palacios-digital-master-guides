@@ -1405,8 +1405,26 @@ function fallbackSpeakSequence(segments) {
   } catch (e) {}
 }
 
+// iPhone Safari can start an MP3 a fraction late after seeking.
+// Each recorded item has about half a second of silence around it, so we
+// deliberately begin 0.25 s early and finish 0.04 s late. This gives
+// Safari time to decode before the first consonant/vowel without picking
+// up the neighboring spoken item.
+const RECORDED_AUDIO_PREROLL = 0.25;
+const RECORDED_AUDIO_POSTROLL = 0.04;
+
+function padRecordedClip(clip) {
+  if (!Array.isArray(clip) || clip.length !== 2) return clip;
+  return [
+    Math.max(0, Number(clip[0]) - RECORDED_AUDIO_PREROLL),
+    Number(clip[1]) + RECORDED_AUDIO_POSTROLL
+  ];
+}
+
 function playRecordedSequence(clipList, fallbackSegments) {
-  const clips = (clipList || []).filter(c => Array.isArray(c) && c.length === 2);
+  const clips = (clipList || [])
+    .filter(c => Array.isArray(c) && c.length === 2)
+    .map(padRecordedClip);
   if (!clips.length) {
     fallbackSpeakSequence(fallbackSegments || []);
     return;
