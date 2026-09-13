@@ -3,59 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Esteban Stage 1 — iPhone Audio Test</title>
+<title>Esteban Stage 1 — iPhone Audio Test 3</title>
 <style>
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#F7F2E8}
 iframe{border:0;width:100%;height:100%}
-#badge{position:fixed;right:8px;bottom:8px;background:#17365D;color:#fff;padding:6px 8px;border-radius:8px;font:700 12px Arial;opacity:.75;pointer-events:none}
+#badge{position:fixed;right:8px;bottom:8px;background:#17365D;color:#fff;padding:6px 8px;border-radius:8px;font:700 12px Arial;opacity:.78;pointer-events:none;z-index:9999}
 </style>
 </head>
 <body>
-<iframe id="app" src="Power_Verbs_Stage_1.html?v=20260912"></iframe>
-<div id="badge">iPhone audio test</div>
+<iframe id="app" src="Power_Verbs_Stage_1.html?v=20260913c"></iframe>
+<div id="badge">iPhone audio test 3</div>
 <script>
 (()=>{
 'use strict';
 const SOURCES={
-  ir:'https://media1.vocaroo.com/mp3/137CMepBkxFA',
-  gustar:'https://media1.vocaroo.com/mp3/1fstkWOOE0WD'
+ ir:'https://media1.vocaroo.com/mp3/137CMepBkxFA',
+ gustar:'https://media1.vocaroo.com/mp3/1fstkWOOE0WD'
 };
 const CLIPS={
-  'gustar':{src:'gustar',start:9.90,end:10.68},
-  'ir a':{src:'ir',start:21.55,end:22.50},
-  'yo voy a':{src:'ir',start:25.05,end:26.20},
-  'tu vas a':{src:'ir',start:27.02,end:28.18}
+ 'gustar':{src:'gustar',start:9.90,end:10.68},
+ 'ir a':{src:'ir',start:21.55,end:22.50},
+ 'yo voy a':{src:'ir',start:25.05,end:26.20},
+ 'tu vas a':{src:'ir',start:27.02,end:28.18}
 };
-let active=null,stopTimer=null;
-const norm=t=>String(t||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ');
-function stop(){if(stopTimer){clearInterval(stopTimer);stopTimer=null}if(active){try{active.pause()}catch(e){}active=null}}
-function playClip(key){
-  const c=CLIPS[key]; if(!c)return false; stop();
-  const a=new Audio(SOURCES[c.src]+'#t='+Math.max(0,c.start-0.08)+','+(c.end+0.08));
-  a.preload='auto'; a.playsInline=true; active=a;
-  const start=()=>{try{a.currentTime=Math.max(0,c.start-0.08)}catch(e){} const p=a.play(); if(p&&p.catch)p.catch(()=>{}); stopTimer=setInterval(()=>{if(a.currentTime>=c.end+0.08){stop()}},25)};
-  if(a.readyState>=1)start(); else a.addEventListener('loadedmetadata',start,{once:true});
-  a.addEventListener('ended',stop,{once:true});
-  return true;
+const norm=t=>String(t||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[.,!?¡¿"“”()]/g,'').replace(/\s+/g,' ');
+const clipAudio=Object.create(null);
+let active=null,stopTimer=null,lastKey='',lastAt=0;
+function makeClipAudio(key){
+ if(clipAudio[key])return clipAudio[key];
+ const c=CLIPS[key],s=Math.max(0,c.start-.12),e=c.end+.18;
+ const a=new Audio(SOURCES[c.src]+'#t='+s+','+e);
+ a.preload='auto';a.playsInline=true;
+ clipAudio[key]=a;
+ try{a.load()}catch(x){}
+ return a;
 }
-function playIrIntro(){
-  const keys=['ir a','yo voy a','tu vas a']; let i=0;
-  const next=()=>{if(i>=keys.length)return; const k=keys[i++],c=CLIPS[k]; stop(); const a=new Audio(SOURCES[c.src]+'#t='+Math.max(0,c.start-0.08)+','+(c.end+0.08)); a.playsInline=true; active=a; const run=()=>{try{a.currentTime=Math.max(0,c.start-0.08)}catch(e){} a.play().catch(()=>{}); const timer=setInterval(()=>{if(a.currentTime>=c.end+0.08){clearInterval(timer);try{a.pause()}catch(e){} setTimeout(next,350)}},25)}; if(a.readyState>=1)run(); else a.addEventListener('loadedmetadata',run,{once:true});};
-  next();
+Object.keys(CLIPS).forEach(makeClipAudio);
+function stop(){
+ if(stopTimer){clearInterval(stopTimer);stopTimer=null}
+ if(active){try{active.pause()}catch(e){}active=null}
 }
-document.getElementById('app').addEventListener('load',()=>{
-  const f=document.getElementById('app'),w=f.contentWindow,d=f.contentDocument;if(!w||!d)return;
-  const os=typeof w.speak==='function'?w.speak.bind(w):null;
-  const or=typeof w.speakReference==='function'?w.speakReference.bind(w):null;
-  w.__pvSpeak=t=>{const k=norm(t);if(CLIPS[k])return playClip(k);if(os)return os(t)};
-  w.__pvRef=t=>{const k=norm(t);if(k==='gustar'||k==='ir a')return playClip(k);if(or)return or(t)};
-  try{w.eval('speak=window.__pvSpeak;speakReference=window.__pvRef;')}catch(e){w.speak=w.__pvSpeak;w.speakReference=w.__pvRef}
-  d.addEventListener('click',e=>{
-    const b=e.target&&e.target.closest?e.target.closest('button'):null;if(!b)return;
-    if(b.classList.contains('reference-audio-btn')){const k=norm(b.getAttribute('data-say'));if(k==='gustar'||k==='ir a'){e.preventDefault();e.stopImmediatePropagation();playClip(k);return}}
-    if(b.id==='speakBtn'){const x=d.getElementById('answerWord'),k=norm(x?x.textContent:'');if(CLIPS[k]){e.preventDefault();e.stopImmediatePropagation();playClip(k);return}}
-    if(b.id==='introSpeakBtn'){const n=norm((d.getElementById('verbIntroName')||{}).textContent||'');if(n==='ir a'){e.preventDefault();e.stopImmediatePropagation();playIrIntro();return}}
-  },true);
+function playClip(key,force=false){
+ key=norm(key);const c=CLIPS[key];if(!c)return false;
+ const now=Date.now();if(!force&&key===lastKey&&now-lastAt<180)return true;
+ lastKey=key;lastAt=now;stop();
+ const a=makeClipAudio(key);active=a;
+ try{if(a.readyState>=1)a.currentTime=Math.max(0,c.start-.12)}catch(e){}
+ const p=a.play();
+ if(p&&p.catch)p.catch(()=>{});
+ stopTimer=setInterval(()=>{
+   try{if(a.currentTime>=c.end+.18){stop()}}catch(e){}
+ },25);
+ return true;
+}
+function prime(){Object.keys(CLIPS).forEach(k=>{try{makeClipAudio(k).load()}catch(e){}})}
+function sequence(keys,gap=350){
+ let i=0;
+ const next=()=>{
+   if(i>=keys.length)return;
+   const k=keys[i++],c=CLIPS[k];
+   playClip(k,true);
+   setTimeout(next,Math.max(1000,(c.end-c.start)*1000+gap));
+ };
+ next();
+}
+const frame=document.getElementById('app');
+frame.addEventListener('load',()=>{
+ const w=frame.contentWindow,d=frame.contentDocument;if(!w||!d)return;
+ prime();
+ d.addEventListener('pointerdown',prime,{capture:true});
+ d.addEventListener('touchstart',prime,{capture:true,passive:true});
+ const origSpeak=typeof w.speak==='function'?w.speak.bind(w):null;
+ const origRef=typeof w.speakReference==='function'?w.speakReference.bind(w):null;
+ const origIntro=typeof w.speakIntro==='function'?w.speakIntro.bind(w):null;
+ function stopBase(){
+   try{if(typeof w.stopRecordedAudio==='function')w.stopRecordedAudio()}catch(e){}
+   try{if(w.speechSynthesis)w.speechSynthesis.cancel()}catch(e){}
+ }
+ w.__pvSpeak=t=>{
+   const k=norm(t);
+   if(CLIPS[k]){stopBase();return playClip(k)}
+   if(origSpeak)return origSpeak(t);
+ };
+ w.__pvRef=t=>{
+   const k=norm(t);
+   if(k==='gustar'||k==='ir a'){stopBase();return playClip(k)}
+   if(origRef)return origRef(t);
+ };
+ w.__pvIntro=()=>{
+   const n=norm((d.getElementById('verbIntroName')||{}).textContent||'');
+   if(n==='ir a'){stopBase();sequence(['ir a','yo voy a','tu vas a']);return}
+   if(n==='gustar'){
+     stopBase();playClip('gustar',true);
+     setTimeout(()=>{if(origSpeak)origSpeak('Me gusta')},1250);
+     setTimeout(()=>{if(origSpeak)origSpeak('Te gusta')},2750);
+     return;
+   }
+   if(origIntro)return origIntro();
+ };
+ try{w.eval('speak=window.__pvSpeak;speakReference=window.__pvRef;speakIntro=window.__pvIntro;')}
+ catch(e){try{w.speak=w.__pvSpeak;w.speakReference=w.__pvRef;w.speakIntro=w.__pvIntro}catch(x){}}
+ d.addEventListener('click',e=>{
+   const b=e.target&&e.target.closest?e.target.closest('button'):null;if(!b)return;
+   if(b.classList.contains('reference-audio-btn')){
+     const k=norm(b.getAttribute('data-say'));
+     if(k==='gustar'||k==='ir a'){
+       e.preventDefault();e.stopImmediatePropagation();stopBase();playClip(k,true);return;
+     }
+   }
+   if(b.id==='speakBtn'){
+     const x=d.getElementById('answerWord'),k=norm(x?x.textContent:'');
+     if(CLIPS[k]){e.preventDefault();e.stopImmediatePropagation();stopBase();playClip(k,true);return}
+   }
+   if(b.id==='introSpeakBtn'){
+     const n=norm((d.getElementById('verbIntroName')||{}).textContent||'');
+     if(n==='ir a'||n==='gustar'){
+       e.preventDefault();e.stopImmediatePropagation();w.__pvIntro();return;
+     }
+   }
+ },true);
+ const answer=d.getElementById('answerWrap');
+ if(answer){
+   new MutationObserver(()=>{
+     if(answer.classList.contains('hidden'))return;
+     const x=d.getElementById('answerWord'),k=norm(x?x.textContent:'');
+     if(CLIPS[k])setTimeout(()=>{stopBase();playClip(k)},35);
+   }).observe(answer,{attributes:true,attributeFilter:['class']});
+ }
 });
 })();
 </script>
