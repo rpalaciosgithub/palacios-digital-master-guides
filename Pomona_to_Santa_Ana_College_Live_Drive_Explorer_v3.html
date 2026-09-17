@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pomona → Santa Ana College Live Drive Explorer v2</title>
+<style>
+:root{
+  --bg:#f4f7fb;--card:#fff;--ink:#11243f;--muted:#5c6d82;--line:#d8e2ef;
+  --blue:#1559c6;--green:#087f5b;--gold:#d98200;--red:#b42318;--purple:#6847bd;--cyan:#087ea4;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,#092f68,#1464cd);color:#fff;padding:24px 18px}
+.wrap{max-width:1450px;margin:auto}
+h1{margin:0;font-size:clamp(31px,4vw,50px);line-height:1.05}
+header p{font-size:clamp(18px,2vw,22px);margin:8px 0 0}
+main{max-width:1450px;margin:auto;padding:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 5px 20px rgba(20,55,95,.08);margin-bottom:17px}
+h2{font-size:27px;margin:0 0 13px}
+label{display:block;font-size:18px;font-weight:800;margin:8px 0 7px}
+input{width:100%;font-size:18px;padding:13px;border:2px solid #aebdd0;border-radius:10px;background:white}
+button,.btn{border:0;border-radius:13px;padding:14px 15px;font-size:17px;font-weight:900;cursor:pointer;background:var(--blue);color:#fff;text-decoration:none;text-align:center;display:inline-block}
+button:hover,.btn:hover{filter:brightness(.96)}
+.green{background:var(--green)}.gold{background:var(--gold)}.purple{background:var(--purple)}.cyan{background:var(--cyan)}.gray{background:#5b6d83}.red{background:var(--red)}
+.keyrow{display:grid;grid-template-columns:1fr auto auto;gap:10px}
+.routegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.routecard{border:2px solid var(--line);border-radius:14px;padding:14px;background:#fafcff}
+.routecard h3{margin:0 0 8px;font-size:20px}.routecard p{margin:0 0 11px;color:var(--muted);line-height:1.4}
+.viewer{display:grid;grid-template-columns:1.15fr .85fr;gap:17px}
+iframe{width:100%;height:620px;border:0;border-radius:13px;background:#e8edf4}
+.tools{display:flex;flex-wrap:wrap;gap:9px}
+.status{font-size:16px;color:var(--muted);margin-top:10px}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.legend div{border-radius:11px;padding:12px;font-size:16px;font-weight:800;text-align:center}
+.g1{background:#dff5e8}.g2{background:#e7f4ff}.g3{background:#fff1b8}.g4{background:#ffdede}
+.note{font-size:16px;line-height:1.45;color:var(--muted)}
+.list{display:grid;gap:10px}.item{border:1px solid var(--line);border-radius:12px;padding:13px;background:#fafcff}
+.item b{font-size:18px}.item span{display:block;margin-top:4px;color:var(--muted);line-height:1.4}
+@media(max-width:1000px){.viewer,.routegrid{grid-template-columns:1fr}.legend{grid-template-columns:repeat(2,1fr)}iframe{height:520px}}
+@media(max-width:650px){main{padding:10px}.keyrow{grid-template-columns:1fr}.legend{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<h1>🚗 Pomona → Santa Ana College Live Drive Explorer v2</h1>
+<p>Pomona → Santa Ana College • traffic • incidents • alternate routes</p>
+</div>
+</header>
+
+<main>
+<section class="card">
+  <h2>🔑 Google Maps Embed API</h2>
+  <div class="keyrow">
+    <input id="apiKey" type="password" autocomplete="off" placeholder="Paste your Google Maps Embed API key">
+    <button class="green" onclick="loadTrip()">LOAD TRIP</button>
+    <button class="gray" onclick="forgetKey()">FORGET KEY</button>
+  </div>
+  <div id="status" class="status">If you used the Santa Ana College Parking Explorer on this browser, the saved key may load automatically.</div>
+</section>
+
+<section class="card">
+  <h2>📍 Trip</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div><label>From</label><input id="origin" value="Pomona, CA"></div>
+    <div><label>To</label><input id="destination" value="Santa Ana College, 1530 W 17th St, Santa Ana, CA 92706"></div>
+  </div>
+  <div class="tools" style="margin-top:12px">
+    <button onclick="loadTrip()">🗺️ UPDATE GOOGLE ROUTE</button>
+    <a id="googleLive" class="btn green" target="_blank" rel="noopener">🚦 OPEN GOOGLE MAPS — LIVE TRAFFIC & ALTERNATIVES</a>
+    <a id="wazeLive" class="btn cyan" target="_blank" rel="noopener">🚗 OPEN WAZE LIVE MAP</a>
+  </div>
+</section>
+
+<section class="card">
+  <h2>🚧 Accident Detour Finder — 57 corridor (Pomona → Santa Ana)</h2>
+  <p class="note">Open <b>CHP Incidents</b> or <b>QuickMap</b> below, find the cross street or landmark listed for the incident, then paste or type it here. This matches it against the exit-by-exit corridor between Pomona and Santa Ana and tells you exactly where to get off, which surface street to take, and where to re-enter the 57.</p>
+  <div class="keyrow" style="grid-template-columns:1fr auto">
+    <input id="incidentText" type="text" placeholder="e.g. &quot;SR-57 at Imperial Hwy&quot; or paste the CHP/QuickMap incident description">
+    <button class="red" onclick="findDetour()">FIND DETOUR</button>
+  </div>
+  <div id="detourResult" style="margin-top:13px"></div>
+
+  <div class="note" style="margin-top:14px"><b>Or pick the location manually:</b></div>
+  <div class="tools" id="segmentButtons" style="margin-top:9px"></div>
+
+  <div class="tools" style="margin-top:15px">
+    <button class="gray" onclick="tryLiveCheck()">🔄 TRY AUTOMATIC LIVE CHECK (experimental)</button>
+  </div>
+  <div id="liveStatus" class="status"></div>
+</section>
+
+<section class="card">
+  <h2>🛣️ Alternate-route checks</h2>
+  <div class="routegrid">
+    <div class="routecard">
+      <h3>Route A — 57 South corridor</h3>
+      <p>Likely freeway backbone from Pomona toward Orange County. Check 57 plus connecting freeway conditions.</p>
+      <div class="tools">
+        <a class="btn gold" target="_blank" href="https://roads.dot.ca.gov/?roadnumber=57">57 CONDITIONS</a>
+        <a class="btn purple" target="_blank" href="https://quickmap.dot.ca.gov/">QUICKMAP</a>
+      </div>
+    </div>
+    <div class="routecard">
+      <h3>Route B — 71 / 91 corridor</h3>
+      <p>Useful alternate when 57 is badly congested. Google/Waze will tell you whether it is actually faster now.</p>
+      <div class="tools">
+        <a class="btn gold" target="_blank" href="https://roads.dot.ca.gov/?roadnumber=71">71 CONDITIONS</a>
+        <a class="btn gold" target="_blank" href="https://roads.dot.ca.gov/?roadnumber=91">91 CONDITIONS</a>
+      </div>
+    </div>
+    <div class="routecard">
+      <h3>Route C — 60 / 57 connection</h3>
+      <p>Another common way to reach 57 depending on where congestion starts around Pomona and Diamond Bar.</p>
+      <div class="tools">
+        <a class="btn gold" target="_blank" href="https://roads.dot.ca.gov/?roadnumber=60">60 CONDITIONS</a>
+        <a class="btn gold" target="_blank" href="https://roads.dot.ca.gov/?roadnumber=57">57 CONDITIONS</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="viewer">
+  <div class="card">
+    <h2>🗺️ Google route view</h2>
+    <iframe id="mapFrame" allowfullscreen loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      title="Pomona to Santa Ana College directions"></iframe>
+    <p class="note">The embedded route gives you the trip visually. For the best current ETA, colored traffic, incidents, and route alternatives, use the green <b>OPEN GOOGLE MAPS</b> button above.</p>
+  </div>
+
+  <div class="card">
+    <h2>🚨 Official freeway-condition sources</h2>
+    <div class="list">
+      <div class="item"><b>Caltrans QuickMap</b><span>Traffic speed, CHP incidents, lane closures, full closures, message signs, cameras, and other traveler information.</span></div>
+      <div class="item"><b>CHP incidents</b><span>Crashes, disabled vehicles, debris, police activity, and other reported incidents can appear through QuickMap.</span></div>
+      <div class="item"><b>Waze Live Map</b><span>Opens Waze's desktop Live Map in your browser so you can inspect driver-reported traffic and hazards. It no longer uses the mobile-app navigation deep link.</span></div>
+      <div class="item"><b>Google Maps</b><span>Best place in this app to compare current ETA and alternate routes for the full door-to-door trip.</span></div>
+    </div>
+
+    <div class="tools" style="margin-top:15px">
+      <a class="btn purple" target="_blank" href="https://quickmap.dot.ca.gov/">OPEN CALTRANS QUICKMAP</a>
+      <a class="btn gray" target="_blank" href="https://cad.chp.ca.gov/Traffic.aspx">OPEN CHP INCIDENTS</a>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>🧠 How to use this before leaving</h2>
+  <div class="legend">
+    <div class="g1">1️⃣ GOOGLE<br>Compare ETA & alternatives</div>
+    <div class="g2">2️⃣ WAZE<br>Check driver reports</div>
+    <div class="g3">3️⃣ CALTRANS<br>Check closures/cameras</div>
+    <div class="g4">4️⃣ DRIVE<br>Choose the best route now</div>
+  </div>
+  <p class="note" style="margin-bottom:0">This app intentionally uses multiple sources because no single source is perfect. Google Maps is the main door-to-door route and alternate-route tool. Waze opens separately as a desktop Live Map for another look at current traffic reports. Caltrans/CHP provide official incidents and closures.</p>
+</section>
+</main>
+
+<footer>
+Always follow posted signs and current road closures. Do not interact with the app while driving.
+</footer>
+
+<script>
+// SR-57 corridor, ordered south (Orange Crush / I-5) to north (SR-60 / Grand Ave, Diamond Bar).
+// Aliases are lowercase substrings that might show up in a CHP/QuickMap incident description.
+const CORRIDOR = [
+  {
+    label: "Orange Crush (I-5 / SR-22)",
+    aliases: ["orange crush","i-5","interstate 5","sr22","sr-22","state route 22"],
+    surface: "This is the far south end near Santa Ana — take Main St, Tustin Ave, or Chapman Ave into Santa Ana instead of fighting the interchange.",
+    reentry: "You're basically already there — continue on surface streets to Santa Ana College (17th St / Bristol St area) rather than re-entering."
+  },
+  {
+    label: "Orangewood Ave (Anaheim, near Angel Stadium)",
+    aliases: ["orangewood ave","orangewood avenue","orangewood","owood"],
+    surface: "Exit Orangewood Ave, head south on State College Blvd or Main St.",
+    reentry: "Re-enter SR-57 south at Katella Ave, or continue on State College Blvd toward Santa Ana."
+  },
+  {
+    label: "Lincoln Ave",
+    aliases: ["lincoln ave","lincoln avenue"],
+    surface: "Exit Lincoln Ave, head toward Tustin Ave or State College Blvd.",
+    reentry: "Re-enter SR-57 south at the Orange Crush on-ramp, or just continue on surface streets into Santa Ana."
+  },
+  {
+    label: "Katella Ave",
+    aliases: ["katella ave","katella"],
+    surface: "Exit Katella Ave, take it to State College Blvd southbound.",
+    reentry: "Re-enter SR-57 south at Orangewood Ave, or continue on State College Blvd toward Santa Ana."
+  },
+  {
+    label: "SR-91 interchange (Anaheim / Fullerton)",
+    aliases: ["sr91","sr-91","91 fwy","riverside fwy","riverside freeway"],
+    surface: "Exit toward Orangethorpe Ave or Tustin Ave to bypass the 57/91 interchange — this is the corridor's worst chronic bottleneck.",
+    reentry: "Re-enter SR-57 south at Katella Ave."
+  },
+  {
+    label: "Orangethorpe Ave",
+    aliases: ["orangethorpe"],
+    surface: "Exit Orangethorpe Ave, head south/west toward Tustin Ave.",
+    reentry: "Re-enter SR-57 south at the SR-91 on-ramp, or continue straight through on Orangethorpe/Tustin Ave."
+  },
+  {
+    label: "Yorba Linda Blvd",
+    aliases: ["yorba linda blvd","yorba linda boulevard"],
+    surface: "Exit Yorba Linda Blvd, head south on Kellogg Dr or Associated Rd.",
+    reentry: "Re-enter SR-57 south at Orangethorpe Ave."
+  },
+  {
+    label: "Imperial Hwy (SR-90, Brea)",
+    aliases: ["imperial hwy","imperial highway","sr90","sr-90","state route 90"],
+    surface: "Exit Imperial Hwy, head south on Associated Rd or Kraemer Blvd.",
+    reentry: "Re-enter SR-57 south at Yorba Linda Blvd."
+  },
+  {
+    label: "Lambert Rd",
+    aliases: ["lambert rd","lambert road"],
+    surface: "Exit Lambert Rd, head south on Valencia Ave or Brea Blvd.",
+    reentry: "Re-enter SR-57 south at Imperial Hwy."
+  },
+  {
+    label: "Diamond Bar Blvd / Tonner Canyon",
+    aliases: ["diamond bar blvd","tonner canyon"],
+    surface: "Exit Diamond Bar Blvd, head south to pick up Brea Canyon Rd, which parallels the freeway through the canyon.",
+    reentry: "Re-enter SR-57 south at Lambert Rd."
+  },
+  {
+    label: "SR-60 / Grand Ave (Diamond Bar)",
+    aliases: ["grand ave","sr60","sr-60","60 fwy","60 freeway","diamond bar"],
+    surface: "From Pomona, avoid the 57/60 confluence entirely by taking Grand Ave or Golden Springs Dr south.",
+    reentry: "Re-enter SR-57 south at Diamond Bar Blvd."
+  }
+];
+
+function renderDetour(seg){
+  const el = document.getElementById("detourResult");
+  if(!seg){
+    el.innerHTML = `<div class="item" style="border-color:var(--red)"><b>No match found</b><span>Try picking the closest location from the buttons below instead, or check the exact cross street on QuickMap/CHP Incidents.</span></div>`;
+    return;
+  }
+  el.innerHTML = `
+    <div class="item" style="border-color:var(--red);background:#fff5f4">
+      <b>📍 Incident near: ${seg.label}</b>
+      <span><b>Take this exit / surface street:</b> ${seg.surface}</span>
+      <span><b>Re-enter the 57:</b> ${seg.reentry}</span>
+    </div>`;
+}
+
+// Strips spaces/hyphens so CHP's cramped formatting (e.g. "Sr91E/Sr57",
+// "SB 57 JNO Owood") still matches aliases written with normal spacing.
+function normalize(s){
+  return s.toLowerCase().replace(/[\s\-]+/g,"");
+}
+
+function findDetour(){
+  const raw = document.getElementById("incidentText").value.trim();
+  if(!raw){
+    renderDetour(null);
+    return;
+  }
+  const text = normalize(raw);
+  const match = CORRIDOR.find(seg => seg.aliases.some(a => text.includes(normalize(a))));
+  renderDetour(match || null);
+}
+
+function buildSegmentButtons(){
+  const wrap = document.getElementById("segmentButtons");
+  wrap.innerHTML = CORRIDOR.map((seg,i) =>
+    `<button class="gold" onclick="renderDetour(CORRIDOR[${i}])">${seg.label}</button>`
+  ).join("");
+}
+
+async function tryLiveCheck(){
+  const status = document.getElementById("liveStatus");
+  status.textContent = "Checking for a live incident feed reachable from this browser...";
+  try{
+    // Best-effort attempt at a public incident feed. Browsers block most
+    // CHP/Caltrans endpoints via CORS, so this frequently will not succeed —
+    // that's expected, not a bug. Replace FEED_URL with a confirmed working
+    // endpoint if you find/host one.
+    const FEED_URL = "https://services.arcgis.com/example/arcgis/rest/services/CHP_Incidents/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson";
+    const res = await fetch(FEED_URL, {mode:"cors"});
+    if(!res.ok) throw new Error("Feed responded with " + res.status);
+    const data = await res.json();
+    status.textContent = `Live feed reachable — ${data.features ? data.features.length : 0} incidents returned. (Matching logic for this feed still needs to be wired up to its actual field names.)`;
+  }catch(err){
+    status.textContent = "Live feed isn't reachable directly from the browser (expected — most CHP/Caltrans sources block this). Use the paste box above or the buttons below instead — open CHP Incidents/QuickMap, then tell this app what you see.";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", buildSegmentButtons);
+
+function K(){return document.getElementById("apiKey").value.trim()}
+function E(v){return encodeURIComponent(v)}
+function origin(){return document.getElementById("origin").value.trim()}
+function dest(){return document.getElementById("destination").value.trim()}
+
+function loadTrip(){
+  if(!K()){
+    document.getElementById("status").textContent="Paste your Google Maps Embed API key first.";
+    document.getElementById("apiKey").focus();
+    return;
+  }
+  localStorage.setItem("sac_google_embed_key",K());
+  const o=origin(), d=dest();
+
+  document.getElementById("mapFrame").src=
+    `https://www.google.com/maps/embed/v1/directions?key=${E(K())}&origin=${E(o)}&destination=${E(d)}&mode=driving`;
+
+  document.getElementById("googleLive").href=
+    `https://www.google.com/maps/dir/?api=1&origin=${E(o)}&destination=${E(d)}&travelmode=driving`;
+
+  // Desktop Waze Live Map — no mobile navigation deep link.
+  document.getElementById("wazeLive").href=
+    "https://www.waze.com/live-map";
+
+  document.getElementById("status").textContent="Trip loaded. Use Google Maps for the current route and alternatives; use Waze Live Map for a separate desktop traffic view.";
+}
+
+function forgetKey(){
+  localStorage.removeItem("sac_google_embed_key");
+  document.getElementById("apiKey").value="";
+  document.getElementById("mapFrame").src="about:blank";
+  document.getElementById("status").textContent="Saved API key removed.";
+}
+
+window.addEventListener("DOMContentLoaded",()=>{
+  const saved=localStorage.getItem("sac_google_embed_key");
+  if(saved){
+    document.getElementById("apiKey").value=saved;
+    loadTrip();
+  }else{
+    document.getElementById("googleLive").href=
+      "https://www.google.com/maps/dir/?api=1&origin=Pomona%2C%20CA&destination=Santa%20Ana%20College%2C%201530%20W%2017th%20St%2C%20Santa%20Ana%2C%20CA%2092706&travelmode=driving";
+    document.getElementById("wazeLive").href=
+      "https://www.waze.com/live-map";
+  }
+});
+</script>
+</body>
+</html>
