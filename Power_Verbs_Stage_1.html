@@ -386,6 +386,17 @@
     .power-definition-card summary{font-size:20px}
   }
   @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important} #drillScreen.page-turn,#drillScreen.item-enter,.verb-intro.cinematic-in,#drillScreen.good-flash,#drillScreen.miss-flash{animation-duration:.25s}}
+
+#connectCard select{display:block;width:100%;min-width:0;max-width:100%;font:inherit;padding:14px 10px;margin:6px 0 18px;border:2px solid var(--border);border-radius:12px;background:white;color:var(--ink)}
+#connectCard label{font-weight:700} #connectCard [hidden]{display:none!important}
+#connectPrompt,#connectAnswer{font-family:Georgia,serif;font-weight:700;line-height:1.3;text-align:center;overflow-wrap:anywhere;margin:22px 0;padding:16px 0}
+#connectCard .connectSpanish{font-size:clamp(32px,7vw,46px);color:var(--red)}
+#connectCard .connectEnglish{font-size:clamp(26px,6vw,34px);color:var(--navy)}
+#connectCard .connectLearnGroup{border:2px solid var(--border);border-radius:14px;padding:14px;margin:20px 0;background:white}
+#connectCard .connectLearnGroup h3{color:var(--navy);font-size:26px;margin:0 0 10px}
+#connectCard .connectLearnPair{padding:18px 0;border-top:1px solid var(--border);overflow-wrap:anywhere}
+#connectCard .connectLearnPair .connectSpanish{font-weight:800;font-size:30px}
+#connectCard .connectLearnPair .connectEnglish{font-size:23px}
 </style>
 <!-- iPhone-safe Ir a-family 48 kHz HTML-audio correction plus final Gustar correction; original Dalia/Jenny sprite unchanged. -->
 </head>
@@ -419,6 +430,54 @@
       <strong>Important:</strong> the short model sentences are <strong>NOT vocabulary to memorize</strong>. Their purpose is only to help you learn the power verb in a simple, meaningful context.<br><br>
       <strong>Practice is practice.</strong> Mistakes are expected. They show you what needs another repetition.
     </div>
+    <details class="power-definition-card subject-learning-card" id="connectCard">
+      <summary>Connect English ↔ Spanish <span class="open-close-hint">Open / Close</span></summary>
+      <div class="power-definition-body">
+        <p style="margin-top:0"><strong>Learn each expression as one whole chunk.</strong> Say its meaning aloud. Take your time.</p>
+        <div id="connectSetup">
+          <label for="connectCount">Practice with</label>
+          <select id="connectCount"><option value="1">1 power verb</option><option value="2">2 power verbs</option><option value="10">All 10 power verbs</option></select>
+          <div id="connectFirstWrap"><label for="connectFirst">Choose a power verb</label><select id="connectFirst"></select></div>
+          <div id="connectSecondWrap" hidden><label for="connectSecond">Choose another power verb</label><select id="connectSecond"></select></div>
+          <label for="connectDirection">Choose a direction</label>
+          <select id="connectDirection"><option value="en">English → Spanish</option><option value="es">Spanish → English</option></select>
+          <p>Start by learning the connections. Then practice in order. Try mixed practice when you feel ready.</p>
+          <button class="btn btn-primary" id="connectLearn">1. Learn the connections</button>
+          <button class="btn btn-ghost" id="connectStart">2. Practice in order</button>
+          <button class="btn btn-ghost" id="connectMixed">3. Practice in random order</button>
+          <p style="font-size:19px">Same selected chunks, different order. For example: <strong>you can → can → I can</strong>. With two verbs, their chunks are mixed together.</p>
+        </div>
+        <div id="connectLearning" hidden>
+          <h2 style="font-size:26px" tabindex="-1" id="connectLearnTitle">Learn the connections</h2>
+          <p>Read each pair aloud. Use the first meaning to help you connect the whole group.</p>
+          <div id="connectLesson"></div>
+          <button class="btn btn-primary" id="connectLearnNext">Practice these chunks in order</button>
+          <button class="btn btn-ghost" id="connectLearnBack">Choose verbs or direction</button>
+        </div>
+        <div id="connectPractice" hidden>
+          <p id="connectMode" style="font-weight:800;color:var(--navy)"></p>
+          <p id="connectProgress" role="status"></p>
+          <div id="connectQuestionArea">
+            <p id="connectInstruction"></p>
+            <div id="connectPrompt" tabindex="-1"></div>
+            <button class="btn btn-ghost" id="connectHintBtn">Show a meaning hint</button>
+            <p id="connectHint" class="say-note" hidden></p>
+            <button class="btn btn-primary" id="connectReveal">Show answer</button>
+            <div id="connectAnswerArea" hidden>
+              <div id="connectAnswer" aria-live="polite"></div>
+              <button class="btn btn-ghost" id="connectAudio">🔊 Hear the Spanish chunk</button>
+              <p>Did you say the answer before revealing it?</p>
+              <div class="btn-row"><button class="btn btn-good" id="connectGood">Got it</button><button class="btn btn-miss" id="connectAgain">Practice again</button></div>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="connectRepeat" hidden>Practice these chunks again</button>
+          <button class="btn btn-primary" id="connectToMixed" style="margin-top:16px" hidden>Continue to 3. Practice in random order</button>
+          <button class="btn btn-ghost" id="connectChange">Choose verbs or direction</button>
+        </div>
+        <p style="font-size:18px">This is extra practice. Your Stage 2 goal stays the same: two clean passes of all 10 power verbs, checked live with Profe Palacios.</p>
+        <button class="definition-close-btn" id="connectClose">Close “Connect English ↔ Spanish” ▲</button>
+      </div>
+    </details>
     <div class="mode-grid">
       <button class="mode-btn" id="recognitionBtn">
         <div class="mtitle">Power Verb Recognition Warm-Up</div>
@@ -1919,5 +1978,103 @@ if (window.speechSynthesis) {
 }
 </script>
 
+
+
+<script>
+(() => {
+  const el = id => document.getElementById('connect'+id);
+  let queue=[], current=null, direction='en', done=0, total=0, misses=0, revealed=false, mixed=false;
+  VERBS.forEach((v,i) => {
+    ['First','Second'].forEach(id => {const o=document.createElement('option');o.value=i;o.textContent=v.verb;el(id).appendChild(o);});
+  });
+  el('Second').value='1';
+  function selections(){
+    const n=Number(el('Count').value);
+    el('FirstWrap').hidden=n===10;el('SecondWrap').hidden=n!==2;
+    if(el('First').value===el('Second').value) el('Second').value=String((Number(el('First').value)+1)%VERBS.length);
+    Array.from(el('Second').options).forEach(o=>o.disabled=o.value===el('First').value);
+  }
+  el('Count').onchange=selections;el('First').onchange=selections;
+  function cards(v){
+    const items=[{es:v.verb,en:v.verbEn}];
+    v.warmup.split(',').forEach((es,i)=>{
+      es=es.trim();es=es[0].toUpperCase()+es.slice(1);
+      if(!items.some(x=>x.es.toLowerCase()===es.toLowerCase())) items.push({es,en:v.formEn[i]});
+    });
+    return items.map(item=>({...item,hint:v.verb+' = '+v.verbEn}));
+  }
+  function show(){
+    revealed=false;el('Hint').hidden=true;el('AnswerArea').hidden=true;el('Reveal').hidden=false;
+    current=queue.shift();
+    el('QuestionArea').hidden=!current;el('Repeat').hidden=!!current;
+    if(!current){
+      el('Progress').textContent=misses===0?'Round complete — every chunk recalled on the first try!':'Round complete — you practiced every chunk, including the ones that needed another try.';
+      el('Repeat').focus();return;
+    }
+    el('Progress').textContent=done+' of '+total+' chunks recalled · '+queue.length+' more after this';
+    el('Instruction').textContent=direction==='en'?'Say this in Spanish:':'Say this in English:';
+    el('Prompt').textContent=current[direction];
+    el('Prompt').lang=direction==='en'?'en':'es';
+    el('Prompt').className=direction==='en'?'connectEnglish':'connectSpanish';
+    el('Answer').className=direction==='en'?'connectSpanish':'connectEnglish';
+    el('Answer').textContent='';el('Prompt').focus();
+  }
+  function selectedVerbs(){
+    const n=Number(el('Count').value);
+    return n===10?VERBS:[VERBS[Number(el('First').value)],...(n===2?[VERBS[Number(el('Second').value)]]:[])];
+  }
+  function start(){
+    selections();const n=Number(el('Count').value);
+    const selected=n===10?VERBS:[VERBS[Number(el('First').value)],...(n===2?[VERBS[Number(el('Second').value)]]:[])];
+    const ordered=selected.flatMap(cards);
+    queue=mixed?shuffle(ordered):ordered;
+    if(mixed && queue.length>1 && queue.every((item,i)=>item===ordered[i])) queue.push(queue.shift());
+    el('Mode').textContent=mixed?'3. Practice in random order':'2. Practice in order';
+    el('ToMixed').hidden=mixed;total=queue.length;done=0;misses=0;direction=el('Direction').value;
+    stopRecordedAudio();el('Learning').hidden=true;el('Setup').hidden=true;el('Practice').hidden=false;show();
+  }
+  el('Start').onclick=()=>{mixed=false;start();};
+  el('Mixed').onclick=()=>{mixed=true;start();};
+  el('ToMixed').onclick=()=>{mixed=true;start();};
+  el('Repeat').onclick=start;
+  el('LearnNext').onclick=()=>{mixed=false;start();};
+  function setup(){stopRecordedAudio();el('Learning').hidden=true;el('Practice').hidden=true;el('Setup').hidden=false;el('Count').focus();}
+  el('LearnBack').onclick=setup;
+  el('Learn').onclick=()=>{
+    selections();stopRecordedAudio();direction=el('Direction').value;
+    el('Setup').hidden=true;el('Practice').hidden=true;el('Learning').hidden=false;
+    el('Lesson').replaceChildren();
+    selectedVerbs().forEach(v=>{
+      const group=document.createElement('section');group.className='connectLearnGroup';
+      const title=document.createElement('h3');title.textContent=v.verb+' = '+v.verbEn;group.appendChild(title);
+      const tip=document.createElement('p');
+      tip.textContent=v.verb==='Hay que'?'Keep this whole chunk together: hay que = one has to.':v.verb==='Gustar'?'Gustar gives you the meaning “to like.” Connect it to me gusta = I like and te gusta = you like.':v.verb==='Quisiera'?'Use “would like” as your meaning clue for these chunks.':'Tip: '+v.verb+' gives you the meaning “'+v.verbEn.toLowerCase()+'.” Keep that meaning as you say the I and you chunks.';
+      group.appendChild(tip);
+      cards(v).forEach(item=>{
+        const row=document.createElement('div');row.className='connectLearnPair';
+        [direction,direction==='en'?'es':'en'].forEach((lang,i)=>{
+          const text=document.createElement('div');text.lang=lang;text.className=lang==='es'?'connectSpanish':'connectEnglish';text.textContent=(i?'→ ':'')+item[lang];row.appendChild(text);
+        });
+        const button=document.createElement('button');button.className='btn btn-ghost';button.textContent='🔊 Hear '+item.es;button.onclick=()=>speak(item.es);row.appendChild(button);group.appendChild(row);
+      });el('Lesson').appendChild(group);
+    });el('LearnTitle').focus();
+  };
+  el('HintBtn').onclick=()=>{if(current){el('Hint').textContent=current.hint;el('Hint').hidden=false;}};
+  el('Reveal').onclick=()=>{if(!current)return;revealed=true;el('Answer').textContent=current[direction==='en'?'es':'en'];el('Answer').lang=direction==='en'?'es':'en';el('AnswerArea').hidden=false;el('Reveal').hidden=true;el('Good').focus();};
+  el('Good').onclick=()=>{if(!revealed)return;done++;show();};
+  el('Again').onclick=()=>{if(!revealed)return;misses++;queue.splice(Math.min(2,queue.length),0,current);show();};
+  el('Audio').onclick=()=>{if(current&&revealed)speak(current.es);};
+  el('Change').onclick=setup;
+  function resetPanel(){
+    stopRecordedAudio();queue=[];current=null;revealed=false;done=0;total=0;misses=0;
+    mixed=false;direction='en';el('Count').value='1';el('First').value='0';el('Second').value='1';el('Direction').value='en';selections();
+    el('Lesson').replaceChildren();el('Prompt').textContent='';el('Progress').textContent='';el('Mode').textContent='';
+    el('Learning').hidden=true;el('Practice').hidden=true;el('Setup').hidden=false;
+    el('Answer').textContent='';el('Hint').hidden=true;
+  }
+  el('Close').onclick=()=>{resetPanel();el('Card').open=false;el('Card').querySelector('summary').focus();};
+  el('Card').addEventListener('toggle',()=>{if(!el('Card').open)resetPanel();});
+})();
+</script>
 
 </body></html>
