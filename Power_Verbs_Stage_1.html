@@ -1086,11 +1086,43 @@ function renderCompletionNote(finishedMode) {
     el.classList.remove('hidden');
   } else if (finishedMode === 'missed') {
     const vs = (state.missedVerbs || []).join(', ').toUpperCase();
+    const o = state.missedOrigin || { mode: 'mix' };
+    const fromPair = o.mode === 'mix2' && o.pair && o.pair.length === 2;
+    const pairName = fromPair ? o.pair[0].toUpperCase() + ' ↔ ' + o.pair[1].toUpperCase() : '';
+    const nextStep = fromPair
+      ? 'Now go back to your two-verb Mixed Practice — <strong>' + pairName + '</strong> — and try for a clean round, or choose another practice option.'
+      : 'Now try another full <strong>Mixed Practice — all 10 verbs</strong> lap, or choose another practice option.';
     if (state.sessionMissed === 0) {
-      el.innerHTML = '<strong>Clean missed-verbs practice!</strong> Every YO and TÚ form of ' + vs + ' was correct. Now try another full Mixed Practice — all 10 verbs lap.';
+      el.innerHTML = '<strong>Clean missed-verbs practice!</strong> Every YO and TÚ form of ' + vs + ' was correct. ' + nextStep;
     } else {
-      el.innerHTML = '<strong>Missed-verbs practice completed.</strong> A few forms of ' + vs + ' still need another repetition. Review them below and practice again, then try another full all-10-verbs lap.';
+      el.innerHTML = '<strong>Missed-verbs practice completed.</strong> A few forms of ' + vs + ' still need another repetition. Practice them again with the button below. ' + nextStep;
     }
+    const goBtn = document.createElement('button');
+    goBtn.type = 'button';
+    goBtn.className = 'btn btn-primary';
+    goBtn.style.marginTop = '1rem';
+    if (fromPair) {
+      goBtn.textContent = 'Practice ' + pairName + ' again';
+      goBtn.addEventListener('click', () => startMix2(o.pairIndex));
+    } else {
+      goBtn.textContent = 'Go to Mixed Practice — all 10 verbs';
+      goBtn.addEventListener('click', showMixIntro);
+    }
+    const otherBtn = document.createElement('button');
+    otherBtn.type = 'button';
+    otherBtn.className = 'btn btn-ghost';
+    otherBtn.style.marginTop = '0.875rem';
+    otherBtn.textContent = 'Go to other practice options';
+    otherBtn.addEventListener('click', () => {
+      const grid = document.querySelector('#modeScreen > .mode-grid');
+      if (grid) {
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const first = grid.querySelector('.mode-btn');
+        if (first) setTimeout(() => first.focus({ preventScroll: true }), 500);
+      }
+    });
+    el.appendChild(goBtn);
+    el.appendChild(otherBtn);
     el.classList.remove('hidden');
   } else if (finishedMode === 'mix2') {
     if (state.sessionMissed === 0) {
@@ -1177,6 +1209,14 @@ function buildMissedQueue(verbs) {
 function startMissed() {
   const verbs = ((state.lastReport && state.lastReport.missedVerbs) || []).slice();
   if (!verbs.length) return;
+  const fromMode = state.lastReport && state.lastReport.mode;
+  if (fromMode === 'mix2') {
+    state.missedOrigin = { mode: 'mix2', pairIndex: state.mix2PairIndex, pair: (state.mixPair || MIX_PAIRS[state.mix2PairIndex] || []).slice() };
+  } else if (fromMode === 'mix') {
+    state.missedOrigin = { mode: 'mix' };
+  } else if (fromMode !== 'missed' || !state.missedOrigin) {
+    state.missedOrigin = { mode: 'mix' };
+  }
   state.mode = 'missed';
   state.missedVerbs = verbs;
   state.mixPair = null;
@@ -1370,6 +1410,7 @@ function startMix2(pairIndex) {
   const pair = MIX_PAIRS[pairIndex];
   state.mode = 'mix2';
   state.mixPair = pair;
+  state.mix2PairIndex = pairIndex;
   state.queue = buildMix2Queue(pairIndex);
   state.index = 0;
   state.lapHadMiss = false;
