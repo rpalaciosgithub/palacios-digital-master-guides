@@ -3,97 +3,142 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Esteban's Practice — Stage 1 Power Verbs (Ir a + Gustar Final R)</title>
+<title>Esteban's Practice — Stage 1 Power Verbs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #F7F2E8;
-    --card: #FFFFFF;
-    --ink: #1F2933;
-    --ink-soft: #52606D;
-    --navy: #17365D;
-    --navy-soft: #365D88;
-    --red: #B42318;
-    --marigold: #D6A019;
-    --marigold-dark: #76520B;
-    --green: #2F6B3A;
-    --border: #CCD5DF;
-    --radius: 20px;
-    --shadow: 0 8px 24px rgba(23,54,93,.10);
+    --chili:#e4322b; --orange:#ff7a18; --sun:#ffc21a; --lime:#5cb82e; --teal:#0e9f94; --pink:#ff4f8b;
+    --cream: #fff4dc;
+    --card: #fffdf6;
+    --ink: #3b1d10;
+    --ink-soft: #6b4630;
+    --navy: #3b1d10;
+    --navy-soft: #0e9f94;
+    --red: #e4322b;
+    --marigold: #ffc21a;
+    --marigold-dark: #b35400;
+    --green: #3f9a1c;
+    --border: #3b1d10;
+    --radius: 1.5rem;
+    --shadow: 0.375rem 0.375rem 0 #3b1d10;
+    --display: 'Lilita One', 'Arial Rounded MT Bold', 'Trebuchet MS', sans-serif;
+    --body: 'Nunito', 'Segoe UI', system-ui, Arial, sans-serif;
   }
   * { box-sizing: border-box; }
   html { width:100%; max-width:100%; overflow-x:hidden; }
   body {
-    margin: 0; background: var(--cream); color: var(--ink);
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh; padding: 28px 18px 64px;
-    font-size: 20px; line-height: 1.55;
+    margin: 0; color: var(--ink);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255,122,26,.18) 0 9rem, transparent 9.1rem),
+      radial-gradient(circle at 92% 30%, rgba(0,184,196,.16) 0 11rem, transparent 11.1rem),
+      radial-gradient(circle at 8% 78%, rgba(232,23,93,.13) 0 10rem, transparent 10.1rem),
+      var(--cream);
+    background-attachment: fixed;
+    font-family: var(--body); font-weight:500;
+    min-height: 100vh; padding: 1.25rem 1.125rem 4rem;
+    font-size: 1.375rem; line-height: 1.55;
     width:100%; max-width:100%; overflow-x:hidden;
   }
-  .wrap { width:100%; max-width:760px; min-width:0; margin:0 auto; }
+  strong { font-weight:700; }
+  .wrap { width:100%; max-width:50rem; min-width:0; margin:0 auto; }
   .top-strip {
-    height: 8px; border-radius: 5px;
-    background: repeating-linear-gradient(90deg,var(--marigold) 0 18px,var(--red) 18px 36px,var(--navy) 36px 54px);
-    margin-bottom: 24px;
+    height: 0.875rem; border-radius: 999px; border:0.1875rem solid var(--border);
+    background: repeating-linear-gradient(90deg,var(--red) 0 2rem,var(--orange) 2rem 4rem,var(--marigold) 4rem 6rem,var(--green) 6rem 8rem,var(--teal) 8rem 10rem,var(--navy-soft) 10rem 12rem);
+    margin-bottom: 1.5rem;
   }
-  header { text-align: center; margin-bottom: 24px; }
-  header h1 { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(32px,6vw,44px); line-height:1.15; color:var(--navy); margin:0 0 8px; font-weight:700; }
-  header p { margin:0; color:var(--ink-soft); font-size:20px; font-weight:600; line-height:1.45; }
-  .card { width:100%; max-width:100%; min-width:0; background:var(--card); border:2px solid var(--border); border-radius:var(--radius); padding:clamp(22px,5vw,34px); margin-bottom:18px; box-shadow:var(--shadow); overflow-wrap:anywhere; }
-  .ready-banner { background:var(--green); color:#fff; text-align:center; font-weight:800; font-size:21px; border-radius:16px; padding:16px; margin-bottom:18px; }
-  .session-summary { background:#FFF0EE; border:2px solid var(--red); border-radius:16px; padding:16px 18px; margin-bottom:18px; }
-  .session-summary .stitle { font-weight:800; color:var(--red); font-size:20px; margin-bottom:10px; }
-  .session-summary .srow { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 12px; min-width:0; font-size:20px; padding:7px 0; border-bottom:1px solid #E8C6C2; }
+  header { text-align: center; margin-bottom: 1.75rem; }
+  header h1 {
+    font-family: var(--display); font-weight:400; letter-spacing:.02em;
+    font-size: clamp(2.75rem,9vw,4.25rem); line-height:1.05; margin:0 0 0.75rem;
+    color:var(--red); text-shadow: 0.1875rem 0.1875rem 0 var(--marigold), 0.375rem 0.375rem 0 var(--border);
+    transform: rotate(-1.5deg);
+  }
+  header p {
+    display:inline-block; margin:0; color:#fff; background:var(--navy);
+    font-size:1.25rem; font-weight:600; line-height:1.4;
+    border:0.1875rem solid var(--border); border-radius:999px; padding:0.5rem 1.25rem;
+    box-shadow:0.25rem 0.25rem 0 var(--marigold);
+  }
+  .card { width:100%; max-width:100%; min-width:0; background:var(--card); border:0.1875rem solid var(--border); border-radius:var(--radius); padding:clamp(1.375rem,5vw,2.25rem); margin-bottom:1.5rem; box-shadow:var(--shadow); overflow-wrap:anywhere; }
+  .ready-banner { background:var(--green); color:#fff; text-align:center; font-family:var(--display); font-weight:400; font-size:1.5rem; border:0.1875rem solid var(--border); border-radius:1.25rem; padding:1rem; margin-bottom:1.5rem; box-shadow:var(--shadow); }
+  .session-summary { background:#FFE3EC; border:0.1875rem solid var(--red); border-radius:1.25rem; padding:1rem 1.25rem; margin-bottom:1.25rem; }
+  .session-summary .stitle { font-family:var(--display); font-weight:400; color:var(--red); font-size:1.5rem; margin-bottom:0.625rem; }
+  .session-summary .srow { display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.375rem 0.75rem; min-width:0; font-size:1.375rem; padding:0.4375rem 0; border-bottom:0.125rem dashed #F4A3BF; }
   .session-summary .srow:last-child { border-bottom:none; }
   .session-summary .sen { color:var(--ink-soft); }
-  .session-summary .ses { color:var(--red); font-weight:800; }
-  .session-summary .scount { color:var(--marigold-dark); font-weight:800; }
-  .completion-note { background:#EAF4EA; border:2px solid var(--green); border-radius:16px; padding:18px 20px; font-size:20px; line-height:1.6; color:var(--ink); margin-bottom:18px; font-weight:700; }
-  .completion-note strong { color:#315F35; }
-  .goal-note { background:#FFF7DE; border:2px solid var(--marigold); border-radius:16px; padding:18px 20px; font-size:20px; line-height:1.65; color:var(--ink); margin-bottom:20px; }
+  .session-summary .ses { color:var(--red); font-weight:700; }
+  .session-summary .scount { color:var(--marigold-dark); font-weight:700; }
+  .completion-note { background:#DDF8EA; border:0.1875rem solid var(--green); border-radius:1.25rem; padding:1.125rem 1.25rem; font-size:1.375rem; line-height:1.6; color:var(--ink); margin-bottom:1.25rem; font-weight:600; }
+  .completion-note strong { color:#0A7A4B; }
+  .goal-note { background:#FFF0B8; border:0.1875rem solid var(--marigold-dark); border-radius:1.25rem; padding:1.25rem 1.375rem; font-size:1.375rem; line-height:1.65; color:var(--ink); margin-bottom:1.5rem; }
   .goal-note strong { color:var(--marigold-dark); }
-  .mode-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:16px; min-width:0; }
-  .mode-btn { display:block; width:100%; text-align:left; background:#fff; border:3px solid var(--border); border-radius:18px; padding:24px; cursor:pointer; font-family:inherit; box-shadow:0 3px 10px rgba(31,41,51,.06); transition:transform .12s ease,border-color .12s ease,box-shadow .12s ease; }
-  .mode-btn:hover,.mode-btn:focus-visible { border-color:var(--navy-soft); box-shadow:0 8px 20px rgba(23,54,93,.12); outline:none; }
-  .mode-btn:active { transform:scale(.99); }
-  .mode-btn .mtitle { font-family:Georgia,serif; font-size:24px; line-height:1.25; font-weight:700; color:var(--navy); margin-bottom:8px; }
-  .mode-btn .msub { color:var(--ink-soft); font-size:20px; line-height:1.55; }
-  .stats-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:18px; min-width:0; }
-  .stat { min-width:0; background:var(--card); border:2px solid var(--border); border-radius:16px; padding:15px 8px; text-align:center; box-shadow:0 3px 10px rgba(31,41,51,.05); overflow-wrap:anywhere; }
-  .stat .num { font-size:34px; line-height:1; font-weight:800; color:var(--marigold-dark); font-family:Georgia,serif; }
-  .stat .lbl { font-size:18px; line-height:1.3; color:var(--ink-soft); margin-top:7px; font-weight:600; }
-  .practice-card { text-align:center; padding:clamp(30px,6vw,48px) clamp(22px,5vw,38px); }
-  .eyebrow { font-size:18px; letter-spacing:.08em; text-transform:uppercase; color:var(--navy-soft); font-weight:800; margin-bottom:16px; }
-  .cue { font-family:Georgia,serif; font-size:clamp(34px,7vw,50px); font-weight:700; color:var(--ink); line-height:1.25; min-height:120px; display:flex; align-items:center; justify-content:center; padding:10px; }
-  .answer { font-family:Georgia,serif; font-size:clamp(40px,8vw,58px); line-height:1.2; font-weight:800; color:var(--red); min-height:120px; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; padding:10px; min-width:0; overflow-wrap:anywhere; }
+  .mode-grid { display:grid; grid-template-columns:minmax(0,1fr); gap:1.125rem; min-width:0; }
+  .mode-btn { display:block; width:100%; text-align:left; background:#fff; border:0.1875rem solid var(--border); border-left-width:1rem; border-radius:1.25rem; padding:1.5rem; cursor:pointer; font-family:inherit; box-shadow:0.3125rem 0.3125rem 0 var(--border); transition:transform .12s ease, box-shadow .12s ease; }
+  .mode-grid .mode-btn:nth-child(4n+1){ border-left-color:var(--red); background:#FFF1F5; }
+  .mode-grid .mode-btn:nth-child(4n+2){ border-left-color:var(--orange); background:#FFF4EA; }
+  .mode-grid .mode-btn:nth-child(4n+3){ border-left-color:var(--teal); background:#E9FBFC; }
+  .mode-grid .mode-btn:nth-child(4n+4){ border-left-color:var(--navy-soft); background:#F3EDFF; }
+  .mode-btn:hover,.mode-btn:focus-visible { transform:translate(-0.125rem,-0.125rem); box-shadow:0.5rem 0.5rem 0 var(--border); outline:none; }
+  .mode-btn:active { transform:translate(0.25rem,0.25rem); box-shadow:0.0625rem 0.0625rem 0 var(--border); }
+  .mode-btn .mtitle { font-family:var(--display); font-weight:400; font-size:1.75rem; line-height:1.2; color:var(--navy); margin-bottom:0.5rem; letter-spacing:.01em; }
+  .mode-btn .msub { color:var(--ink-soft); font-size:1.3rem; line-height:1.5; }
+  .stats-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0.875rem; margin-bottom:1.5rem; min-width:0; }
+  .stat { min-width:0; border:0.1875rem solid var(--border); border-radius:1.25rem; padding:1rem 0.5rem; text-align:center; box-shadow:0.25rem 0.25rem 0 var(--border); overflow-wrap:anywhere; }
+  .stats-row .stat:nth-child(1){ background:#FFD7E4; }
+  .stats-row .stat:nth-child(2){ background:#FFE6C7; }
+  .stats-row .stat:nth-child(3){ background:#CFF6F8; }
+  .stats-row .stat:nth-child(4){ background:#E6DAFF; }
+  .stat .num { font-size:2.75rem; line-height:1; font-weight:400; color:var(--red); font-family:var(--display); }
+  .stats-row .stat:nth-child(2) .num{ color:var(--marigold-dark); }
+  .stats-row .stat:nth-child(3) .num{ color:#00808A; }
+  .stats-row .stat:nth-child(4) .num{ color:var(--navy); }
+  .stat .lbl { font-size:1.125rem; line-height:1.25; color:var(--ink); margin-top:0.5rem; font-weight:600; }
+  .practice-card { text-align:center; padding:clamp(1.875rem,6vw,3rem) clamp(1.375rem,5vw,2.375rem); }
+  .eyebrow { display:inline-block; font-size:1.125rem; letter-spacing:.1em; text-transform:uppercase; color:#fff; background:var(--navy-soft); border:0.1875rem solid var(--border); border-radius:999px; padding:0.3rem 1rem; font-weight:700; margin-bottom:1rem; }
+  .cue { font-family:var(--display); font-weight:400; font-size:clamp(2.5rem,8vw,3.5rem); color:var(--navy); line-height:1.2; min-height:7.5rem; display:flex; align-items:center; justify-content:center; padding:0.625rem; }
+  .answer { font-family:var(--display); font-size:clamp(2.875rem,9vw,4rem); line-height:1.15; font-weight:400; color:var(--red); min-height:7.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:0.875rem; padding:0.625rem; min-width:0; overflow-wrap:anywhere; text-shadow:0.1875rem 0.1875rem 0 #FFD9E5; }
   .answer.hidden-answer { visibility:hidden; }
-  .speaker-btn { background:#F5F8FB; border:2px solid var(--border); border-radius:50%; width:54px; height:54px; font-size:24px; cursor:pointer; color:var(--navy); flex-shrink:0; }
-  .speaker-btn:hover,.speaker-btn:focus-visible { border-color:var(--navy); outline:3px solid rgba(23,54,93,.18); }
-  .warmup-line { font-size:20px; line-height:1.5; color:var(--navy); font-style:italic; font-weight:600; margin-bottom:12px; background:#EDF4FA; border-radius:12px; padding:12px 14px; }
-  .btn { font-family:inherit; font-size:20px; font-weight:800; border-radius:16px; padding:18px 16px; border:none; cursor:pointer; width:100%; min-height:60px; }
-  .btn:focus-visible { outline:4px solid rgba(23,54,93,.22); outline-offset:2px; }
-  .btn-primary { background:var(--navy); color:#fff; }
-  .btn-primary:hover { background:#0F2A4A; }
-  .btn-row { display:flex; gap:14px; margin-top:16px; }
+  .speaker-btn { background:var(--marigold); border:0.1875rem solid var(--border); border-radius:50%; width:4rem; height:4rem; font-size:1.75rem; cursor:pointer; color:var(--navy); flex-shrink:0; box-shadow:0.1875rem 0.1875rem 0 var(--border); text-shadow:none; }
+  .speaker-btn:hover,.speaker-btn:focus-visible { transform:translate(-0.0625rem,-0.0625rem); box-shadow:0.3125rem 0.3125rem 0 var(--border); outline:none; }
+  .speaker-btn:active { transform:translate(0.1875rem,0.1875rem); box-shadow:0 0 0 var(--border); }
+  .warmup-line { font-size:1.375rem; line-height:1.5; color:var(--navy); font-style:italic; font-weight:600; margin-bottom:0.75rem; background:#E9FBFC; border:0.1875rem solid var(--teal); border-radius:1rem; padding:0.75rem 0.875rem; }
+  .btn { font-family:var(--display); font-weight:400; letter-spacing:.02em; font-size:1.5rem; border-radius:1.125rem; padding:1rem 1rem; border:0.1875rem solid var(--border); cursor:pointer; width:100%; min-height:4rem; box-shadow:0.3125rem 0.3125rem 0 var(--border); transition:transform .1s ease, box-shadow .1s ease; }
+  .btn:hover { transform:translate(-0.125rem,-0.125rem); box-shadow:0.4375rem 0.4375rem 0 var(--border); }
+  .btn:active { transform:translate(0.25rem,0.25rem); box-shadow:0.0625rem 0.0625rem 0 var(--border); }
+  .btn:focus-visible { outline:0.25rem solid var(--teal); outline-offset:0.1875rem; }
+  .btn-primary { background:var(--red); color:#fff; }
+  .btn-primary:hover { background:#FF2E74; }
+  .btn-row { display:flex; gap:1rem; margin-top:1.125rem; }
   .btn-good { background:var(--green); color:#fff; flex:1; }
-  .btn-miss { background:var(--red); color:#fff; flex:1; }
-  .btn-ghost { background:#F7F9FB; color:var(--ink-soft); border:2px solid var(--border); font-weight:700; font-size:19px; padding:14px; margin-top:16px; }
-  .pos-indicator { font-size:18px; color:var(--ink-soft); margin-bottom:8px; font-weight:600; }
-  .session-missed { font-size:18px; color:var(--red); font-weight:800; margin-top:14px; }
-  .progress-dots { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:18px 0 6px; }
-  .dot { width:11px; height:11px; border-radius:50%; background:var(--border); }
+  .btn-miss { background:var(--orange); color:#fff; flex:1; }
+  .btn-ghost { font-family:var(--body); background:#fff; color:var(--navy); border:0.1875rem solid var(--border); border-radius:1.125rem; font-weight:700; font-size:1.3rem; padding:0.875rem 1.25rem; margin-top:1.125rem; cursor:pointer; box-shadow:0.25rem 0.25rem 0 var(--border); transition:transform .1s ease, box-shadow .1s ease; }
+  .btn-ghost:hover { background:#FFF0B8; transform:translate(-0.0625rem,-0.0625rem); box-shadow:0.3125rem 0.3125rem 0 var(--border); }
+  .btn.btn-ghost { font-family:var(--body); font-weight:700; font-size:1.375rem; }
+  .single-verb { font-family:var(--display) !important; font-weight:400 !important; font-size:1.625rem !important; color:var(--navy) !important; }
+  .single-verb:nth-child(5n+1){ background:#FFD7E4; }
+  .single-verb:nth-child(5n+2){ background:#FFE6C7; }
+  .single-verb:nth-child(5n+3){ background:#FFF0B8; }
+  .single-verb:nth-child(5n+4){ background:#CFF6F8; }
+  .single-verb:nth-child(5n+5){ background:#E6DAFF; }
+  .pos-indicator { font-size:1.25rem; color:var(--ink-soft); margin-bottom:0.5rem; font-weight:600; }
+  .session-missed { font-size:1.25rem; color:var(--red); font-weight:700; margin-top:1rem; }
+  .progress-dots { display:flex; justify-content:center; flex-wrap:wrap; gap:0.5rem; margin:1.125rem 0 0.375rem; }
+  .dot { width:1rem; height:1rem; border-radius:50%; background:#fff; border:0.125rem solid var(--border); }
   .dot.filled { background:var(--marigold); }
-  .footer-note { text-align:center; color:var(--ink-soft); font-size:19px; margin-top:22px; line-height:1.55; font-weight:600; }
+  .footer-note { text-align:center; color:var(--ink-soft); font-size:1.25rem; margin-top:1.5rem; line-height:1.55; font-weight:600; }
 
-  /* Hollywood Lite: cinematic, readable, and calm */
-  .verb-intro { padding: 12px 4px 4px; text-align:center; perspective:1000px; }
+  /* Hollywood Lite animations (unchanged behavior) */
+  .verb-intro { padding: 0.75rem 0.25rem 0.25rem; text-align:center; perspective:62.5rem; }
   .verb-intro.cinematic-in { animation: cinematicIn .72s ease-in-out both; }
-  .verb-kicker { color:var(--marigold-dark); font-size:18px; font-weight:900; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px; }
-  .verb-name { font-family:Georgia,serif; color:var(--navy); font-size:clamp(42px,8vw,64px); line-height:1.1; font-weight:800; margin:0 0 18px; }
-  .say-note { background:#FFF7DE; border:2px solid var(--marigold); border-radius:16px; padding:14px 18px; margin:0 auto 20px; max-width:620px; font-size:20px; font-weight:700; line-height:1.55; }
-  .warmup-forms { background:linear-gradient(145deg,#F4F8FC,#EAF2F8); border:2px solid #B8C9DA; border-radius:20px; padding:22px; margin:0 auto 22px; max-width:620px; box-shadow:0 10px 24px rgba(23,54,93,.10); }
-  .warmup-form { font-family:Georgia,serif; color:var(--red); font-size:clamp(34px,7vw,52px); font-weight:800; line-height:1.25; padding:5px 0; }
-  .intro-speaker { margin:2px auto 20px; }
-  .intro-note { max-width:620px; margin:-10px auto 18px; font-size:20px; line-height:1.5; color:var(--ink-soft); font-weight:700; }
+  .verb-kicker { display:inline-block; color:#fff; background:var(--orange); border:0.1875rem solid var(--border); border-radius:999px; padding:0.3rem 1.1rem; font-size:1.125rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:0.875rem; box-shadow:0.1875rem 0.1875rem 0 var(--border); }
+  .verb-name { font-family:var(--display); color:var(--navy); font-size:clamp(2.875rem,9vw,4.25rem); line-height:1.08; font-weight:400; margin:0 0 1.25rem; letter-spacing:.01em; text-shadow:0.1875rem 0.1875rem 0 var(--marigold); }
+  .say-note { background:#FFF0B8; border:0.1875rem solid var(--marigold-dark); border-radius:1.25rem; padding:1rem 1.25rem; margin:0 auto 1.375rem; max-width:40rem; font-size:1.375rem; font-weight:600; line-height:1.55; }
+  .warmup-forms { background:linear-gradient(145deg,#FFE3EC,#FFF0B8); border:0.1875rem solid var(--border); border-radius:1.5rem; padding:1.375rem; margin:0 auto 1.5rem; max-width:40rem; box-shadow:var(--shadow); }
+  .warmup-form { font-family:var(--display); color:var(--red); font-size:clamp(2.5rem,8vw,3.5rem); font-weight:400; line-height:1.2; padding:0.3125rem 0; }
+  .intro-speaker { margin:0.125rem auto 1.25rem; }
+  .intro-note { max-width:40rem; margin:-0.625rem auto 1.25rem; font-size:1.3rem; line-height:1.5; color:var(--ink-soft); font-weight:600; }
   #drillScreen { transform-style:preserve-3d; backface-visibility:hidden; }
   #drillScreen.item-enter { animation:itemSlideIn .68s ease-in-out both; }
   #drillScreen.page-turn { animation:pageTurn .78s ease-in-out both; transform-origin:center center; }
@@ -101,235 +146,81 @@
   #drillScreen.miss-flash { animation:missPulse .58s ease-in-out; }
   #answerWrap.flip-in { animation:answerSettle .42s ease-out both; transform-origin:center; }
   #cueText.reveal-dim { animation:cueDim .44s ease both; }
-  .btn-primary.cinematic-button { box-shadow:0 8px 18px rgba(23,54,93,.22); transition:transform .16s ease, box-shadow .16s ease, background .16s ease; }
-  .btn-primary.cinematic-button:hover { transform:translateY(-2px); box-shadow:0 12px 24px rgba(23,54,93,.27); }
-  @keyframes cinematicIn { 0%{opacity:0; transform:translateY(24px)} 100%{opacity:1; transform:translateY(0)} }
-  @keyframes itemSlideIn { 0%{opacity:0; transform:translateX(42px)} 100%{opacity:1; transform:translateX(0)} }
-  @keyframes pageTurn { 0%{transform:perspective(1200px) rotateY(0deg); opacity:1} 50%{transform:perspective(1200px) rotateY(-78deg); opacity:.72} 50.01%{transform:perspective(1200px) rotateY(78deg); opacity:.72} 100%{transform:perspective(1200px) rotateY(0deg); opacity:1} }
-  @keyframes answerSettle { 0%{opacity:0; transform:translateY(10px)} 100%{opacity:1; transform:translateY(0)} }
+  .btn-primary.cinematic-button { box-shadow:0.3125rem 0.3125rem 0 var(--border); }
+  .btn-primary.cinematic-button:hover { transform:translate(-0.125rem,-0.125rem); box-shadow:0.4375rem 0.4375rem 0 var(--border); }
+  @keyframes cinematicIn { 0%{opacity:0; transform:translateY(1.5rem)} 100%{opacity:1; transform:translateY(0)} }
+  @keyframes itemSlideIn { 0%{opacity:0; transform:translateX(2.625rem)} 100%{opacity:1; transform:translateX(0)} }
+  @keyframes pageTurn { 0%{transform:perspective(75rem) rotateY(0deg); opacity:1} 50%{transform:perspective(75rem) rotateY(-78deg); opacity:.72} 50.01%{transform:perspective(75rem) rotateY(78deg); opacity:.72} 100%{transform:perspective(75rem) rotateY(0deg); opacity:1} }
+  @keyframes answerSettle { 0%{opacity:0; transform:translateY(0.625rem) scale(.96)} 100%{opacity:1; transform:translateY(0) scale(1)} }
   @keyframes cueDim { from{opacity:1; transform:none} to{opacity:.28; transform:scale(.93)} }
-  @keyframes goodPulse { 0%,100%{box-shadow:var(--shadow)} 50%{box-shadow:0 0 0 11px rgba(47,107,58,.30),0 0 34px rgba(47,107,58,.24),var(--shadow)} }
-  @keyframes missPulse { 0%,100%{box-shadow:var(--shadow)} 50%{box-shadow:0 0 0 11px rgba(180,35,24,.27),0 0 34px rgba(180,35,24,.22),var(--shadow)} }
+  @keyframes goodPulse { 0%,100%{box-shadow:var(--shadow)} 50%{box-shadow:0 0 0 0.75rem rgba(15,169,104,.35),0 0 2.25rem rgba(15,169,104,.3),var(--shadow)} }
+  @keyframes missPulse { 0%,100%{box-shadow:var(--shadow)} 50%{box-shadow:0 0 0 0.75rem rgba(255,122,26,.35),0 0 2.25rem rgba(255,122,26,.3),var(--shadow)} }
 
-  .model-note { background:#EDF4FA; border:2px solid #B8C9DA; border-radius:16px; padding:16px 18px; margin:16px auto 20px; max-width:620px; text-align:left; }
+  .model-note { background:#E9FBFC; border:0.1875rem solid var(--teal); border-radius:1.25rem; padding:1rem 1.25rem; margin:1rem auto 1.375rem; max-width:40rem; text-align:left; }
   .model-note strong { color:var(--navy); }
-  .model-sentence { font-family:Georgia,serif; color:var(--red); font-size:24px; font-weight:800; margin:6px 0; }
-  .not-memorize { font-size:19px; color:var(--ink-soft); font-weight:700; margin-top:10px; }
-  .model-english { font-family:Arial,Helvetica,sans-serif; color:var(--ink-soft); font-size:20px; font-weight:600; margin:-2px 0 10px; }
-  .model-audio-btn { width:auto; min-height:48px; margin:12px 0 6px; padding:12px 18px; font-size:19px; }
+  .model-sentence { font-family:var(--display); font-weight:400; color:var(--red); font-size:1.75rem; margin:0.375rem 0; }
+  .not-memorize { font-size:1.25rem; color:var(--ink-soft); font-weight:600; margin-top:0.625rem; }
+  .model-english { font-family:var(--body); color:var(--ink-soft); font-size:1.375rem; font-weight:500; margin:-0.125rem 0 0.625rem; }
+  .model-audio-btn { width:auto; min-height:3.25rem; margin:0.75rem 0 0.375rem; padding:0.75rem 1.25rem; font-size:1.3rem; }
 
-
-  .reference-verb-row {
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    gap:10px;
-    min-width:0;
-  }
+  .reference-verb-row { display:flex; flex-wrap:wrap; align-items:center; gap:0.625rem; min-width:0; }
+  .reference-verb-row strong { font-family:var(--display); font-weight:400; font-size:1.5rem; color:var(--red); letter-spacing:.02em; }
   .reference-audio-btn {
-    width:36px;
-    height:36px;
-    min-width:36px;
-    border-radius:50%;
-    border:2px solid var(--border);
-    background:#F5F8FB;
-    color:var(--navy);
-    font-size:20px;
-    cursor:pointer;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:0;
+    width:2.75rem; height:2.75rem; min-width:2.75rem; border-radius:50%;
+    border:0.1875rem solid var(--border); background:var(--marigold); color:var(--navy);
+    font-size:1.3rem; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; padding:0;
+    box-shadow:0.125rem 0.125rem 0 var(--border);
   }
-  .reference-audio-btn:hover,
-  .reference-audio-btn:focus-visible {
-    border-color:var(--navy);
-    outline:3px solid rgba(23,54,93,.16);
-  }
+  .reference-audio-btn:hover, .reference-audio-btn:focus-visible { background:#FFD95E; outline:0.1875rem solid var(--teal); }
 
+  .reference-meaning-note{ max-width:40rem; margin:1.25rem auto 0; background:#FFF0B8; border:0.1875rem solid var(--marigold-dark); border-radius:1rem; padding:1rem 1.125rem; text-align:left; font-size:1.3rem; line-height:1.6; color:var(--ink); font-weight:600; }
+  .reference-model{ color:var(--ink-soft); font-size:1.2rem; font-style:italic; margin-top:0.125rem; line-height:1.35; }
 
-  .reference-meaning-note{
-    max-width:620px;
-    margin:18px auto 0;
-    background:#FFF7DE;
-    border:2px solid var(--marigold);
-    border-radius:14px;
-    padding:14px 16px;
-    text-align:left;
-    font-size:19px;
-    line-height:1.6;
-    color:var(--ink);
-    font-weight:700;
-  }
-  .reference-model{
-    color:var(--ink-soft);
-    font-size:18px;
-    font-style:italic;
-    margin-top:2px;
-    line-height:1.35;
-  }
-
-  .power-definition-card {
-    max-width:620px;
-    margin:0 auto 20px;
-    background:#FFF7DE;
-    border:2px solid var(--marigold);
-    border-radius:16px;
-    overflow:hidden;
-    min-width:0;
-    width:100%;
-    box-shadow:0 5px 14px rgba(118,82,11,.09);
-  }
+  .power-definition-card { max-width:40rem; margin:0 auto 1.375rem; background:#FFF0B8; border:0.1875rem solid var(--border); border-radius:1.25rem; overflow:hidden; min-width:0; width:100%; box-shadow:0.3125rem 0.3125rem 0 var(--border); }
   .power-definition-card summary {
-    list-style:none;
-    cursor:pointer;
-    padding:18px 20px;
-    font-size:22px;
-    line-height:1.35;
-    font-weight:900;
-    color:var(--marigold-dark);
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px 14px;
-    min-width:0;
+    list-style:none; cursor:pointer; padding:1.125rem 1.25rem;
+    font-family:var(--display); font-size:1.625rem; line-height:1.3; font-weight:400; color:var(--marigold-dark);
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:0.625rem 0.875rem; min-width:0;
   }
   .power-definition-card summary::-webkit-details-marker { display:none; }
-  .power-definition-card summary::before {
-    content:'▶';
-    color:var(--navy);
-    font-size:18px;
-    flex:0 0 auto;
-    transition:transform .18s ease;
-  }
+  .power-definition-card summary::before { content:'▶'; color:var(--red); font-size:1.25rem; flex:0 0 auto; transition:transform .18s ease; }
   .power-definition-card[open] summary::before { transform:rotate(90deg); }
-  .power-definition-card summary:focus-visible {
-    outline:4px solid rgba(23,54,93,.22);
-    outline-offset:-4px;
-  }
-  .open-close-hint {
-    color:var(--navy-soft);
-    font-size:17px;
-    font-weight:800;
-    white-space:normal;
-    flex:0 1 auto;
-  }
-  .power-definition-body {
-    border-top:1px solid #E3C66F;
-    padding:20px;
-    text-align:left;
-    font-size:20px;
-    line-height:1.65;
-    color:var(--ink);
-    background:#FFFBED;
-  }
+  .power-definition-card summary:focus-visible { outline:0.25rem solid var(--teal); outline-offset:-0.25rem; }
+  .open-close-hint { font-family:var(--body); color:#fff; background:var(--navy-soft); border:0.125rem solid var(--border); border-radius:999px; padding:0.15rem 0.85rem; font-size:1.05rem; font-weight:700; white-space:normal; flex:0 1 auto; }
+  .power-definition-body { border-top:0.1875rem solid var(--border); padding:1.375rem; text-align:left; font-size:1.375rem; line-height:1.65; color:var(--ink); background:#FFFBEA; }
   .definition-close-btn {
-    display:block;
-    width:100%;
-    margin:26px 0 0;
-    padding:15px 18px;
-    border:2px solid var(--marigold);
-    border-radius:14px;
-    background:#fff;
-    color:var(--marigold-dark);
-    font-family:inherit;
-    font-size:20px;
-    font-weight:900;
-    cursor:pointer;
+    display:block; width:100%; margin:1.625rem 0 0; padding:0.9375rem 1.125rem;
+    border:0.1875rem solid var(--border); border-radius:1rem; background:#fff; color:var(--marigold-dark);
+    font-family:var(--body); font-size:1.3rem; font-weight:700; cursor:pointer; box-shadow:0.25rem 0.25rem 0 var(--border);
   }
-  .definition-close-btn:hover { background:#FFF1C8; }
-  .definition-close-btn:focus-visible {
-    outline:4px solid rgba(23,54,93,.22);
-    outline-offset:2px;
-  }
+  .definition-close-btn:hover { background:#FFF0B8; }
+  .definition-close-btn:focus-visible { outline:0.25rem solid var(--teal); outline-offset:0.125rem; }
 
-  .reference-list-card {
-    margin:0 0 18px;
-    border-color:var(--green);
-    background:#EAF4EA;
-  }
-  .reference-list-card summary {
-    color:var(--green);
-  }
-  .reference-list-card .power-definition-body {
-    border-top-color:#A9C9AE;
-    background:#F5FBF5;
-  }
-  .reference-list-card .definition-close-btn {
-    border-color:var(--green);
-    color:var(--green);
-  }
-  .reference-list-card .definition-close-btn:hover {
-    background:#E3F1E5;
-  }
+  .reference-list-card { margin:0 0 1.375rem; background:#DDF8EA; }
+  .reference-list-card summary { color:#0A7A4B; }
+  .reference-list-card .power-definition-body { background:#F2FDF7; }
+  .reference-list-card .definition-close-btn { color:#0A7A4B; }
+  .reference-list-card .definition-close-btn:hover { background:#DDF8EA; }
 
-  .summary-title-stack {
-    display:flex;
-    min-width:0;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:2px;
-    line-height:1.2;
-  }
-  .summary-title-sub {
-    font-size:18px;
-    font-weight:800;
-    color:var(--ink-soft);
-  }
-  .subject-learning-card {
-    margin:0 0 18px;
-    max-width:none;
-    border-color:var(--navy-soft);
-    background:#EDF4FA;
-  }
+  .summary-title-stack { display:flex; min-width:0; flex-direction:column; align-items:flex-start; gap:0.125rem; line-height:1.15; }
+  .summary-title-sub { font-family:var(--body); font-size:1.15rem; font-weight:600; color:var(--ink-soft); }
+  .subject-learning-card { margin:0 0 1.375rem; max-width:none; background:#E6DAFF; }
   .subject-learning-card summary { color:var(--navy); }
-  .subject-learning-card .power-definition-body {
-    border-top-color:#B8C9DA;
-    background:#F7FAFD;
-  }
-  .subject-learning-card .definition-close-btn {
-    border-color:var(--navy-soft);
-    color:var(--navy);
-  }
-  .subject-learning-card .definition-close-btn:hover { background:#E8F1F8; }
-  .subject-pairs {
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);
-    column-gap:10px;
-    row-gap:7px;
-    align-items:baseline;
-    max-width:560px;
-    margin:18px auto 0;
-    font-size:20px;
-  }
-  .compact-pairs { margin-top:16px; }
-  .subject-english { text-align:right; font-weight:700; }
-  .subject-arrow { text-align:center; color:var(--navy-soft); font-weight:900; }
-  .subject-spanish { text-align:left; color:var(--navy); font-weight:900; white-space:nowrap; }
-  .subject-pair-gap { grid-column:1 / -1; height:12px; }
+  .subject-learning-card .power-definition-body { background:#F7F3FF; }
+  .subject-learning-card .definition-close-btn { color:var(--navy); }
+  .subject-learning-card .definition-close-btn:hover { background:#EDE4FF; }
+  .subject-pairs { display:grid; grid-template-columns:minmax(0,1fr) 1.75rem minmax(0,1fr); column-gap:0.625rem; row-gap:0.4375rem; align-items:baseline; max-width:36rem; margin:1.125rem auto 0; font-size:1.375rem; }
+  .compact-pairs { margin-top:1rem; }
+  .subject-english { text-align:right; font-weight:600; }
+  .subject-arrow { text-align:center; color:var(--orange); font-weight:700; }
+  .subject-spanish { text-align:left; font-family:var(--display); font-weight:400; color:var(--red); white-space:nowrap; letter-spacing:.02em; }
+  .subject-pair-gap { grid-column:1 / -1; height:0.75rem; }
 
-  #modeScreen,#recognitionScreen,#subjectBridgeScreen,#singleChoiceScreen,#mix2IntroScreen,#mixIntroScreen,#practiceScreen { scroll-margin-top:18px; }
+  #modeScreen,#recognitionScreen,#subjectBridgeScreen,#singleChoiceScreen,#mix2IntroScreen,#mixIntroScreen,#practiceScreen { scroll-margin-top:1.125rem; }
 
   /* iPhone / narrow-screen overflow protection */
-  .reference-grid {
-    display:grid;
-    grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);
-    gap:13px 20px;
-    width:100%;
-    max-width:650px;
-    min-width:0;
-    margin:0 auto;
-    text-align:left;
-  }
-  .reference-grid > *,
-  .power-definition-body > *,
-  .say-note > *,
-  .goal-note > *,
-  .completion-note > *,
-  .session-summary > *,
-  .mode-btn > *,
-  .subject-pairs > * { min-width:0; max-width:100%; }
+  .reference-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr); gap:0.875rem 1.25rem; width:100%; max-width:42rem; min-width:0; margin:0 auto; text-align:left; }
+  .reference-grid > *, .power-definition-body > *, .say-note > *, .goal-note > *, .completion-note > *, .session-summary > *, .mode-btn > *, .subject-pairs > * { min-width:0; max-width:100%; }
   .reference-model, .model-sentence, .model-english, .msub, .mtitle,
   .say-note, .goal-note, .completion-note, .power-definition-body,
   .summary-title-stack, .subject-english, .subject-spanish, .footer-note,
@@ -338,69 +229,233 @@
 
   .hidden { display:none !important; }
   @media (max-width:600px){
-    body{
-      padding-top:18px;
-      padding-right:max(12px,env(safe-area-inset-right));
-      padding-bottom:max(48px,env(safe-area-inset-bottom));
-      padding-left:max(12px,env(safe-area-inset-left));
-      font-size:19px;
-    }
-    .stats-row{gap:7px}
-    .stat{padding:12px 5px}
-    .stat .num{font-size:30px}
-    .stat .lbl{font-size:17px;line-height:1.2}
+    body{ padding-top:1rem; padding-right:max(0.75rem,env(safe-area-inset-right)); padding-bottom:max(3rem,env(safe-area-inset-bottom)); padding-left:max(0.75rem,env(safe-area-inset-left)); font-size:1.3rem; }
+    .stats-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:0.625rem}
+    .stat{padding:0.75rem 0.3125rem}
+    .stat .num{font-size:2.25rem}
+    .stat .lbl{font-size:1.062rem;line-height:1.2}
     .btn-row{flex-direction:column}
-    .card{border-radius:16px;padding:20px 16px}
-    .practice-card{padding:28px 16px}
-    .mode-btn{padding:20px 16px}
-    .mode-btn .mtitle{font-size:23px}
-    .power-definition-card summary{padding:16px}
-    .power-definition-body{padding:16px}
-    .open-close-hint{font-size:16px;white-space:normal}
-    .reference-grid{grid-template-columns:minmax(0,1fr);gap:7px}
-    .reference-grid .reference-verb-row{margin-top:8px}
+    .card{border-radius:1.25rem;padding:1.25rem 1rem}
+    .practice-card{padding:1.75rem 1rem}
+    .mode-btn{padding:1.25rem 1rem; border-left-width:0.75rem}
+    .mode-btn .mtitle{font-size:1.6rem}
+    .power-definition-card summary{padding:1rem; font-size:1.45rem}
+    .power-definition-body{padding:1rem}
+    .open-close-hint{font-size:1rem;white-space:normal}
+    .reference-grid{grid-template-columns:minmax(0,1fr);gap:0.4375rem}
+    .reference-grid .reference-verb-row{margin-top:0.5rem}
     .reference-grid .reference-verb-row:first-child{margin-top:0}
-    .reference-grid .reference-model{margin-bottom:5px}
-    .subject-pairs{grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr);font-size:18px;column-gap:6px}
+    .reference-grid .reference-model{margin-bottom:0.3125rem}
+    .subject-pairs{grid-template-columns:minmax(0,1fr) 1.25rem minmax(0,1fr);font-size:1.2rem;column-gap:0.375rem}
     .subject-english{text-align:right}
     .subject-spanish{white-space:normal}
-    .summary-title-sub{font-size:17px}
-    .answer{font-size:clamp(34px,10vw,48px)}
-    .cue{font-size:clamp(30px,9vw,44px)}
-    .warmup-form{font-size:clamp(30px,9vw,44px)}
+    .summary-title-sub{font-size:1.062rem}
+    .answer{font-size:clamp(2.375rem,11vw,3.25rem)}
+    .cue{font-size:clamp(2.125rem,10vw,3rem)}
+    .warmup-form{font-size:clamp(2.125rem,10vw,3rem)}
     #drillScreen.item-enter{animation:itemMobileIn .45s ease-out both}
   }
-  @keyframes itemMobileIn {
-    0%{opacity:0;transform:translateY(14px)}
-    100%{opacity:1;transform:translateY(0)}
-  }
+  @keyframes itemMobileIn { 0%{opacity:0;transform:translateY(0.875rem)} 100%{opacity:1;transform:translateY(0)} }
   @media (max-width:390px){
-    body{font-size:18px}
-    .card,.practice-card{padding-left:14px;padding-right:14px}
-    .stats-row{grid-template-columns:1fr}
-    .stat{padding:10px}
-    .stat .num{font-size:28px}
-    .stat .lbl{font-size:17px}
-    .subject-pairs{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);font-size:17px}
-    .reference-audio-btn{width:34px;height:34px;min-width:34px}
-    .power-definition-card summary{font-size:20px}
+    body{font-size:1.2rem}
+    .card,.practice-card{padding-left:0.875rem;padding-right:0.875rem}
+    .stats-row{grid-template-columns:1fr 1fr}
+    .stat{padding:0.625rem}
+    .stat .num{font-size:2rem}
+    .stat .lbl{font-size:1rem}
+    .subject-pairs{grid-template-columns:minmax(0,1fr) 1.125rem minmax(0,1fr);font-size:1.1rem}
+    .reference-audio-btn{width:2.5rem;height:2.5rem;min-width:2.5rem}
+    .power-definition-card summary{font-size:1.35rem}
   }
   @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important} #drillScreen.page-turn,#drillScreen.item-enter,.verb-intro.cinematic-in,#drillScreen.good-flash,#drillScreen.miss-flash{animation-duration:.25s}}
 
-#connectCard select{display:block;width:100%;min-width:0;max-width:100%;font:inherit;padding:14px 10px;margin:6px 0 18px;border:2px solid var(--border);border-radius:12px;background:white;color:var(--ink)}
-#connectCard label{font-weight:700} #connectCard [hidden]{display:none!important}
-#connectPrompt,#connectAnswer{font-family:Georgia,serif;font-weight:700;line-height:1.3;text-align:center;overflow-wrap:anywhere;margin:22px 0;padding:16px 0}
-#connectCard .connectSpanish{font-size:clamp(32px,7vw,46px);color:var(--red)}
-#connectCard .connectEnglish{font-size:clamp(26px,6vw,34px);color:var(--navy)}
-#connectCard .connectLearnGroup{border:2px solid var(--border);border-radius:14px;padding:14px;margin:20px 0;background:white}
-#connectCard .connectLearnGroup h3{color:var(--navy);font-size:26px;margin:0 0 10px}
-#connectCard .connectLearnPair{padding:18px 0;border-top:1px solid var(--border);overflow-wrap:anywhere}
-#connectCard .connectLearnPair .connectSpanish{font-weight:800;font-size:30px}
-#connectCard .connectLearnPair .connectEnglish{font-size:23px}
+#connectCard select{display:block;width:100%;min-width:0;max-width:100%;font:inherit;font-weight:600;padding:0.875rem 0.75rem;margin:0.375rem 0 1.25rem;border:0.1875rem solid var(--border);border-radius:1rem;background:white;color:var(--ink);box-shadow:0.1875rem 0.1875rem 0 var(--border)}
+#connectCard label{font-weight:700;color:var(--navy)} #connectCard [hidden]{display:none!important}
+#connectPrompt,#connectAnswer{font-family:var(--display);font-weight:400;line-height:1.25;text-align:center;overflow-wrap:anywhere;margin:1.375rem 0;padding:1rem 0}
+#connectCard .connectSpanish{font-size:clamp(2.25rem,8vw,3.25rem);color:var(--red)}
+#connectCard .connectEnglish{font-size:clamp(1.875rem,7vw,2.5rem);color:var(--navy)}
+#connectCard .connectLearnGroup{border:0.1875rem solid var(--border);border-radius:1.125rem;padding:1rem;margin:1.25rem 0;background:white;box-shadow:0.25rem 0.25rem 0 var(--border)}
+#connectCard .connectLearnGroup h3{font-family:var(--display);font-weight:400;color:var(--navy);font-size:1.875rem;margin:0 0 0.625rem}
+#connectCard .connectLearnPair{padding:1.125rem 0;border-top:0.125rem dashed #B9A6E6;overflow-wrap:anywhere}
+#connectCard .connectLearnPair .connectSpanish{font-family:var(--display);font-weight:400;font-size:2.125rem}
+#connectCard .connectLearnPair .connectEnglish{font-size:1.6rem}
+#connectCard h2{font-family:var(--display);font-weight:400;color:var(--navy)}
+
+  /* Font size adjuster: pills at the very top */
+  .size-bar { display:flex; justify-content:center; gap:.875rem; max-width:50rem; margin:0 auto 1.25rem; }
+  .size-pill { font-family:var(--display); font-weight:400; font-size:1.5rem; line-height:1; min-width:5.5rem; padding:.75rem 1.5rem; border-radius:999px; cursor:pointer; background:var(--navy-soft); color:#fff; border:0.1875rem solid var(--border); box-shadow:0.25rem 0.25rem 0 var(--border); }
+  .size-pill + .size-pill { background:var(--red); }
+  .size-pill:hover { transform:translate(-0.0625rem,-0.0625rem); box-shadow:0.3125rem 0.3125rem 0 var(--border); }
+  .size-pill:active { transform:translate(0.1875rem,0.1875rem); box-shadow:0 0 0 var(--border); }
+  .size-pill:disabled { opacity:.4; cursor:default; transform:none; }
+  .size-pill:focus-visible { outline:0.25rem solid var(--teal); outline-offset:0.125rem; }
+  .missed-practice-wrap { background:#E9FBFC; border:0.1875rem solid var(--teal); border-radius:1.25rem; padding:1.125rem 1.25rem 1.25rem; margin-bottom:1.25rem; text-align:center; }
+  .missed-practice-wrap .mp-title { font-family:var(--display); font-weight:400; font-size:1.75rem; color:var(--navy); line-height:1.2; margin-bottom:.75rem; }
+  .missed-practice-wrap .mp-verbs { display:flex; flex-wrap:wrap; justify-content:center; gap:.625rem; margin-bottom:.8rem; }
+  .missed-practice-wrap .mp-chip { font-family:var(--display); font-weight:400; font-size:1.5rem; background:var(--marigold); border:0.1875rem solid var(--border); border-radius:999px; padding:.25rem 1.1rem; color:var(--red); box-shadow:0.1875rem 0.1875rem 0 var(--border); }
+  .missed-practice-wrap .mp-note { font-size:1.3rem; color:var(--ink); margin-bottom:1rem; line-height:1.5; }
+
+  /* ===== Brain Dump look ===== */
+  body {
+    background:
+      repeating-linear-gradient(90deg,var(--chili) 0 38px,var(--sun) 38px 76px,var(--teal) 76px 114px,var(--pink) 114px 152px,var(--lime) 152px 190px) top/100% 14px no-repeat,
+      radial-gradient(circle at 12% 18%,#ffe3a3 0 8%,transparent 9%),
+      radial-gradient(circle at 90% 70%,#ffd0b8 0 9%,transparent 10%),
+      linear-gradient(180deg,#fff0cf,#ffe6bd);
+    background-attachment:scroll; font-weight:600; padding-top:2rem;
+  }
+  strong { font-weight:800; }
+  .top-strip { display:none; }
+  header {
+    background:linear-gradient(120deg,var(--chili) 0%,var(--orange) 55%,var(--sun) 100%);
+    border:0.25rem solid var(--ink); border-radius:1.875rem; box-shadow:0.5rem 0.5rem 0 var(--ink);
+    padding:1.75rem 1.5rem 1.5rem; margin-bottom:1.75rem;
+  }
+  header h1 { color:#fff; text-shadow:0.1875rem 0.1875rem 0 var(--ink); transform:none; margin:0 0 0.875rem; }
+  header p { background:var(--ink); color:var(--sun); font-weight:900; letter-spacing:.02em; box-shadow:none; border:none; }
+  .card { border:0.1875rem solid var(--ink); border-top:0.75rem solid var(--orange); border-radius:1.5rem; box-shadow:0.375rem 0.375rem 0 var(--ink); }
+  #modeScreen { border-top-color:var(--teal); }
+  #recognitionScreen { border-top-color:var(--chili); }
+  #subjectBridgeScreen { border-top-color:var(--pink); }
+  #singleChoiceScreen, #verbWarmupChoiceScreen { border-top-color:var(--lime); }
+  #mix2IntroScreen { border-top-color:var(--sun); }
+  #mixIntroScreen, #practiceScreen { border-top-color:var(--chili); }
+  .stat { background:#fff; border-width:0.1875rem; border-top-width:0.625rem; box-shadow:0.25rem 0.25rem 0 var(--ink); }
+  .stats-row .stat:nth-child(1){ background:#fff; border-top-color:var(--chili); }
+  .stats-row .stat:nth-child(2){ background:#fff; border-top-color:var(--sun); }
+  .stats-row .stat:nth-child(3){ background:#fff; border-top-color:var(--teal); }
+  .stats-row .stat:nth-child(4){ background:#fff; border-top-color:var(--lime); }
+  .stat .num { color:var(--chili); }
+  .stats-row .stat:nth-child(2) .num{ color:#b35400; }
+  .stats-row .stat:nth-child(3) .num{ color:var(--teal); }
+  .stats-row .stat:nth-child(4) .num{ color:var(--green); }
+  .stat .lbl { font-weight:800; }
+
+  /* Pill buttons with a drop-down shadow, like Brain Dump */
+  .btn, .btn-ghost, .definition-close-btn, .mode-btn, .speaker-btn, .reference-audio-btn, .size-pill, #connectCard select {
+    box-shadow:0 0.25rem 0 var(--ink);
+  }
+  .btn { border-radius:999px; }
+  .btn:hover { transform:none; filter:brightness(1.08); box-shadow:0 0.25rem 0 var(--ink); }
+  .btn:active, .btn-ghost:active, .definition-close-btn:active, .size-pill:active, .speaker-btn:active, .reference-audio-btn:active { transform:translateY(0.1875rem); box-shadow:0 0.0625rem 0 var(--ink); }
+  .btn-primary { background:var(--chili); }
+  .btn-primary:hover { background:var(--orange); }
+  .btn-primary.cinematic-button, .btn-primary.cinematic-button:hover { transform:none; box-shadow:0 0.25rem 0 var(--ink); }
+  .btn-good { background:var(--lime); color:#10300a; }
+  .btn-miss { background:var(--chili); }
+  .btn-ghost { border-radius:999px; font-family:var(--body); font-weight:900; color:var(--ink); background:#fff; }
+  .btn-ghost:hover { background:var(--sun); transform:none; box-shadow:0 0.25rem 0 var(--ink); }
+  .btn.btn-ghost { font-weight:900; }
+  .definition-close-btn { border-radius:999px; font-weight:900; color:var(--ink); }
+  .definition-close-btn:hover { background:var(--sun) !important; }
+  .reference-list-card .definition-close-btn, .subject-learning-card .definition-close-btn { color:var(--ink); }
+
+  .mode-btn { border-left-width:0.1875rem; border-top-width:0.75rem; border-radius:1.5rem; background:#fff !important; }
+  .mode-grid .mode-btn:nth-child(4n+1){ border-color:var(--ink); border-top-color:var(--chili); }
+  .mode-grid .mode-btn:nth-child(4n+2){ border-color:var(--ink); border-top-color:var(--sun); }
+  .mode-grid .mode-btn:nth-child(4n+3){ border-color:var(--ink); border-top-color:var(--teal); }
+  .mode-grid .mode-btn:nth-child(4n+4){ border-color:var(--ink); border-top-color:var(--pink); }
+  .mode-btn:hover, .mode-btn:focus-visible { transform:translateY(-0.125rem); background:#fff6dc !important; box-shadow:0 0.375rem 0 var(--ink); }
+  .mode-btn:active { transform:translateY(0.1875rem); box-shadow:0 0.0625rem 0 var(--ink); }
+  .mode-btn .mtitle { color:var(--chili); }
+  .mode-btn .msub { color:var(--ink-soft); font-weight:600; }
+
+  .single-verb { color:var(--ink) !important; }
+  .single-verb:nth-child(5n+1){ background:var(--sun); }
+  .single-verb:nth-child(5n+2){ background:var(--lime); color:#10300a !important; }
+  .single-verb:nth-child(5n+3){ background:var(--pink); color:#fff !important; }
+  .single-verb:nth-child(5n+4){ background:#7fe0d6; }
+  .single-verb:nth-child(5n+5){ background:var(--orange); color:#fff !important; }
+  #mixPairChoices .btn:nth-child(5n+1){ background:var(--sun); color:var(--ink); }
+  #mixPairChoices .btn:nth-child(5n+2){ background:var(--lime); color:#10300a; }
+  #mixPairChoices .btn:nth-child(5n+3){ background:var(--pink); color:#fff; }
+  #mixPairChoices .btn:nth-child(5n+4){ background:#7fe0d6; color:var(--ink); }
+  #mixPairChoices .btn:nth-child(5n+5){ background:var(--orange); color:#fff; }
+
+  .eyebrow, .verb-kicker { background:var(--sun); color:var(--ink); font-weight:900; box-shadow:none; }
+  .verb-name { color:var(--chili); text-shadow:0.1875rem 0.1875rem 0 var(--ink); }
+  .cue { color:var(--ink); }
+  .answer { color:var(--chili); text-shadow:0.125rem 0.125rem 0 #ffd9b0; }
+  .speaker-btn, .reference-audio-btn { background:var(--sun); color:var(--ink); }
+  .dot { background:#fff; border-color:var(--ink); }
+  .dot.filled { background:var(--chili); }
+  .session-missed { color:var(--chili); font-weight:900; }
+
+  .goal-note, .say-note, .reference-meaning-note { background:#ffe6a8; border:0.1875rem dashed var(--ink); }
+  .goal-note strong { color:var(--chili); }
+  .completion-note { background:#e2f6d4; border:0.1875rem solid var(--lime); }
+  .completion-note strong { color:#2d6e12; }
+  .session-summary { background:#ffe1dc; border-color:var(--chili); }
+  .warmup-line, .model-note { background:#d9f6ef; border-color:var(--teal); }
+  .warmup-forms { background:linear-gradient(145deg,#fff0c2,#ffe1cc); border:0.1875rem solid var(--ink); box-shadow:0.375rem 0.375rem 0 var(--ink); }
+  .missed-practice-wrap { background:#d9f6ef; border-color:var(--teal); }
+  .missed-practice-wrap .mp-title { color:var(--chili); }
+  .missed-practice-wrap .mp-chip { background:var(--sun); color:var(--ink); }
+
+  .power-definition-card { background:#fff0c2; border:0.1875rem solid var(--ink); border-radius:1.125rem; box-shadow:0.375rem 0.375rem 0 var(--ink); }
+  .power-definition-card summary { color:var(--ink); }
+  .power-definition-card summary::before { color:var(--chili); }
+  .power-definition-card summary:hover { background:#ffe29a; }
+  .power-definition-body { border-top:0.1875rem dashed var(--ink); background:#fff; }
+  .reference-list-card { background:#e2f6d4; }
+  .reference-list-card summary { color:var(--ink); }
+  .reference-list-card .power-definition-body { background:#fff; }
+  .subject-learning-card { background:#d9f6ef; }
+  .subject-learning-card summary { color:var(--ink); }
+  .subject-learning-card .power-definition-body { background:#fff; }
+  .open-close-hint { background:#fff; color:var(--ink); border:0.125rem solid var(--ink); font-weight:900; }
+  .reference-verb-row strong { color:var(--chili); }
+  .subject-spanish { color:var(--chili); }
+  .subject-arrow { color:var(--teal); }
+  #connectCard label { color:var(--ink); font-weight:900; }
+  #connectCard .connectEnglish { color:var(--teal); }
+  #connectCard .connectLearnGroup h3, #connectCard h2 { color:var(--chili); }
+  #connectCard .connectLearnPair { border-top:0.125rem dashed #e3b98a; }
+  .footer-note { color:var(--ink-soft); font-weight:700; }
+
+  /* A- / A+ pills, Brain Dump style */
+  .size-bar { justify-content:flex-start; }
+  .size-pill { background:var(--chili); border:0.1875rem solid var(--ink); min-width:6rem; min-height:3.5rem; font-size:1.5rem; }
+  .size-pill + .size-pill { background:var(--lime); }
+  .size-pill:hover { transform:none; filter:brightness(1.08); box-shadow:0 0.25rem 0 var(--ink); }
+  .btn:focus-visible, .btn-ghost:focus-visible, .size-pill:focus-visible, .mode-btn:focus-visible, .power-definition-card summary:focus-visible, select:focus-visible { outline:0.25rem solid var(--pink); outline-offset:0.1875rem; }
+
+  /* ===== Verb practice screen: classic look (as in the original app) ===== */
+  #practiceScreen { background:#fff; }
+  #drillScreen { font-family:Arial, Helvetica, sans-serif; color:#1F2933; }
+  #drillScreen .eyebrow { display:block; background:none; border:none; box-shadow:none; border-radius:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:1.125rem; letter-spacing:.08em; text-transform:uppercase; color:#365D88; font-weight:800; margin-bottom:1rem; }
+  #drillScreen .pos-indicator { font-family:Arial, Helvetica, sans-serif; font-size:1.125rem; color:#52606D; font-weight:600; margin-bottom:0.5rem; }
+  #drillScreen .cue { font-family:Georgia, 'Times New Roman', serif; font-size:clamp(2.125rem,7vw,3.125rem); font-weight:700; color:#1F2933; letter-spacing:0; }
+  #drillScreen .answer { font-family:Georgia, 'Times New Roman', serif; font-size:clamp(2.5rem,8vw,3.625rem); font-weight:800; color:#B42318; text-shadow:none; letter-spacing:0; }
+  #drillScreen .speaker-btn { background:#F5F8FB; border:0.125rem solid #CCD5DF; border-radius:50%; width:3.375rem; height:3.375rem; font-size:1.5rem; color:#17365D; box-shadow:none; transform:none; }
+  #drillScreen .speaker-btn:hover, #drillScreen .speaker-btn:focus-visible { border-color:#17365D; outline:0.1875rem solid rgba(23,54,93,.18); box-shadow:none; transform:none; }
+  #drillScreen .btn { font-family:Arial, Helvetica, sans-serif; font-size:1.25rem; font-weight:800; letter-spacing:0; border-radius:1rem; padding:1.125rem 1rem; border:none; min-height:3.75rem; box-shadow:none; transform:none; filter:none; }
+  #drillScreen .btn:active { transform:scale(.99); box-shadow:none; }
+  #drillScreen .btn:focus-visible { outline:0.25rem solid rgba(23,54,93,.22); outline-offset:0.125rem; }
+  #drillScreen .btn-primary { background:#17365D; color:#fff; box-shadow:0 0.5rem 1.125rem rgba(23,54,93,.22); }
+  #drillScreen .btn-primary:hover { background:#0F2A4A; }
+  #drillScreen .btn-good { background:#2F6B3A; color:#fff; }
+  #drillScreen .btn-good:hover { background:#26592F; }
+  #drillScreen .btn-miss { background:#B42318; color:#fff; }
+  #drillScreen .btn-miss:hover { background:#961C13; }
+  #drillScreen .btn-row { gap:0.875rem; margin-top:1rem; }
+  #drillScreen .session-missed { font-family:Arial, Helvetica, sans-serif; font-size:1.125rem; color:#B42318; font-weight:800; }
+  #drillScreen .dot { width:0.6875rem; height:0.6875rem; background:#CCD5DF; border:none; }
+  #drillScreen .dot.filled { background:#D6A019; }
+  #drillScreen .btn-ghost { font-family:Arial, Helvetica, sans-serif; background:#F7F9FB; color:#52606D; border:0.125rem solid #CCD5DF; border-radius:1rem; font-weight:700; font-size:1.188rem; padding:0.875rem; box-shadow:none; transform:none; }
+  #drillScreen .btn-ghost:hover { background:#EEF2F6; }
+  #drillScreen .warmup-line { font-family:Arial, Helvetica, sans-serif; font-size:1.25rem; color:#17365D; font-style:italic; font-weight:600; background:#EDF4FA; border:none; border-radius:0.75rem; }
+  @media (max-width:600px){
+    #drillScreen .answer{font-size:clamp(2.125rem,10vw,3rem)}
+    #drillScreen .cue{font-size:clamp(1.875rem,9vw,2.75rem)}
+  }
+  #drillScreen .drill-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:0.875rem; margin-top:1rem; }
+  #drillScreen .drill-nav .btn-ghost { margin-top:0; }
 </style>
 <!-- iPhone-safe Ir a-family 48 kHz HTML-audio correction plus final Gustar correction; original Dalia/Jenny sprite unchanged. -->
 </head>
 <body>
+<div class="size-bar" role="group" aria-label="Text size"><button type="button" class="size-pill" id="fontDownBtn" aria-label="Smaller text">A-</button><button type="button" class="size-pill" id="fontUpBtn" aria-label="Larger text">A+</button></div>
 <div class="wrap">
   <div class="top-strip"></div>
 
@@ -421,7 +476,13 @@
   <div id="modeScreen" class="card">
     <div id="completionNote" class="completion-note hidden"></div>
     <div id="sessionSummary" class="session-summary hidden"></div>
-    <div id="emailReportWrap" class="hidden" style="margin-bottom:16px;">
+    <div id="missedPracticeWrap" class="missed-practice-wrap hidden">
+      <div class="mp-title">Practice only the verbs you just missed</div>
+      <div class="mp-verbs" id="missedPracticeVerbs"></div>
+      <div class="mp-note">You get <strong>both forms — YO and TÚ</strong> — of each missed verb, not just the form you missed.</div>
+      <button class="btn btn-primary cinematic-button" id="missedPracticeBtn">Start missed-verbs practice</button>
+    </div>
+    <div id="emailReportWrap" class="hidden" style="margin-bottom:1rem;">
       <button class="btn btn-primary" id="emailReportBtn">✉ Click this button to email report to Profe Palacios</button>
     </div>
     <div class="goal-note">
@@ -445,10 +506,10 @@
           <button class="btn btn-primary" id="connectLearn">1. Learn the connections</button>
           <button class="btn btn-ghost" id="connectStart">2. Practice in order</button>
           <button class="btn btn-ghost" id="connectMixed">3. Practice in random order</button>
-          <p style="font-size:19px">Same selected chunks, different order. For example: <strong>you can → can → I can</strong>. With two verbs, their chunks are mixed together.</p>
+          <p style="font-size:1.19rem">Same selected chunks, different order. For example: <strong>you can → can → I can</strong>. With two verbs, their chunks are mixed together.</p>
         </div>
         <div id="connectLearning" hidden>
-          <h2 style="font-size:26px" tabindex="-1" id="connectLearnTitle">Learn the connections</h2>
+          <h2 style="font-size:1.62rem" tabindex="-1" id="connectLearnTitle">Learn the connections</h2>
           <p>Read each pair aloud. Use the first meaning to help you connect the whole group.</p>
           <div id="connectLesson"></div>
           <button class="btn btn-primary" id="connectLearnNext">Practice these chunks in order</button>
@@ -471,10 +532,10 @@
             </div>
           </div>
           <button class="btn btn-primary" id="connectRepeat" hidden>Practice these chunks again</button>
-          <button class="btn btn-primary" id="connectToMixed" style="margin-top:16px" hidden>Continue to 3. Practice in random order</button>
+          <button class="btn btn-primary" id="connectToMixed" style="margin-top:1rem" hidden>Continue to 3. Practice in random order</button>
           <button class="btn btn-ghost" id="connectChange">Choose verbs or direction</button>
         </div>
-        <p style="font-size:18px">This is extra practice. Your Stage 2 goal stays the same: two clean passes of all 10 power verbs, checked live with Profe Palacios.</p>
+        <p style="font-size:1.12rem">This is extra practice. Your Stage 2 goal stays the same: two clean passes of all 10 power verbs, checked live with Profe Palacios.</p>
         <button class="definition-close-btn" id="connectClose">Close “Connect English ↔ Spanish” ▲</button>
       </div>
     </details>
@@ -500,7 +561,7 @@
 
   <div id="recognitionScreen" class="card hidden">
     <div class="verb-kicker">Power Verb Recognition Warm-Up</div>
-    <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">LEARN THE 10 POWER VERBS FIRST</div>
+    <div class="verb-name" style="font-size:clamp(1.88rem,6vw,2.75rem);">LEARN THE 10 POWER VERBS FIRST</div>
     <details class="power-definition-card" id="powerDefinitionCard">
       <summary>What are Power Verbs? <span class="open-close-hint">Open / Close</span></summary>
       <div class="power-definition-body">
@@ -539,7 +600,7 @@
     <details class="power-definition-card subject-learning-card" id="subjectLearningCard">
       <summary><span>Stage 1 Learning Subjects</span><span class="open-close-hint">Open / Close</span></summary>
       <div class="power-definition-body">
-        <div class="verb-name" style="font-size:clamp(30px,6vw,44px);text-align:center;">KEEP YO / TÚ VISIBLE</div>
+        <div class="verb-name" style="font-size:clamp(1.88rem,6vw,2.75rem);text-align:center;">KEEP YO / TÚ VISIBLE</div>
         <div class="say-note">At first, use the subject because it makes the form easier to understand:
           <div class="subject-pairs compact-pairs" aria-label="Examples with I want and you want">
             <div class="subject-english">I want</div><div class="subject-arrow">→</div><div class="subject-spanish">YO QUIERO</div>
@@ -566,7 +627,7 @@
 
   <div id="singleChoiceScreen" class="card hidden">
     <div class="verb-kicker">Only 1 Verb Practice</div>
-    <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">CHOOSE ONE POWER VERB</div>
+    <div class="verb-name" style="font-size:clamp(1.88rem,6vw,2.75rem);">CHOOSE ONE POWER VERB</div>
     <div class="say-note">Practice one power verb by itself. In this focused practice, say the complete learning form with the subject visible: YO QUIERO / TÚ QUIERES, YO PUEDO / TÚ PUEDES, etc. The model sentences are context only — they are NOT vocabulary to memorize.</div>
     <div style="display:grid;gap:10px;">
       <button class="btn btn-ghost single-verb" data-verb="0">Querer</button>
@@ -585,7 +646,7 @@
 
   <div id="verbWarmupChoiceScreen" class="card hidden">
     <div class="verb-kicker">Only 1 Verb Practice</div>
-    <div class="verb-name" id="warmupChoiceVerbName" style="font-size:clamp(30px,6vw,44px);">QUERER</div>
+    <div class="verb-name" id="warmupChoiceVerbName" style="font-size:clamp(1.88rem,6vw,2.75rem);">QUERER</div>
     <div class="say-note">Would you like the Power Verb Recognition warm-up (meaning, YO / TÚ forms, and model sentences) before practice starts, or go straight into practice?</div>
     <div style="display:grid;gap:10px;max-width:520px;margin:0 auto;">
       <button class="btn btn-primary cinematic-button" id="warmupChoiceWithBtn">Warm-Up First, Then Practice</button>
@@ -598,13 +659,13 @@
   <div id="mix2IntroScreen" class="card hidden">
     <div class="verb-intro cinematic-in">
       <div class="verb-kicker">Mixed Practice</div>
-      <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">TWO VERBS AT A TIME</div>
+      <div class="verb-name" style="font-size:clamp(1.88rem,6vw,2.75rem);">TWO VERBS AT A TIME</div>
       <div class="say-note">
         Choose one two-verb combination below. Only those two power verbs will appear in that practice round.
         Keep the learning subject visible and say it aloud: <strong>YO / TÚ</strong>.
         <br><br><strong>GUSTAR</strong> stays <strong>ME GUSTA / TE GUSTA</strong>, and <strong>HAY QUE</strong> stays impersonal.
       </div>
-      <div class="intro-note" style="display:block;margin:0 auto 20px;">
+      <div class="intro-note" style="display:block;margin:0 auto 1.25rem;">
         The first five combinations are the fixed contrast pairs selected by Profe Palacios. The remaining combinations also use only two verbs.
       </div>
       <div id="mixPairChoices" style="display:grid;gap:10px;max-width:620px;margin:0 auto 18px;"></div>
@@ -615,13 +676,13 @@
   <div id="mixIntroScreen" class="card practice-card hidden">
     <div class="verb-intro cinematic-in">
       <div class="verb-kicker">Mixed Practice</div>
-      <div class="verb-name" style="font-size:clamp(30px,6vw,44px);">ALL 10 POWER VERBS</div>
+      <div class="verb-name" style="font-size:clamp(1.88rem,6vw,2.75rem);">ALL 10 POWER VERBS</div>
       <div class="say-note">
         This is the full Stage 1 retrieval challenge. All 10 power verbs appear in controlled random order.
         For conjugated forms, keep the subject visible and say it aloud: <strong>YO QUIERO / TÚ QUIERES, YO PUEDO / TÚ PUEDES</strong>, etc.
         <br><br><strong>GUSTAR</strong> stays <strong>ME GUSTA / TE GUSTA</strong>, and <strong>HAY QUE</strong> stays impersonal.
       </div>
-      <div class="intro-note" style="display:block;margin:0 auto 20px;">
+      <div class="intro-note" style="display:block;margin:0 auto 1.25rem;">
         <strong>Goal:</strong> complete all 19 items with zero misses. Say each Spanish answer aloud before revealing it.
       </div>
       <button class="btn btn-primary cinematic-button" id="startMixBtn">Start Mixed Practice — all 10 verbs</button>
@@ -664,7 +725,7 @@
 
       <div class="session-missed" id="sessionMissed">Missed this session: 0</div>
       <div class="progress-dots" id="dots"></div>
-      <button class="btn-ghost" id="backBtn">← Back</button>
+      <div class="drill-nav"><button class="btn-ghost" id="prevItemBtn" type="button">← Previous verb</button><button class="btn-ghost" id="backBtn" type="button">Exit practice ✕</button></div>
     </div>
   </div>
 
@@ -928,7 +989,9 @@ function renderStats() {
 function showMode() {
   const finishedMode = state.mode;
   state.lastReport = {
-    modeName: finishedMode === 'single' ? 'Only 1 Verb Practice' : finishedMode === 'recognition-alpha' ? 'Power Verb Recognition — Alphabetical' : finishedMode === 'recognition-random' ? 'Power Verb Recognition — Random' : finishedMode === 'mix2' ? 'Mixed Practice — only 2 verbs' : 'Mixed Practice — all 10 verbs',
+    modeName: finishedMode === 'single' ? 'Only 1 Verb Practice' : finishedMode === 'recognition-alpha' ? 'Power Verb Recognition — Alphabetical' : finishedMode === 'recognition-random' ? 'Power Verb Recognition — Random' : finishedMode === 'mix2' ? 'Mixed Practice — only 2 verbs' : finishedMode === 'missed' ? 'Missed Verbs Practice — ' + (state.missedVerbs || []).join(', ').toUpperCase() + ' (YO + TÚ)' : 'Mixed Practice — all 10 verbs',
+    mode: finishedMode,
+    missedVerbs: missedVerbsFrom(state.missedList),
     date: new Date().toLocaleString(),
     streak: state.streak,
     sessionMissed: state.sessionMissed,
@@ -948,6 +1011,7 @@ function showMode() {
   renderCompletionNote(finishedMode);
   renderSessionSummary();
   renderEmailButton();
+  renderMissedPractice();
   scrollToScreen('modeScreen');
 }
 
@@ -987,6 +1051,10 @@ function buildReportText() {
       const missWord = rr.n === 1 ? 'miss' : 'misses';
       lines.push('- ' + rr.es + ' — ' + rr.n + ' total ' + missWord + ', including retries');
     });
+    if (r.missedVerbs && r.missedVerbs.length) {
+      lines.push('');
+      lines.push('Verbs to practice with both YO and TÚ: ' + r.missedVerbs.join(', ').toUpperCase());
+    }
   }
   return lines.join('\n');
 }
@@ -1016,6 +1084,14 @@ function renderCompletionNote(finishedMode) {
   } else if (finishedMode === 'recognition-alpha' || finishedMode === 'recognition-random') {
     el.innerHTML = '<strong>Power Verb Recognition practice completed.</strong> Hear the English meaning and identify the Spanish power verb. No conjugation is required in this warm-up.';
     el.classList.remove('hidden');
+  } else if (finishedMode === 'missed') {
+    const vs = (state.missedVerbs || []).join(', ').toUpperCase();
+    if (state.sessionMissed === 0) {
+      el.innerHTML = '<strong>Clean missed-verbs practice!</strong> Every YO and TÚ form of ' + vs + ' was correct. Now try another full Mixed Practice — all 10 verbs lap.';
+    } else {
+      el.innerHTML = '<strong>Missed-verbs practice completed.</strong> A few forms of ' + vs + ' still need another repetition. Review them below and practice again, then try another full all-10-verbs lap.';
+    }
+    el.classList.remove('hidden');
   } else if (finishedMode === 'mix2') {
     if (state.sessionMissed === 0) {
       el.innerHTML = '<strong>Clean two-verb mixed round completed!</strong> All items in this pair were correct. You may repeat this pair, choose another pair, or move to Mixed Practice — all 10 verbs.';
@@ -1027,7 +1103,7 @@ function renderCompletionNote(finishedMode) {
     if (state.sessionMissed === 0) {
       el.innerHTML = '<strong>Clean app lap completed!</strong> All 19 Stage 1 items were correct. You may start another Mixed Practice lap today if you want more practice. The official Stage 2 check is still completed live with Profe Palacios.';
     } else {
-      el.innerHTML = '<strong>Mixed Practice lap completed.</strong> Review the missed items below, then start another full all-10-verbs lap whenever you are ready.';
+      el.innerHTML = '<strong>Mixed Practice lap completed.</strong> Review the missed items below, practice those verbs (both YO and TÚ) with the button below, then start another full all-10-verbs lap whenever you are ready.';
     }
     el.classList.remove('hidden');
   } else {
@@ -1060,6 +1136,85 @@ function renderSessionSummary() {
 }
 
 
+
+
+/* ============================================================
+   MISSED-VERBS PRACTICE
+   After a session, Esteban can practice only the verbs he just
+   missed — with BOTH the YO and the TÚ form of each of them
+   (e.g. missed "Tú puedes" and "Tú quieres" -> Poder + Querer,
+   Yo puedo / Tú puedes / Yo quiero / Tú quieres).
+   ============================================================ */
+function missedVerbsFrom(list) {
+  const out = [];
+  (list || []).forEach(m => {
+    if (m && m.verb && m.verb !== 'Recognition' && VERBS.some(v => v.verb === m.verb) && out.indexOf(m.verb) === -1) out.push(m.verb);
+  });
+  return out;
+}
+
+function buildMissedQueue(verbs) {
+  const base = [];
+  for (let rep = 0; rep < 2; rep++) {
+    ALL_ITEMS.forEach(item => { if (verbs.indexOf(item.verb) !== -1) base.push(item); });
+  }
+  const mk = arr => arr.map(item => Object.assign({}, item, { recycled: false }));
+  const noRepeat = c => c.every((x, i) => i === 0 || x.es !== c[i - 1].es);
+  const alternating = c => c.every((x, i) => i === 0 || x.verb !== c[i - 1].verb);
+  if (verbs.length > 1) {
+    for (let a = 0; a < 3000; a++) {
+      const c = shuffle(base);
+      if (noRepeat(c) && alternating(c)) return mk(c);
+    }
+  }
+  for (let a = 0; a < 3000; a++) {
+    const c = shuffle(base);
+    if (noRepeat(c)) return mk(c);
+  }
+  return mk(shuffle(base));
+}
+
+function startMissed() {
+  const verbs = ((state.lastReport && state.lastReport.missedVerbs) || []).slice();
+  if (!verbs.length) return;
+  state.mode = 'missed';
+  state.missedVerbs = verbs;
+  state.mixPair = null;
+  state.queue = buildMissedQueue(verbs);
+  state.index = 0;
+  state.lapHadMiss = false;
+  state.sessionMissed = 0;
+  state.lastMissIndex = null;
+  state.missedList = [];
+  $('modeScreen').classList.add('hidden');
+  $('singleChoiceScreen').classList.add('hidden');
+  $('recognitionScreen').classList.add('hidden');
+  $('subjectBridgeScreen').classList.add('hidden');
+  $('mixIntroScreen').classList.add('hidden');
+  $('mix2IntroScreen').classList.add('hidden');
+  $('verbWarmupChoiceScreen').classList.add('hidden');
+  $('practiceScreen').classList.remove('hidden');
+  $('verbIntroScreen').classList.add('hidden');
+  $('drillScreen').classList.remove('hidden');
+  $('modeLabel').textContent = 'Missed Verbs Practice — ' + verbs.map(v => v.toUpperCase()).join(' · ') + ' (YO + TÚ)';
+  $('warmupLine').classList.add('hidden');
+  renderSessionMissed();
+  showCurrent();
+}
+
+function renderMissedPractice() {
+  const wrap = $('missedPracticeWrap');
+  const r = state.lastReport;
+  const ok = r && (r.mode === 'mix' || r.mode === 'mix2' || r.mode === 'missed') && r.missedVerbs && r.missedVerbs.length;
+  if (!ok) {
+    wrap.classList.add('hidden');
+    $('missedPracticeVerbs').innerHTML = '';
+    return;
+  }
+  $('missedPracticeVerbs').innerHTML = r.missedVerbs.map(v => '<span class="mp-chip">' + v.toUpperCase() + '</span>').join('');
+  $('missedPracticeBtn').textContent = 'Start practice: ' + r.missedVerbs.map(v => v.toUpperCase()).join(' + ') + ' — YO and TÚ';
+  wrap.classList.remove('hidden');
+}
 
 function showSingleChoices() {
   $('modeScreen').classList.add('hidden');
@@ -1294,12 +1449,12 @@ function showVerbIntro(item) {
   $('verbIntroScreen').classList.add('cinematic-in');
 
   const verbData = VERBS.find(v => v.verb === item.verb);
-  $('verbIntroName').innerHTML = (item.verb || '').toUpperCase() + (verbData && verbData.verbEn ? '<div style="font-family:Arial,sans-serif;font-size:22px;color:var(--ink-soft);margin-top:6px;text-transform:none;">' + verbData.verbEn + '</div>' : '');
+  $('verbIntroName').innerHTML = (item.verb || '').toUpperCase() + (verbData && verbData.verbEn ? '<div style="font-family:var(--body);font-size:1.38rem;color:var(--ink-soft);margin-top:6px;text-transform:none;">' + verbData.verbEn + '</div>' : '');
   const forms = verbData ? verbData.warmup.split(',') : [item.warmup || ''];
   $('verbIntroForms').innerHTML = forms.map((f,i) => {
     const clean = f.trim();
     const display = clean ? clean.charAt(0).toUpperCase() + clean.slice(1) : clean;
-    const eng = verbData && verbData.formEn && verbData.formEn[i] ? '<div style="font-family:Arial,sans-serif;font-size:20px;color:var(--ink-soft);font-weight:600;margin-top:3px;">' + verbData.formEn[i] + '</div>' : '';
+    const eng = verbData && verbData.formEn && verbData.formEn[i] ? '<div style="font-family:var(--body);font-size:1.25rem;color:var(--ink-soft);font-weight:600;margin-top:3px;">' + verbData.formEn[i] + '</div>' : '';
     return '<div class="warmup-form">' + display + eng + '</div>';
   }).join('');
   state.introWarmupText = [item.verb, verbData ? verbData.verbEn : '', ...forms.map((f,i)=>f.trim() + '. ' + ((verbData.formEn||[])[i]||''))].filter(Boolean).join('. ');
@@ -1333,8 +1488,9 @@ function beginVerbPractice() {
 }
 
 function showDrillForCurrent() {
+  renderPrevButton();
   const posText = 'Item ' + (state.index + 1) + ' of ' + state.queue.length +
-       ((state.mode === 'mix' || state.mode === 'mix2') && state.current && state.current.recycled ? ' (recycled retry)' : '');
+       ((state.mode === 'mix' || state.mode === 'mix2' || state.mode === 'missed') && state.current && state.current.recycled ? ' (recycled retry)' : '');
   $('posIndicator').textContent = posText;
   $('warmupLine').classList.add('hidden');
 
@@ -1345,6 +1501,40 @@ function showDrillForCurrent() {
   renderDots(state.index % 20, 20);
   scrollToScreen('practiceScreen');
 }
+// ---- Previous verb: step back one item and undo its score ----
+let drillHistory = [];
+function pushHistory() {
+  if (drillHistory.length && drillHistory[drillHistory.length - 1].queueRef !== state.queue) drillHistory = [];
+  drillHistory.push({
+    queueRef: state.queue, queueCopy: state.queue.slice(), index: state.index,
+    streak: state.streak, best: state.best, sessionMissed: state.sessionMissed,
+    lastMissIndex: state.lastMissIndex, missedLen: (state.missedList || []).length, lapHadMiss: state.lapHadMiss
+  });
+  state.answering = true;
+  renderPrevButton();
+}
+function canGoBack() {
+  return drillHistory.length > 0 && drillHistory[drillHistory.length - 1].queueRef === state.queue && !state.answering;
+}
+function renderPrevButton() {
+  const b = $('prevItemBtn');
+  if (b) b.classList.toggle('hidden', !canGoBack());
+}
+function goToPreviousItem() {
+  if (!canGoBack()) return;
+  const h = drillHistory.pop();
+  try { stopRecordedAudio(); } catch (e) {}
+  state.queue.splice(0, state.queue.length, ...h.queueCopy);
+  state.index = h.index;
+  state.streak = h.streak; state.best = h.best;
+  state.sessionMissed = h.sessionMissed; state.lastMissIndex = h.lastMissIndex;
+  state.missedList.length = h.missedLen; state.lapHadMiss = h.lapHadMiss;
+  state.current = state.queue[state.index];
+  renderStats();
+  renderSessionMissed();
+  showDrillForCurrent();
+}
+
 function recycleCurrent() {
   if (state.current.recycled) return;
   const clone = Object.assign({}, state.current);
@@ -1879,6 +2069,8 @@ document.addEventListener("pointerdown", primeReplacementAudio, { once:true, cap
 
 
 function markGood() {
+  if (state.answering) return;
+  pushHistory();
   const drill = $('drillScreen');
   drill.classList.remove('good-flash');
   void drill.offsetWidth;
@@ -1889,11 +2081,14 @@ function markGood() {
   renderStats();
   window.setTimeout(() => {
     drill.classList.remove('good-flash');
+    state.answering = false;
     advance();
   }, 560);
 }
 
 function markMiss() {
+  if (state.answering) return;
+  pushHistory();
   const drill = $('drillScreen');
   drill.classList.remove('miss-flash');
   void drill.offsetWidth;
@@ -1901,7 +2096,7 @@ function markMiss() {
   state.streak = 0;
   state.sessionMissed += 1;
   state.lastMissIndex = state.index + 1;
-  state.missedList.push({ en: state.current.en, es: state.current.es });
+  state.missedList.push({ en: state.current.en, es: state.current.es, verb: state.current.verb });
   if (state.mode === 'mix') {
     state.lapHadMiss = true;
   }
@@ -1910,6 +2105,7 @@ function markMiss() {
   renderSessionMissed();
   window.setTimeout(() => {
     drill.classList.remove('miss-flash');
+    state.answering = false;
     advance();
   }, 560);
 }
@@ -1960,8 +2156,10 @@ $('speakBtn').addEventListener('click', () => speak(state.current.es));
 $('introSpeakBtn').addEventListener('click', speakIntro);
 $('startVerbBtn').addEventListener('click', beginVerbPractice);
 $('introBackBtn').addEventListener('click', backFromIntro);
-$('backBtn').addEventListener('click', backFromDrill);
+$('backBtn').addEventListener('click', () => { if (state.answering) return; drillHistory = []; backFromDrill(); });
+$('prevItemBtn').addEventListener('click', goToPreviousItem);
 $('emailReportBtn').addEventListener('click', emailReport);
+$('missedPracticeBtn').addEventListener('click', startMissed);
 
 document.querySelectorAll('.reference-audio-btn').forEach(btn => {
   btn.addEventListener('click', () => speakReference(btn.dataset.say));
@@ -2078,3 +2276,27 @@ if (window.speechSynthesis) {
 </script>
 
 </body></html>
+
+<script>
+/* A- / A+ text size adjuster (pill buttons at the very top of the page) */
+(() => {
+  const KEY = 'esteban-stage1-textsize';
+  const MIN = 0.8, MAX = 1.8, STEP = 0.1;
+  let scale = 1;
+  try { const s = parseFloat(localStorage.getItem(KEY)); if (s >= MIN && s <= MAX) scale = s; } catch (e) {}
+  const down = document.getElementById('fontDownBtn');
+  const up = document.getElementById('fontUpBtn');
+  function apply() {
+    scale = Math.round(scale * 10) / 10;
+    document.documentElement.style.fontSize = (scale * 100) + '%';
+    down.disabled = scale <= MIN + 0.001;
+    up.disabled = scale >= MAX - 0.001;
+    try { localStorage.setItem(KEY, String(scale)); } catch (e) {}
+  }
+  down.addEventListener('click', () => { scale = Math.max(MIN, scale - STEP); apply(); });
+  up.addEventListener('click', () => { scale = Math.min(MAX, scale + STEP); apply(); });
+  apply();
+})();
+</script>
+</body>
+</html>
